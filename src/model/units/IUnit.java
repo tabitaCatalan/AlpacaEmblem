@@ -1,6 +1,8 @@
 package model.units;
 
 import java.util.List;
+
+import model.items.Axe;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -65,4 +67,6 @@ public interface IUnit {
    * If the other location is out of this unit's movement range, the unit doesn't move.
    */
   void moveTo(Location targetLocation);
+
+  void addItem(IEquipableItem item);
 }

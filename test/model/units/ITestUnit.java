@@ -92,6 +92,9 @@ public interface ITestUnit {
    */
   Bow getBow();
 
+  @Test
+  void addItemTest();
+
   /**
    * Checks if the unit moves correctly
    */

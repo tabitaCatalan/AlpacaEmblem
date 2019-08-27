@@ -57,6 +57,11 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
+  public void addItem(IEquipableItem item){
+    items.add(item);
+  }
+
+  @Override
   public IEquipableItem getEquippedItem() {
     return equippedItem;
   }

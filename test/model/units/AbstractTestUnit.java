@@ -174,6 +174,14 @@ public abstract class AbstractTestUnit implements ITestUnit {
     return bow;
   }
 
+  @Override
+  @Test
+  public void addItemTest(){
+    assertTrue(getTestUnit().getItems().isEmpty());
+    getTestUnit().addItem(getAxe());
+    assertEquals(1, getTestUnit().getItems().size());
+  }
+
   /**
    * Checks if the unit moves correctly
    */
