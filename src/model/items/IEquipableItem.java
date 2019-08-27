@@ -45,4 +45,14 @@ public interface IEquipableItem {
    * @return the maximum range of the item
    */
   int getMaxRange();
+
+  /**
+   * @return true if item is in an unit's inventary
+   */
+  boolean hasOwner();
+
+  /**
+   * @return sets owner's item
+   */
+  void setOwner(IUnit testUnit);
 }

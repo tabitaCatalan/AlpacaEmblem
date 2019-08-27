@@ -1,5 +1,6 @@
 package model.items;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -116,4 +117,19 @@ public abstract class AbstractTestItem {
    * @return a unit that can equip the item being tested
    */
   public abstract IUnit getTestUnit();
+
+  @Test
+  public void hasOwnerTest(){
+    assertFalse(getTestItem().hasOwner());
+    getTestItem().setOwner(getTestUnit());
+    assertTrue(getTestItem().hasOwner());
+  }
+
+  @Test
+  public void addItemSetsOwnerItem(){
+    assertFalse(getTestItem().hasOwner());
+    getTestUnit().addItem(getTestItem());
+    assertTrue(getTestItem().hasOwner());
+    assertEquals(getTestUnit(), getTestItem().getOwner());
+  }
 }
