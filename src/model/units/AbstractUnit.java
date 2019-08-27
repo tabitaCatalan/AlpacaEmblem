@@ -59,6 +59,7 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void addItem(IEquipableItem item){
     items.add(item);
+    item.setOwner(this);
   }
 
   @Override
