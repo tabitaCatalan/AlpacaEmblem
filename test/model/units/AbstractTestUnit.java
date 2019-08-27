@@ -182,6 +182,18 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(1, getTestUnit().getItems().size());
   }
 
+  @Override
+  @Test
+  public void addItemMoreThanMaxTest(){
+    getTestUnit().addItem(getAxe());
+    getTestUnit().addItem(getBow());
+    getTestUnit().addItem(getSpear());
+    getTestUnit().addItem(getStaff());
+    assertEquals(4, getTestUnit().getNumberOfItems());
+    getTestUnit().addItem(getSword());
+    assertEquals(4, getTestUnit().getNumberOfItems());
+  }
+
   /**
    * Checks if the unit moves correctly
    */

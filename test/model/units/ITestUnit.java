@@ -95,6 +95,9 @@ public interface ITestUnit {
   @Test
   void addItemTest();
 
+  @Test
+  void addItemMoreThanMaxTest();
+
   /**
    * Checks if the unit moves correctly
    */

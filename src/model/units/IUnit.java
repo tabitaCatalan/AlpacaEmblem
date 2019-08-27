@@ -69,4 +69,9 @@ public interface IUnit {
   void moveTo(Location targetLocation);
 
   void addItem(IEquipableItem item);
+
+  /**
+   * @return number of items in inventory
+   */
+  int getNumberOfItems();
 }
