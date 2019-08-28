@@ -1,5 +1,9 @@
 package model.units;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Test set for the alpaca unit
  *
@@ -18,5 +22,17 @@ public class AlpacaTest extends AbstractTestUnit {
   @Override
   public Alpaca getTestUnit() {
     return alpaca;
+  }
+
+  @Override
+  @Test
+  public void addItemMoreThanMaxTest(){
+    assertTrue(getTestUnit().hasSpaceInInventory());
+    getTestUnit().addItem(getAxe());
+    getTestUnit().addItem(getBow());
+    getTestUnit().addItem(getSpear());
+    getTestUnit().addItem(getSword());
+    assertTrue(getTestUnit().hasSpaceInInventory());
+    assertEquals(4, getTestUnit().getNumberOfItems());
   }
 }

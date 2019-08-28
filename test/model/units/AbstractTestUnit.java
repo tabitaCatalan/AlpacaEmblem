@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import model.items.*;
 import model.map.Field;
@@ -185,13 +186,14 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void addItemMoreThanMaxTest(){
+    assertTrue(getTestUnit().hasSpaceInInventory());
     getTestUnit().addItem(getAxe());
     getTestUnit().addItem(getBow());
     getTestUnit().addItem(getSpear());
-    getTestUnit().addItem(getStaff());
-    assertEquals(4, getTestUnit().getNumberOfItems());
+    assertFalse(getTestUnit().hasSpaceInInventory());
+    assertEquals(3, getTestUnit().getNumberOfItems());
     getTestUnit().addItem(getSword());
-    assertEquals(4, getTestUnit().getNumberOfItems());
+    assertEquals(3, getTestUnit().getNumberOfItems());
   }
 
   /**

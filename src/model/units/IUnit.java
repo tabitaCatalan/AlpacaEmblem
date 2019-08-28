@@ -74,4 +74,9 @@ public interface IUnit {
    * @return number of items in inventory
    */
   int getNumberOfItems();
+
+    /**
+     * @return true if it's posible to add another item
+     */
+  boolean hasSpaceInInventory();
 }
