@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import model.units.Alpaca;
+import model.units.IUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,11 +22,14 @@ class LocationTest {
       locationB0,
       locationA1;
 
+  private IUnit testUnit;
+
   @BeforeEach
   void setUp() {
     locationA0 = new Location(0, 0);
     locationB0 = new Location(1, 0);
     locationA1 = new Location(0, 1);
+    testUnit = new Alpaca(50, 2, locationA0);
   }
 
   /**
@@ -106,4 +111,20 @@ class LocationTest {
     assertEquals(1, locationA0.getNeighbours().size());
     assertFalse(locationA0.getNeighbours().contains(locationB0));
   }
+
+  /**
+   * Checks that, when Unit moves to another cell, it left the anterior one
+   * */
+  @Test
+  public void unitOnLocationLeftSuccessfully(){
+    locationA0.addNeighbour(locationA1);
+    assertEquals(locationA0, testUnit.getLocation());
+    assertEquals(testUnit, locationA0.getUnit());
+    testUnit.moveTo(locationA1);
+    assertEquals(locationA1, testUnit.getLocation());
+    assertEquals(testUnit, locationA1.getUnit());
+    assertEquals(null, locationA0.getUnit());
+  }
+
+
 }

@@ -203,12 +203,15 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void testMovement() {
+    // out of range
     getTestUnit().moveTo(getField().getCell(2, 2));
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
 
+    // valid movement
     getTestUnit().moveTo(getField().getCell(0, 2));
     assertEquals(new Location(0, 2), getTestUnit().getLocation());
 
+    // move to occupied cell
     getField().getCell(0, 1).setUnit(getTargetAlpaca());
     getTestUnit().moveTo(getField().getCell(0, 1));
     assertEquals(new Location(0, 2), getTestUnit().getLocation());

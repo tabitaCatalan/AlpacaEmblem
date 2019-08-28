@@ -174,4 +174,10 @@ public class Location {
     return column;
   }
 
+  /**
+   * Removes the unit on the location
+   */
+  public void removeUnit() {
+    unit = null;
+  }
 }
