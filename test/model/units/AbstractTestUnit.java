@@ -80,6 +80,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
     assertTrue(getTestUnit().getItems().isEmpty());
+    assertEquals(getTestUnit(), getTestUnit().getLocation().getUnit());
   }
 
   /**
