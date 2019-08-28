@@ -28,11 +28,17 @@ public class ClericTest extends AbstractTestUnit {
     return cleric;
   }
 
+  /**
+   * Checks if the staff is equipped correctly to the unit
+   */
   @Test
   @Override
   public void equipStaffTest() {
     assertNull(cleric.getEquippedItem());
-    cleric.equipItem(staff);
+    staff.equipTo(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
     assertEquals(staff, cleric.getEquippedItem());
   }
 }

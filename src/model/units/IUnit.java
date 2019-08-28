@@ -3,7 +3,9 @@ package model.units;
 import java.util.List;
 
 import model.items.Axe;
+import model.items.Bow;
 import model.items.IEquipableItem;
+import model.items.Staff;
 import model.map.Location;
 
 /**
@@ -41,12 +43,14 @@ public interface IUnit {
   IEquipableItem getEquippedItem();
 
   /**
-   * @param item
-   *     the item to be equipped
+   * @param itemInInventory
+   *     the item in inventory to be equipped
    */
-  void setEquippedItem(IEquipableItem item);
+  void setEquippedItem(IEquipableItem itemInInventory);
 
-  /**
+    void equipAxe(Axe axe);
+
+    /**
    * @return the current location of the unit
    */
   Location getLocation();
@@ -75,8 +79,20 @@ public interface IUnit {
    */
   int getNumberOfItems();
 
-    /**
-     * @return true if it's posible to add another item
-     */
+   /**
+    * @return true if it's posible to add another item
+    */
   boolean hasSpaceInInventory();
+
+   /**
+    * Unit tries to equip a Bow. If unit it's an Archer, it successes
+    * If not, nothing happens
+    */
+   void equipBow(Bow bow);
+
+    /**
+     * Unit tries to equip a Staff. If unit it's an Cleric, it successes
+     * If not, nothing happens
+     */
+    void equipStaff(Staff staff);
 }

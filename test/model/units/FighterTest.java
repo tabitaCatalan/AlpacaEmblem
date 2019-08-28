@@ -28,6 +28,7 @@ public class FighterTest extends AbstractTestUnit {
     return fighter;
   }
 
+
   /**
    * Checks if the axe is equipped correctly to the unit
    */
@@ -35,7 +36,10 @@ public class FighterTest extends AbstractTestUnit {
   @Override
   public void equipAxeTest() {
     assertNull(fighter.getEquippedItem());
-    fighter.equipItem(axe);
+    axe.equipTo(fighter);
+    assertNull(fighter.getEquippedItem());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
     assertEquals(axe, fighter.getEquippedItem());
   }
 }

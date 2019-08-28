@@ -36,10 +36,7 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public void equipTo(final IUnit unit) {
-    unit.setEquippedItem(this);
-    owner = unit;
-  }
+  public void equipTo(final IUnit unit) {}
 
   @Override
   public boolean hasOwner(){
@@ -75,4 +72,5 @@ public abstract class AbstractItem implements IEquipableItem {
   public int getMaxRange() {
     return maxRange;
   }
+
 }

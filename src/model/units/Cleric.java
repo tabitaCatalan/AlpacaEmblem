@@ -28,14 +28,14 @@ public class Cleric extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
+   * <p>
+   * The <i>Archer</i> can <b>only equip Bows</b>.
    *
-   * @param item
-   *     the item to equip
+   * @param staff
+   *     the bow to equip. If not in the inventory nothing happens
    */
   @Override
-  public void equipItem(final IEquipableItem item) {
-    if (item instanceof Staff) {
-      equippedItem = item;
-    }
+  public void equipStaff(Staff staff) {
+    this.setEquippedItem(staff);
   }
 }

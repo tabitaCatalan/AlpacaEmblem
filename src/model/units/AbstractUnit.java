@@ -5,7 +5,11 @@ import static java.lang.Math.min;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import model.items.Axe;
+import model.items.Bow;
 import model.items.IEquipableItem;
+import model.items.Staff;
 import model.map.Location;
 
 /**
@@ -73,11 +77,25 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public void setEquippedItem(final IEquipableItem item) {
-    this.equippedItem = item;
+  public void setEquippedItem(final IEquipableItem itemInInventory) {
+    if (items.contains(itemInInventory)) {
+        this.equippedItem = itemInInventory;
+    }
   }
 
-  @Override
+    @Override
+    public void equipItem(IEquipableItem item) {}
+
+    @Override
+    public void equipBow(Bow bow) {}
+
+    @Override
+    public void equipStaff(Staff staff) {}
+
+    @Override
+    public void equipAxe(Axe axe) {}
+
+    @Override
   public Location getLocation() {
     return location;
   }
@@ -111,6 +129,7 @@ public abstract class AbstractUnit implements IUnit {
   public int getNumberOfItems(){
       return items.size();
   }
+
 
 
 }
