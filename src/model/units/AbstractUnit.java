@@ -21,7 +21,7 @@ import model.map.Location;
  */
 public abstract class AbstractUnit implements IUnit {
 
-  protected final List<IEquipableItem> items = new ArrayList<>();
+  protected final List<IEquipableItem> inventory = new ArrayList<>();
   private final int currentHitPoints;
   private final int movement;
   protected IEquipableItem equippedItem;
@@ -46,7 +46,7 @@ public abstract class AbstractUnit implements IUnit {
     this.movement = movement;
     this.location = location;
     this.location.setUnit(this);
-    this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
+    this.inventory.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
     this.maxNumberOfItems = maxItems;
   }
 
@@ -56,14 +56,14 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public List<IEquipableItem> getItems() {
-    return List.copyOf(items);
+  public List<IEquipableItem> getInventory() {
+    return List.copyOf(inventory);
   }
 
   @Override
   public void addItem(IEquipableItem item){
       if(hasSpaceInInventory()) {
-          items.add(item);
+          inventory.add(item);
           item.setOwner(this);
       }
   }
@@ -75,13 +75,16 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void setEquippedItem(final IEquipableItem itemInInventory) {
-    if (items.contains(itemInInventory)) {
+    if (isInInventory(itemInInventory)){
         this.equippedItem = itemInInventory;
     }
   }
 
     @Override
-    public void equipItem(IEquipableItem item) {}
+    public void equipItem(IEquipableItem item) {
+    if (item!= null)
+      item.equipTo(this);
+    }
 
     @Override
     public void equipBow(Bow bow) {}
@@ -130,9 +133,24 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public int getNumberOfItems(){
-      return items.size();
+      return inventory.size();
   }
 
+  @Override
+  public void giveItemAwayTo(IUnit targetUnit, IEquipableItem item){
+    if (isInInventory(item) && targetUnit.hasSpaceInInventory()){
+      removeFromInventory(item);
+      targetUnit.addItem(item);
+    }
+  }
 
+  @Override
+  public void removeFromInventory(IEquipableItem item) {
+    inventory.remove(item);
+  }
 
+  @Override
+  public boolean isInInventory(IEquipableItem item){
+    return inventory.contains(item);
+  }
 }

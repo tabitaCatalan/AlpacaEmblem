@@ -31,10 +31,6 @@ public class Archer extends AbstractUnit {
     super(hitPoints, movement, position, 3, items);
   }
 
-  @Override
-  public void equipItem(IEquipableItem item) {
-
-  }
 
   /**
    * Sets the currently equipped item of this unit.

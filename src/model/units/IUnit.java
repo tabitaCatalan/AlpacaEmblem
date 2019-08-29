@@ -17,7 +17,7 @@ import model.map.Location;
 public interface IUnit {
 
   /**
-   * Sets the currently equipped item of this unit.
+   * Unit tries to equip item
    *
    * @param item
    *     the item to equip
@@ -32,20 +32,20 @@ public interface IUnit {
   /**
    * @return the items carried by this unit
    */
-  List<IEquipableItem> getItems();
+  List<IEquipableItem> getInventory();
 
   /**
    * @return the currently equipped item
    */
   IEquipableItem getEquippedItem();
 
-  /**
+  /** Sets the equippedItem
    * @param itemInInventory
    *     the item in inventory to be equipped
    */
   void setEquippedItem(IEquipableItem itemInInventory);
 
-    void equipAxe(Axe axe);
+
 
     /**
    * @return the current location of the unit
@@ -69,6 +69,9 @@ public interface IUnit {
    */
   void moveTo(Location targetLocation);
 
+  /**
+  * Add an item to the inventory. If there's no space, nothing happens.
+  */
   void addItem(IEquipableItem item);
 
   /**
@@ -77,7 +80,7 @@ public interface IUnit {
   int getNumberOfItems();
 
    /**
-    * @return true if it's posible to add another item
+    * @return true if it's possible to add another item
     */
   boolean hasSpaceInInventory();
 
@@ -86,6 +89,12 @@ public interface IUnit {
     * If not, nothing happens
     */
    void equipBow(Bow bow);
+
+    /**
+     * Unit tries to equip an Axe. If unit it's an Fighter, it successes.
+     * If not, nothing happens
+     */
+    void equipAxe(Axe axe);
 
     /**
      * Unit tries to equip a Staff. If unit it's a Cleric, it successes.
@@ -104,4 +113,18 @@ public interface IUnit {
      * If not, nothing happens
      */
     void equipSword(Sword sword);
+
+    /**
+     * Unit gives one of her items to targetUnit, if has space in inventory
+     * @param targetUnit
+     * @param item
+     */
+    void giveItemAwayTo(IUnit targetUnit, IEquipableItem item);
+
+    void removeFromInventory(IEquipableItem item);
+
+    /**
+     * true if item is in the inventory
+     * */
+    boolean isInInventory(IEquipableItem item);
 }

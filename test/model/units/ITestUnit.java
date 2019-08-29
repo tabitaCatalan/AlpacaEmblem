@@ -47,6 +47,9 @@ public interface ITestUnit {
   @Test
   void equipAxeTest();
 
+  @Test
+  void successfulExchange();
+
   /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
    *

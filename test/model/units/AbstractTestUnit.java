@@ -79,7 +79,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(50, getTestUnit().getCurrentHitPoints());
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
-    assertTrue(getTestUnit().getItems().isEmpty());
+    assertTrue(getTestUnit().getInventory().isEmpty());
     assertEquals(getTestUnit(), getTestUnit().getLocation().getUnit());
   }
 
@@ -99,6 +99,20 @@ public abstract class AbstractTestUnit implements ITestUnit {
   }
 
   /**
+   * Checks if the axe is equipped correctly to the unit
+   */
+  @Override
+  @Test
+  public void successfulExchange() {
+    assertEquals(0, getTestUnit().getNumberOfItems());
+    assertEquals(0, getTargetAlpaca().getNumberOfItems());
+    getTargetAlpaca().addItem(getAxe());
+    getTargetAlpaca().giveItemAwayTo(getTestUnit(), getAxe());
+    assertEquals(1, getTestUnit().getNumberOfItems());
+    assertEquals(0, getTargetAlpaca().getNumberOfItems());
+  }
+
+  /**
    * Tries to equip an incorrect weapon to a Unit and verifies that it was not equipped
    *
    * @param item
@@ -111,14 +125,19 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertNull(getTestUnit().getEquippedItem());
   }
 
-
+  /**
+   * Tries to equip an correct weapon to a Unit and verifies that it was equipped
+   *
+   * @param item
+   *     to be equipped
+   */
   @Override
   public void checkCorrectEquippedItem(IUnit unit, IEquipableItem item) {
     assertNull(unit.getEquippedItem());
     item.equipTo(unit);
     assertNull(unit.getEquippedItem());
     unit.addItem(item);
-    item.equipTo(unit);
+    unit.equipItem(item);
     assertEquals(item, unit.getEquippedItem());
   }
 
@@ -189,9 +208,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void addItemTest(){
-    assertTrue(getTestUnit().getItems().isEmpty());
+    assertTrue(getTestUnit().getInventory().isEmpty());
     getTestUnit().addItem(getAxe());
-    assertEquals(1, getTestUnit().getItems().size());
+    assertEquals(1, getTestUnit().getInventory().size());
   }
 
   @Override
