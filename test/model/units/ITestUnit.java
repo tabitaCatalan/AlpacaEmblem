@@ -53,7 +53,9 @@ public interface ITestUnit {
    * @param item
    *     to be equipped
    */
-  void checkEquippedItem(IEquipableItem item);
+  void checkIncorrectEquippedItem(IEquipableItem item);
+
+  void checkCorrectEquippedItem(IUnit unit, IEquipableItem item);
 
   /**
    * @return the test axe

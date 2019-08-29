@@ -95,21 +95,31 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipAxeTest() {
-    assertNull(getTestUnit().getEquippedItem());
-    checkEquippedItem(getAxe());
+    checkIncorrectEquippedItem(getAxe());
   }
 
   /**
-   * Tries to equip a weapon to the alpaca and verifies that it was not equipped
+   * Tries to equip an incorrect weapon to a Unit and verifies that it was not equipped
    *
    * @param item
    *     to be equipped
    */
   @Override
-  public void checkEquippedItem(IEquipableItem item) {
+  public void checkIncorrectEquippedItem(IEquipableItem item) {
     assertNull(getTestUnit().getEquippedItem());
     getTestUnit().equipItem(item);
     assertNull(getTestUnit().getEquippedItem());
+  }
+
+
+  @Override
+  public void checkCorrectEquippedItem(IUnit unit, IEquipableItem item) {
+    assertNull(unit.getEquippedItem());
+    item.equipTo(unit);
+    assertNull(unit.getEquippedItem());
+    unit.addItem(item);
+    item.equipTo(unit);
+    assertEquals(item, unit.getEquippedItem());
   }
 
   /**
@@ -123,7 +133,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipSwordTest() {
-    checkEquippedItem(getSword());
+    checkIncorrectEquippedItem(getSword());
   }
 
   /**
@@ -137,7 +147,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipSpearTest() {
-    checkEquippedItem(getSpear());
+    checkIncorrectEquippedItem(getSpear());
   }
 
   /**
@@ -151,7 +161,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipStaffTest() {
-    checkEquippedItem(getStaff());
+    checkIncorrectEquippedItem(getStaff());
   }
 
   /**
@@ -165,7 +175,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipBowTest() {
-    checkEquippedItem(getBow());
+    checkIncorrectEquippedItem(getBow());
   }
 
   /**
