@@ -2,10 +2,7 @@ package model.units;
 
 import java.util.List;
 
-import model.items.Axe;
-import model.items.Bow;
-import model.items.IEquipableItem;
-import model.items.Staff;
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -85,14 +82,26 @@ public interface IUnit {
   boolean hasSpaceInInventory();
 
    /**
-    * Unit tries to equip a Bow. If unit it's an Archer, it successes
+    * Unit tries to equip a Bow. If unit it's an Archer, it successes.
     * If not, nothing happens
     */
    void equipBow(Bow bow);
 
     /**
-     * Unit tries to equip a Staff. If unit it's an Cleric, it successes
+     * Unit tries to equip a Staff. If unit it's a Cleric, it successes.
      * If not, nothing happens
      */
     void equipStaff(Staff staff);
+
+    /**
+     * Unit tries to equip a Spear. If unit it's the Hero, it successes.
+     * If not, nothing happens
+     */
+    void equipSpear(Spear spear);
+
+    /**
+     * Unit tries to equip a Sword. If unit it's a SwordMaster, it successes.
+     * If not, nothing happens
+     */
+    void equipSword(Sword sword);
 }

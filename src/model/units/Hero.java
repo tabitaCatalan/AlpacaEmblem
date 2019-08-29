@@ -27,16 +27,8 @@ public class Hero extends AbstractUnit {
     super(hitPoints, movement, location, 3, items);
   }
 
-  /**
-   * Sets the currently equipped item of this unit.
-   *
-   * @param item
-   *     the item to equip
-   */
   @Override
-  public void equipItem(final IEquipableItem item) {
-    if (item instanceof Spear) {
-      equippedItem = item;
-    }
+  public void equipSpear(Spear spear) {
+    this.setEquippedItem(spear);
   }
 }

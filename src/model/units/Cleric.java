@@ -26,14 +26,6 @@ public class Cleric extends AbstractUnit {
     super(hitPoints, movement, location, 3, items);
   }
 
-  /**
-   * Sets the currently equipped item of this unit.
-   * <p>
-   * The <i>Archer</i> can <b>only equip Bows</b>.
-   *
-   * @param staff
-   *     the bow to equip. If not in the inventory nothing happens
-   */
   @Override
   public void equipStaff(Staff staff) {
     this.setEquippedItem(staff);

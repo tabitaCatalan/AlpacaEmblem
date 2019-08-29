@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.items.Axe;
-import model.items.Bow;
-import model.items.IEquipableItem;
-import model.items.Staff;
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -94,6 +91,12 @@ public abstract class AbstractUnit implements IUnit {
 
     @Override
     public void equipAxe(Axe axe) {}
+
+  @Override
+  public void equipSpear(Spear spear) {}
+
+  @Override
+  public void equipSword(Sword sword) {}
 
     @Override
   public Location getLocation() {
