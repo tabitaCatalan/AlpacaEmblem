@@ -73,4 +73,26 @@ public abstract class AbstractItem implements IEquipableItem {
     return maxRange;
   }
 
+  public void receiveBowAttack(Bow bow){
+    receiveNormalAttack(bow);
+  }
+
+  public void receiveAxeAttack(Axe axe){
+    receiveNormalAttack(axe);
+  }
+
+  public void receiveSpearAttack(Spear spear){
+    receiveNormalAttack(spear);
+  }
+
+  public void receiveSwordAttack(Sword sword){
+    receiveNormalAttack(sword);
+  }
+
+  protected void receiveNormalAttack(IEquipableItem weapon){}
+
+  protected void receiveWeakAttack(IEquipableItem weapon){}
+
+  protected void receiveStrongAttack(IEquipableItem weapon){}
+
 }

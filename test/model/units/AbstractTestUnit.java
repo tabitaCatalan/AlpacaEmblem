@@ -261,4 +261,12 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public Alpaca getTargetAlpaca() {
     return targetAlpaca;
   }
+
+  @Test
+  public void receiveDamageTest(){
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
+    getTestUnit().receiveDamage(30);
+    assertEquals(20, getTestUnit().getCurrentHitPoints());
+  }
+
 }

@@ -1,5 +1,6 @@
 package model.units;
 
+import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import model.map.Location;
 public abstract class AbstractUnit implements IUnit {
 
   protected final List<IEquipableItem> inventory = new ArrayList<>();
-  private final int currentHitPoints;
+  private int currentHitPoints;
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
@@ -78,6 +79,11 @@ public abstract class AbstractUnit implements IUnit {
     if (isInInventory(itemInInventory)){
         this.equippedItem = itemInInventory;
     }
+  }
+
+  @Override
+  public void useEquippedItemOn(IUnit targetUnit){
+
   }
 
     @Override
@@ -153,4 +159,42 @@ public abstract class AbstractUnit implements IUnit {
   public boolean isInInventory(IEquipableItem item){
     return inventory.contains(item);
   }
+
+  @Override
+  public void receiveDamage(int damageAmount){
+    currentHitPoints = max(currentHitPoints - damageAmount, 0);
+  }
+
+  @Override
+  public void receiveBowAttack(Bow bow){
+    equippedItem.receiveBowAttack(bow);
+  }
+
+  @Override
+  public void receiveAxeAttack(Axe axe){
+    equippedItem.receiveAxeAttack(axe);
+  }
+
+  @Override
+  public void receiveSpearAttack(Spear spear){
+    equippedItem.receiveSpearAttack(spear);
+  }
+
+  @Override
+  public void receiveSwordAttack(Sword sword){
+    equippedItem.receiveSwordAttack(sword);
+  }
+
+  @Override
+  public boolean hasEquippedItem(){
+    return equippedItem != null;
+  }
+
+  @Override
+  public boolean isInRange(IUnit targetUnit){
+    double distance = getLocation().distanceTo(targetUnit.getLocation());
+    return (distance >= equippedItem.getMinRange() && distance <= equippedItem.getMaxRange());
+  }
+
+
 }

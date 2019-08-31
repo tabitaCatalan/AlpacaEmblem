@@ -55,4 +55,29 @@ public interface IEquipableItem {
    * @return sets owner's item
    */
   void setOwner(IUnit testUnit);
+
+
+  /**
+   * Item receives an attack from a bow
+   * @param bow : the bow that attacks
+   * */
+  void receiveBowAttack(Bow bow);
+
+  /**
+   * Item receives an attack from an axe
+   * @param axe : the axe that attacks
+   * */
+  void receiveAxeAttack(Axe axe);
+
+  /**
+   * Item receives an attack from a spear
+   * @param spear : the spear that attacks
+   * */
+  void receiveSpearAttack(Spear spear);
+
+  /**
+   * Item receives an attack from a sword
+   * @param sword : the sword that attacks
+   * */
+  void receiveSwordAttack(Sword sword);
 }

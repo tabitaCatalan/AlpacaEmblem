@@ -34,6 +34,11 @@ public interface IUnit {
    */
   List<IEquipableItem> getInventory();
 
+   /**
+    * @return true is Unit has an item equipped
+    */
+   boolean hasEquippedItem();
+
   /**
    * @return the currently equipped item
    */
@@ -116,15 +121,66 @@ public interface IUnit {
 
     /**
      * Unit gives one of her items to targetUnit, if has space in inventory
-     * @param targetUnit
-     * @param item
+     * @param targetUnit receptor unit
+     * @param item in the inventory yo give away
      */
     void giveItemAwayTo(IUnit targetUnit, IEquipableItem item);
 
+    /**
+     * removes item from unit's inventory
+     * @param item : the item to remove
+     * */
     void removeFromInventory(IEquipableItem item);
 
     /**
      * true if item is in the inventory
+     * @param item : the item you want to know if it is in the inventory
      * */
     boolean isInInventory(IEquipableItem item);
+
+    /**
+     * Unit uses her equippedItem on targetUnit.
+     * If equippedItem is a weapon, then the targetUnit is attacked.
+     * If equippedItem is a item able of heal, then the targetUnit is healed.
+     * @param targetUnit : the unit that receives the effect of EquippedItem
+     * */
+    void useEquippedItemOn(IUnit targetUnit);
+
+    /**
+     * Unit receives an attack from a bow
+     * @param bow : the bow that attacks
+     * */
+    void receiveBowAttack(Bow bow);
+
+    /**
+     * Unit receives an attack from an axe
+     * @param axe : the axe that attacks
+     * */
+    void receiveAxeAttack(Axe axe);
+
+    /**
+     * Unit receives an attack from a spear
+     * @param spear : the spear that attacks
+     * */
+    void receiveSpearAttack(Spear spear);
+
+    /**
+     * Unit receives an attack from a sword
+     * @param sword : the sword that attacks
+     * */
+    void receiveSwordAttack(Sword sword);
+
+    /**
+     * Unit receives certain amount of damage
+     * @param damageAmount :
+     * */
+    void receiveDamage(int damageAmount);
+
+    /**
+     * true if targetUnit is in range of equippedItem.
+     * @param targetUnit the unit to use the item on
+     *
+     * @return true if item is in range
+     * */
+    boolean isInRange(IUnit targetUnit);
 }
