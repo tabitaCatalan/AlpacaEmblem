@@ -51,6 +51,7 @@ public abstract class AbstractUnit implements IUnit {
     this.location.setUnit(this);
     this.inventory.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
     this.maxNumberOfItems = maxItems;
+    equippedItem = new NullItem();
   }
 
   @Override
@@ -154,7 +155,16 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void removeFromInventory(IEquipableItem item) {
+    item.setOwner(null);
+    if (equippedItem.equals(item)){
+      disarm();
+    }
     inventory.remove(item);
+  }
+
+  @Override
+  public void disarm(){
+    equippedItem = new NullItem();
   }
 
   @Override
@@ -194,7 +204,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public boolean hasEquippedItem(){
-    return equippedItem != null;
+    return (equippedItem != null) && !equippedItem.isNullItem();
   }
 
   @Override

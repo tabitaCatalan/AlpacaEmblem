@@ -119,4 +119,9 @@ public abstract class AbstractItem implements IEquipableItem {
     owner.receiveDamage(damage);
   }
 
+  @Override
+  public boolean isNullItem(){
+    return false;
+  }
+
 }

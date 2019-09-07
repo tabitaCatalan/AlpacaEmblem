@@ -134,6 +134,8 @@ public interface IUnit {
      * */
     void removeFromInventory(IEquipableItem item);
 
+    void disarm();
+
     /**
      * true if item is in the inventory
      * @param item : the item you want to know if it is in the inventory

@@ -18,7 +18,10 @@ public class NullItem extends AbstractItem{
     }
 
     @Override
-    public void equipTo(IUnit unit) {
-        //unit.beingUnequipped(this);
+    public void equipTo(IUnit unit) {}
+
+    @Override
+    public boolean isNullItem(){
+        return true;
     }
 }

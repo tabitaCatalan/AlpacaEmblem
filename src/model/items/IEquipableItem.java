@@ -87,5 +87,14 @@ public interface IEquipableItem {
    * */
   void actOn(IUnit targetUnit);
 
+  /**
+   * Item rects to an attack of unit
+   * @param unit : the unit that attacked item's owner
+   * */
   void reactTo(IUnit unit);
+
+  /**
+   * if false, item is a normal one. If true, is a NullItem: an item that does nothing.
+   * */
+  boolean isNullItem();
 }
