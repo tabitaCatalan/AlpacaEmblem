@@ -24,6 +24,7 @@ public abstract class AbstractUnit implements IUnit {
 
   protected final List<IEquipableItem> inventory = new ArrayList<>();
   private int currentHitPoints;
+  private int maxHitPoints;
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
@@ -32,7 +33,7 @@ public abstract class AbstractUnit implements IUnit {
   /**
    * Creates a new Unit.
    *
-   * @param hitPoints
+   * @param maxHitPoints
    *     the maximum amount of damage a unit can sustain
    * @param movement
    *     the number of panels a unit can move
@@ -41,9 +42,10 @@ public abstract class AbstractUnit implements IUnit {
    * @param maxItems
    *     maximum amount of items this unit can carry
    */
-  protected AbstractUnit(final int hitPoints, final int movement,
+  protected AbstractUnit(final int maxHitPoints, final int movement,
      final Location location, final int maxItems, final IEquipableItem... items) {
-    this.currentHitPoints = hitPoints;
+    this.maxHitPoints = maxHitPoints;
+    this.currentHitPoints = maxHitPoints;
     this.movement = movement;
     this.location = location;
     this.location.setUnit(this);
@@ -209,5 +211,8 @@ public abstract class AbstractUnit implements IUnit {
     return location.distanceTo(targetUnit.getLocation());
   }
 
-
+  @Override
+  public void beingHealed(int amountHP){
+    currentHitPoints = Math.min(currentHitPoints + amountHP, maxHitPoints);
+  }
 }
