@@ -34,7 +34,9 @@ public interface IUnit {
    */
   List<IEquipableItem> getInventory();
 
-   /**
+    void reactToAttack(IUnit unit);
+
+    /**
     * @return true is Unit has an item equipped
     */
    boolean hasEquippedItem();

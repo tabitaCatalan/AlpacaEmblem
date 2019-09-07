@@ -80,4 +80,12 @@ public interface IEquipableItem {
    * @param sword : the sword that attacks
    * */
   void receiveSwordAttack(Sword sword);
+
+  /**
+   * Item uses it's power on targetUnit
+   * @param targetUnit : the unit that receives the effect of item
+   * */
+  void actOn(IUnit targetUnit);
+
+  void reactTo(IUnit unit);
 }

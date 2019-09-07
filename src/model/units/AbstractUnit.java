@@ -83,7 +83,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void useEquippedItemOn(IUnit targetUnit){
-
+    equippedItem.actOn(targetUnit);
   }
 
   @Override
@@ -183,6 +183,11 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void receiveSwordAttack(Sword sword){
     equippedItem.receiveSwordAttack(sword);
+  }
+
+  @Override
+  public void reactToAttack(IUnit unit){
+    equippedItem.reactTo(unit);
   }
 
   @Override

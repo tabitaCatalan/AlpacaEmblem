@@ -110,12 +110,12 @@ public abstract class CombatTest {
      * testUnit uses it's item to attack targetUnit
      */
     public void attackUnitsTest(){
-        useItemOnUnitTest(40, alpaca);
-        useItemOnUnitTest(40, archer);
-        useItemOnUnitTest(40, cleric);
-        useItemOnUnitTest(40, fighter);
-        useItemOnUnitTest(40, hero);
-        useItemOnUnitTest(40, swordMaster);
+        useItemOnUnitTest(40, alpaca); // normal damage
+        useItemOnUnitTest(40, archer); // normal damage
+        useItemOnUnitTest(40, cleric); // normal damage
+        useItemOnUnitTest(40, fighter); // normal damage
+        useItemOnUnitTest(40, hero); // normal damage
+        useItemOnUnitTest(40, swordMaster); // normal damage
     }
 
     /**
@@ -146,5 +146,10 @@ public abstract class CombatTest {
     @Test
     public void isInRangeTest(){
         assertTrue(getTestUnit().isInRange(alpaca));
+        assertTrue(getTestUnit().isInRange(archer));
+        assertTrue(getTestUnit().isInRange(cleric));
+        assertTrue(getTestUnit().isInRange(fighter));
+        assertTrue(getTestUnit().isInRange(hero));
+        assertTrue(getTestUnit().isInRange(swordMaster));
     }
 }

@@ -11,7 +11,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Sword extends AbstractItem {
+public class Sword extends AbstractWeapon {
 
   /**
    * Creates a new Sword.
@@ -42,6 +42,11 @@ public class Sword extends AbstractItem {
   @Override
   public void receiveSpearAttack(Spear spear){
     receiveStrongAttack(spear);
+  }
+
+  @Override
+  public void attack(IUnit targetUnit){
+    targetUnit.receiveSwordAttack(this);
   }
 
 }

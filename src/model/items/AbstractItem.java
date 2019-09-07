@@ -73,6 +73,12 @@ public abstract class AbstractItem implements IEquipableItem {
     return maxRange;
   }
 
+  @Override
+  public void actOn(IUnit targetUnit){}
+  
+  @Override
+  public void reactTo(IUnit unit){}
+
   public void receiveBowAttack(Bow bow){
     receiveNormalAttack(bow);
   }
