@@ -130,12 +130,17 @@ public abstract class CombatTest {
         useItemOnUnitTest(60, swordMaster);
     }
 
-    //@Test
-    //abstract void useItemOnAllTargetUnitsTest();
+    @Test
+    abstract void useItemOnAllTargetUnitsTest();
 
     @Test
     public void distanceTest(){
         assertEquals(2, getTestUnit().distanceTo(alpaca));
+        assertEquals(2, getTestUnit().distanceTo(archer));
+        assertEquals(2, getTestUnit().distanceTo(cleric));
+        assertEquals(2, getTestUnit().distanceTo(fighter));
+        assertEquals(2, getTestUnit().distanceTo(hero));
+        assertEquals(2, getTestUnit().distanceTo(swordMaster));
     }
 
     @Test

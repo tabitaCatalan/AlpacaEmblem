@@ -86,20 +86,20 @@ public abstract class AbstractUnit implements IUnit {
 
   }
 
-    @Override
-    public void equipItem(IEquipableItem item) {
-    if (item!= null)
-      item.equipTo(this);
-    }
+  @Override
+  public void equipItem(IEquipableItem item) {
+  if (item!= null)
+    item.equipTo(this);
+  }
 
-    @Override
-    public void equipBow(Bow bow) {}
+  @Override
+  public void equipBow(Bow bow) {}
 
-    @Override
-    public void equipStaff(Staff staff) {}
+  @Override
+  public void equipStaff(Staff staff) {}
 
-    @Override
-    public void equipAxe(Axe axe) {}
+  @Override
+  public void equipAxe(Axe axe) {}
 
   @Override
   public void equipSpear(Spear spear) {}
@@ -107,7 +107,7 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void equipSword(Sword sword) {}
 
-    @Override
+  @Override
   public Location getLocation() {
     return location;
   }

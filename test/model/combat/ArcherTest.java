@@ -23,11 +23,11 @@ public class ArcherTest extends CombatTest {
         getTestUnit().equipItem(bow);
     }
 
-    /*@Override
+    @Override
     @Test
     void useItemOnAllTargetUnitsTest() {
-        //attackUnitsTest();
-    }*/
+        attackUnitsTest();
+    }
 
 
 }
