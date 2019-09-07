@@ -183,4 +183,11 @@ public interface IUnit {
      * @return true if item is in range
      * */
     boolean isInRange(IUnit targetUnit);
+
+    /**
+     * Calculates distance from unit to a targetUnit
+     * @param targetUnit
+     * @return the distance, measured on a field
+     * */
+    double distanceTo(IUnit targetUnit);
 }

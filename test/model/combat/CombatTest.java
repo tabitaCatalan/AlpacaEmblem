@@ -1,28 +1,28 @@
-package model.units;
+package model.combat;
 
 import model.items.*;
 import model.map.Field;
 import model.map.Location;
+import model.units.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class CombatTest {
 
-    Field field;
-    Alpaca alpaca;
-    Archer archer;
-    Cleric cleric;
-    Fighter fighter;
-    Hero hero;
-    SwordMaster swordMaster;
-    Axe axe;
-    Bow bow;
-    Spear spear;
-    Staff staff;
-    Sword sword;
+    protected Field field;
+    protected Alpaca alpaca;
+    protected Archer archer;
+    protected Cleric cleric;
+    protected Fighter fighter;
+    protected Hero hero;
+    protected SwordMaster swordMaster;
+    protected Axe axe;
+    protected Bow bow;
+    protected Spear spear;
+    protected Staff staff;
+    protected Sword sword;
 
     /**
      * Sets up field, units and weapons to be tested
@@ -33,6 +33,20 @@ public abstract class CombatTest {
         setTestUnit();
         setTargetUnits();
         setWeapons();
+        equipTestUnit();
+    }
+
+    /**
+     * Equip item to TestUnit
+     * */
+    protected abstract void equipTestUnit();
+
+    /**
+     * Test unit has been correctly equipped
+     * */
+    @Test
+    protected void isEquippedTest(){
+        assertTrue(getTestUnit().hasEquippedItem());
     }
 
     /**
@@ -105,7 +119,7 @@ public abstract class CombatTest {
     }
 
     /**
-     * testUnit uses it's item to attack targetUnit
+     * testUnit uses it's item to heal targetUnit
      */
     public void healUnitsTest(){
         useItemOnUnitTest(60, alpaca);
@@ -116,7 +130,16 @@ public abstract class CombatTest {
         useItemOnUnitTest(60, swordMaster);
     }
 
-    @Test
-    abstract void useItemOnAllTargetUnitsTest();
+    //@Test
+    //abstract void useItemOnAllTargetUnitsTest();
 
+    @Test
+    public void distanceTest(){
+        assertEquals(2, getTestUnit().distanceTo(alpaca));
+    }
+
+    @Test
+    public void isInRangeTest(){
+        assertTrue(getTestUnit().isInRange(alpaca));
+    }
 }
