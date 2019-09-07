@@ -89,10 +89,28 @@ public abstract class AbstractItem implements IEquipableItem {
     receiveNormalAttack(sword);
   }
 
-  protected void receiveNormalAttack(IEquipableItem weapon){}
+  /**
+   * Unit receives normal damage from a weapon
+   * */
+  protected void receiveNormalAttack(IEquipableItem weapon){
+    int damage = weapon.getPower();
+    owner.receiveDamage(damage);
+  }
 
-  protected void receiveWeakAttack(IEquipableItem weapon){}
+  /**
+   * Unit receives weak damage from a weapon
+   * */
+  protected void  receiveWeakAttack(IEquipableItem weapon){
+    int damage = Math.max(0, weapon.getPower() - 20);
+    owner.receiveDamage(damage);
+  }
 
-  protected void receiveStrongAttack(IEquipableItem weapon){}
+  /**
+   * Unit receives strong damage from a weapon
+   * */
+  protected void receiveStrongAttack(IEquipableItem weapon){
+    int damage = (int) Math.round(weapon.getPower() * 1.5);
+    owner.receiveDamage(damage);
+  }
 
 }

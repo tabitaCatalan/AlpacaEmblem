@@ -1,5 +1,6 @@
 package model.items;
 
+import jdk.jfr.Percentage;
 import model.units.IUnit;
 
 /**
@@ -32,4 +33,15 @@ public class Sword extends AbstractItem {
   public void equipTo(IUnit unit) {
     unit.equipSword(this);
   }
+
+  @Override
+  public void receiveAxeAttack(Axe axe){
+    receiveWeakAttack(axe);
+  }
+
+  @Override
+  public void receiveSpearAttack(Spear spear){
+    receiveStrongAttack(spear);
+  }
+
 }

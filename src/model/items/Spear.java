@@ -32,4 +32,14 @@ public class Spear extends AbstractItem {
   public void equipTo(IUnit unit) {
     unit.equipSpear(this);
   }
+
+  @Override
+  public void receiveAxeAttack(Axe axe){
+    receiveStrongAttack(axe);
+  }
+
+  @Override
+  public void receiveSwordAttack(Sword sword){
+    receiveWeakAttack(sword);
+  }
 }
