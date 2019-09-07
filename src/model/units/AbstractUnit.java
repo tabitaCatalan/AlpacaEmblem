@@ -29,6 +29,7 @@ public abstract class AbstractUnit implements IUnit {
   protected IEquipableItem equippedItem;
   private Location location;
   private int maxNumberOfItems;
+  private IEquipableItem nullItem;
 
   /**
    * Creates a new Unit.
@@ -51,7 +52,9 @@ public abstract class AbstractUnit implements IUnit {
     this.location.setUnit(this);
     this.inventory.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
     this.maxNumberOfItems = maxItems;
-    equippedItem = new NullItem();
+    nullItem = new NullItem();
+    nullItem.setOwner(this);
+    disarm();
   }
 
   @Override
@@ -66,7 +69,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void addItem(IEquipableItem item){
-      if(hasSpaceInInventory()) {
+      if(!item.isNullItem() && hasSpaceInInventory()) {
           inventory.add(item);
           item.setOwner(this);
       }
@@ -164,7 +167,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void disarm(){
-    equippedItem = new NullItem();
+    equippedItem = nullItem;
   }
 
   @Override

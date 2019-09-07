@@ -18,7 +18,9 @@ public class NullItem extends AbstractItem{
     }
 
     @Override
-    public void equipTo(IUnit unit) {}
+    public void equipTo(IUnit unit) {
+        unit.disarm();
+    }
 
     @Override
     public boolean isNullItem(){
