@@ -75,7 +75,7 @@ public abstract class AbstractItem implements IEquipableItem {
 
   @Override
   public void actOn(IUnit targetUnit){}
-  
+
   @Override
   public void reactTo(IUnit unit){}
 

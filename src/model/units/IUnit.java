@@ -192,4 +192,10 @@ public interface IUnit {
      * @return the distance, measured on a field
      * */
     double distanceTo(IUnit targetUnit);
+
+    /**
+     * Unit is healed. Adds amountHP to her hit points, until she is full life.
+     * @param amountHP to be healed
+     * */
+    void beingHealed(int amountHP);
 }
