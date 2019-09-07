@@ -122,12 +122,12 @@ public abstract class CombatTest {
      * testUnit uses it's item to heal targetUnit
      */
     public void healUnitsTest(){
-        useItemOnUnitTest(60, alpaca);
-        useItemOnUnitTest(60, archer);
-        useItemOnUnitTest(60, cleric);
-        useItemOnUnitTest(60, fighter);
-        useItemOnUnitTest(60, hero);
-        useItemOnUnitTest(60, swordMaster);
+        useItemOnUnitTest(50, alpaca);
+        useItemOnUnitTest(50, archer);
+        useItemOnUnitTest(50, cleric);
+        useItemOnUnitTest(50, fighter);
+        useItemOnUnitTest(50, hero);
+        useItemOnUnitTest(50, swordMaster);
     }
 
     @Test
