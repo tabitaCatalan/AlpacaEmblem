@@ -19,13 +19,12 @@ y *movement* celdas de distancia desde su sitio actual.
 Exceptuando la Alpaca, todas las unidades pueden portar a lo más 3 objetos.
 Los tipos de unidades se listan a continuación:
 - Unidades básicas:
-  - **Archer:** Sólo pueden equiparse *Bows*.
-  <img src="images/archerEquipped.svg" title="Archer"/>
-  - **Fighter:** Sólo pueden equiparse *Axes*.
-  - **Sword Master:** Sólo pueden equiparse *Swords*.
+  - **Archer:** Sólo pueden equiparse *Bows*.  <img src="images/archerEquipped.svg" title="Archer" width="50"/>
+  - **Fighter:** Sólo pueden equiparse *Axes*. 
+  - **Sword Master:** Sólo pueden equiparse *Swords*. <img src="images/swordMasterReady.svg" title="Sword Master" width="50"/>
 - Unidades especiales:
-  - **Alpaca:** No pueden equiparse ningún tipo de objeto, pero pueden cargar una cantidad ilimitada de ellos.
-  - **Cleric:** Sólo pueden equiparse Staffs y no pueden realizar ataques.
+  - **Alpaca:** No pueden equiparse ningún tipo de objeto, pero pueden cargar una cantidad ilimitada de ellos. <img src="images/alpaca.svg" title="Alpaca" width="50"/>
+  - **Cleric:** Sólo pueden equiparse Staffs y no pueden realizar ataques. <img src="images/clericCombat.svg" title="Cleric" width="50"/>
   - **Hero:** Sólo puede equiparse Spears. Al ser derrotado, el jugador que perdió esta unidad pierde la partida (esto no está implementado aún).
 
 
