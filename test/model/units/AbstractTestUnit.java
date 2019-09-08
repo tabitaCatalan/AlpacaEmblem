@@ -120,22 +120,22 @@ public abstract class AbstractTestUnit implements ITestUnit {
    */
   @Override
   public void checkIncorrectEquippedItem(IEquipableItem item) {
-    assertNull(getTestUnit().getEquippedItem());
+    assertTrue(getTestUnit().getEquippedItem().isNullItem());
     getTestUnit().equipItem(item);
-    assertNull(getTestUnit().getEquippedItem());
+    assertTrue(getTestUnit().getEquippedItem().isNullItem());
   }
 
   /**
-   * Tries to equip an correct weapon to a Unit and verifies that it was equipped
+   * Tries to equip an correct weapon to a Unit and verifies that it was equipped. Item has to be added to inventory first.
    *
    * @param item
    *     to be equipped
    */
   @Override
   public void checkCorrectEquippedItem(IUnit unit, IEquipableItem item) {
-    assertNull(unit.getEquippedItem());
+    assertTrue(unit.getEquippedItem().isNullItem());
     item.equipTo(unit);
-    assertNull(unit.getEquippedItem());
+    assertTrue(unit.getEquippedItem().isNullItem());
     unit.addItem(item);
     unit.equipItem(item);
     assertEquals(item, unit.getEquippedItem());
