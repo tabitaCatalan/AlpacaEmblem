@@ -24,8 +24,8 @@ Los tipos de unidades se listan a continuación:
   - **Sword Master:** Sólo pueden equiparse *Swords*. <img src="images/swordMasterReady.svg" title="Sword Master" width="50"/>
 - Unidades especiales:
   - **Alpaca:** No pueden equiparse ningún tipo de objeto, pero pueden cargar una cantidad ilimitada de ellos. <img src="images/alpaca.svg" title="Alpaca" width="50"/>
-  - **Cleric:** Sólo pueden equiparse Staffs y no pueden realizar ataques. <img src="images/clericCombat.svg" title="Cleric" width="50"/>
-  - **Hero:** Sólo puede equiparse Spears. Al ser derrotado, el jugador que perdió esta unidad pierde la partida (esto no está implementado aún).
+  - **Cleric:** Sólo pueden equiparse *Staffs* y no pueden realizar ataques. <img src="images/clericCombat.svg" title="Cleric" width="50"/>
+  - **Hero:** Sólo puede equiparse *Spears*. Al ser derrotado, el jugador que perdió esta unidad pierde la partida (esto no está implementado aún).
 
 
 ### Objetos
@@ -41,7 +41,12 @@ La distancia entre todos los nodos que están directamente conectados es 1.
 **Agregar diagrama UML**
 - Para tratar con los distintos tipos de ítem se utiliza Double Dispatch.
 - Se crea una clase <code>NullItem</code> (que no hace nada), que implementa la interfaz <code>IEquipableItem</code>. Se utiliza para tratar con las unidades que no tienen un ítem equipado. Tiene rango [0,0], y <code>power</code> 0.
-- Para el combate, se agregaron los métodos <code>actOn</code> and <code>reactTo</code> a la interfaz <code>IEquipableItem</code>. Posteriormente, estos son implementados por la clase abstracta <code>AbstractItem</code>, simplemente dejándolos en blanco (el comportamiento de un ítem por defecto). Esa clase se separa en dos clases abstractas <code>AbstractWeapon</code>, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como <code>Bow</code> o <code>Axe</code>), y <code>AbstractHealer</code>, para ítems que pueden sanar, pero que no pueden contratacar (como <code>Staff</code>).   
-
+ - Se tiene una interfaz <code>IEquipableItem</code>, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta <code>AbstractItem</code>. Esta clase, a su vez, se separa en dos clases abstractas <code>AbstractWeapon</code>, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como <code>Bow</code> o <code>Axe</code>), y <code>AbstractHealer</code>, para ítems que pueden sanar, pero que no pueden contratacar (como <code>Staff</code>).   
+- Para el combate, se agregaron los métodos <code>actOn</code> and <code>reactTo</code> en <code>AbstractItem</code>, simplemente dejándolos en blanco (el comportamiento de un ítem por defecto). Se implementan en <code>AbstractWeapon</code> y <code>AbstractHealer</code> con sus correspondientes variaciones.
 ## Descripción de los tests
+
+#### Test de Combate
+Se crea la clase abstracta <code>CombatTest</code>, donde se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba (que cambiará en las diferentes extensiones de <code>CombatTest</code>). Las posiciones usadas se muestran en la imagen:
+<img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
+
 
