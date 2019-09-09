@@ -46,7 +46,35 @@ La distancia entre todos los nodos que están directamente conectados es 1.
 - Para el combate, se agregaron los métodos <code>actOn</code> and <code>reactTo</code> en <code>AbstractItem</code>, simplemente dejándolos en blanco (el comportamiento de un ítem por defecto). Se implementan en <code>AbstractWeapon</code> y <code>AbstractHealer</code> con sus correspondientes variaciones.
 ## Descripción de los tests
 
-#### Test de Combate
+### Tests de <code>IUnit</code>
+
+#### Inventario
+Test para el correcto manejo de los ítems en inventario.
+- <code>addItemTest()</code> chequea que los ítems se agregan correctamente.
+- <code>addItemMoreThanMaxTest()</code> chequea que no se agregan más ítems del máximo.
+
+#### Equipar ítems correctamente
+Se testea que cada una de las clases solo pueda equipar el tipo de ítem que le corresponde (e.g. <code>Archer</code> solo puede equipar <code>Bow</code>, etc). Se implementaron los siguientes tests.
+- <code>equipAxeTest()</code>
+- <code>equipSwordTest()</code>
+- <code>equipSpearTest()</code>
+- <code>equipStaffTest()</code>
+- <code>equipBowTest()</code>
+
+Su comportamiento depende de la clase. Se testea que las clases equipen exitosamente su ítem correspondiente, y que no hagan nada al intentar equipar un ítem incorrecto.
+
+#### Intercambio
+- <code>successfulExchange()</code> verifica que una unidad puede entregar un ítem de su inventario a otra, y que el <code>owner</code> del ítem cambia.
+- <code>notGiveAwayItemNotOwned()</code> verifica que no se pueda entregar un ítem que no está en el inventario.
+
+#### Movimiento
+- <code>testMovement</code>
+
+
+
+
+
+### Tests de Combate
 Se crea la clase abstracta <code>CombatTest</code>, donde se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>CombatTest</code>). Las posiciones usadas se muestran en la imagen:
 <img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
 La idea es que <code>testUnit</code> ataque (o sane, si el el caso) a todas las unidades a su alrededor.
