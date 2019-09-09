@@ -47,7 +47,10 @@ La distancia entre todos los nodos que están directamente conectados es 1.
 ## Descripción de los tests
 
 #### Test de Combate
-Se crea la clase abstracta <code>CombatTest</code>, donde se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba (que cambiará en las diferentes extensiones de <code>CombatTest</code>). Las posiciones usadas se muestran en la imagen:
+Se crea la clase abstracta <code>CombatTest</code>, donde se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>CombatTest</code>). Las posiciones usadas se muestran en la imagen:
 <img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
-
-
+La idea es que <code>testUnit</code> ataque (o sane, si el el caso) a todas las unidades a su alrededor.
+- En el test <code>useItemOnUnEquippedTargetUnitsTest</code> ninguna unidad objetivo está equipada, por lo que deben recibir daño aumentado.
+- El test <code>equipTargetsAndUseItemOnEquippedTargetUnitsTest</code>, las unidades objetivo son equipadas antes de ser atacadas. Se verifica que los <code>currentHitPoints</code> coinciden con lo esperado al considerar fortalezas y debilidades entre armas. 
+- El test <code>distanceTest</code> verifica que las distancias a las diferentes unidades son las correctas.
+- El test <code>isInRangeTest</code> verifica que <code>testUnit</code> considera a las unidades objetivo dentro de su rango de ataque. En las diferentes clases que implementan <code>CombatTest</code> se cuida de asignar a <code>testUnit</code> un arma que pueda atacar a unidades a distancia 2.
