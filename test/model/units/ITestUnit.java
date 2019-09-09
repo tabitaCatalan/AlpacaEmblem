@@ -13,17 +13,36 @@ import org.junit.jupiter.api.Test;
  */
 public interface ITestUnit {
 
+  // Settings
   /**
    * Set up the game field
    */
   void setField();
 
   /**
+   * @return the test field
+   */
+  Field getField();
+
+  /**
    * Set up the main unit that's going to be tested in the test set
    */
   void setTestUnit();
 
+  /**
+   * @return the current unit being tested
+   */
+  IUnit getTestUnit();
+
+  /**
+   * Set up a target Alpaca
+   */
   void setTargetAlpaca();
+
+  /**
+   * @return the target Alpaca
+   */
+  Alpaca getTargetAlpaca();
 
   /**
    * Creates a set of testing weapons
@@ -36,19 +55,86 @@ public interface ITestUnit {
   @Test
   void constructorTest();
 
+  // Exchanges
   /**
-   * @return the current unit being tested
+   * Checks if an item was correctly given away to another unit
    */
-  IUnit getTestUnit();
+  @Test
+  void successfulExchange();
 
+  /**
+   * Checks its not possible to give away an item that's not in unit's inventory
+   */
+  @Test
+  void notGiveAwayItemNotOwned();
+
+  // Inventory and Equip items
   /**
    * Checks if the axe is equipped correctly to the unit
    */
   @Test
   void equipAxeTest();
 
+  /**
+   * @return the test axe
+   */
+  Axe getAxe();
+
+  /**
+   * Checks if the bow is equipped correctly to the unit
+   */
   @Test
-  void successfulExchange();
+  void equipBowTest();
+
+  /**
+   * @return the test bow
+   */
+  Bow getBow();
+
+  /**
+   * Checks if the spear is equipped correctly to the unit
+   */
+  @Test
+  void equipSpearTest();
+
+  /**
+   * @return the test spear
+   */
+  Spear getSpear();
+
+  /**
+   * Checks if the staff is equipped correctly to the unit
+   */
+  @Test
+  void equipStaffTest();
+
+  /**
+   * @return the test staff
+   */
+  Staff getStaff();
+
+  /**
+   * Checks if the sword is equipped correctly to the unit
+   */
+  @Test
+  void equipSwordTest();
+
+  /**
+   * @return the test sword
+   */
+  Sword getSword();
+
+  /**
+   * Checks an item is correctly added to inventory
+   */
+  @Test
+  void addItemTest();
+
+  /**
+   * Checks that no more items than maximum are added to inventory
+   */
+  @Test
+  void addItemMoreThanMaxTest();
 
   /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
@@ -58,64 +144,20 @@ public interface ITestUnit {
    */
   void checkIncorrectEquippedItem(IEquipableItem item);
 
+  /**
+   * Tries to equip a weapon to the alpaca and verifies that it was equipped
+   *
+   * @param item
+   *     to be equipped
+   */
   void checkCorrectEquippedItem(IUnit unit, IEquipableItem item);
 
-  /**
-   * @return the test axe
-   */
-  Axe getAxe();
-
-  @Test
-  void equipSwordTest();
-
-  /**
-   * @return the test sword
-   */
-  Sword getSword();
-
-  @Test
-  void equipSpearTest();
-
-  /**
-   * @return the test spear
-   */
-  Spear getSpear();
-
-  @Test
-  void equipStaffTest();
-
-  /**
-   * @return the test staff
-   */
-  Staff getStaff();
-
-  @Test
-  void equipBowTest();
-
-  /**
-   * @return the test bow
-   */
-  Bow getBow();
-
-  @Test
-  void addItemTest();
-
-  @Test
-  void addItemMoreThanMaxTest();
-
+  // Movement
   /**
    * Checks if the unit moves correctly
    */
   @Test
   void testMovement();
 
-  /**
-   * @return the test field
-   */
-  Field getField();
 
-  /**
-   * @return the target Alpaca
-   */
-  Alpaca getTargetAlpaca();
 }

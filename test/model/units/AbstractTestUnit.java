@@ -1,15 +1,12 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import model.items.*;
 import model.map.Field;
 import model.map.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -25,10 +22,6 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Staff staff;
   protected Spear spear;
 
-  @Override
-  public void setTargetAlpaca() {
-    targetAlpaca = new Alpaca(50, 2, field.getCell(1, 0));
-  }
 
   /**
    * Sets up the units and weapons to be tested
@@ -40,6 +33,13 @@ public abstract class AbstractTestUnit implements ITestUnit {
     setTargetAlpaca();
     setWeapons();
   }
+
+  @Override
+  public void setTargetAlpaca() {
+    targetAlpaca = new Alpaca(50, 2, field.getCell(1, 0));
+  }
+
+
 
   /**
    * Set up the game field
@@ -98,17 +98,27 @@ public abstract class AbstractTestUnit implements ITestUnit {
     checkIncorrectEquippedItem(getAxe());
   }
 
-  /**
-   * Checks if the axe is equipped correctly to the unit
-   */
   @Override
   @Test
   public void successfulExchange() {
     assertEquals(0, getTestUnit().getNumberOfItems());
     assertEquals(0, getTargetAlpaca().getNumberOfItems());
     getTargetAlpaca().addItem(getAxe());
+    assertEquals(getTargetAlpaca(),getAxe().getOwner());
     getTargetAlpaca().giveItemAwayTo(getTestUnit(), getAxe());
     assertEquals(1, getTestUnit().getNumberOfItems());
+    assertEquals(0, getTargetAlpaca().getNumberOfItems());
+    assertEquals(getTestUnit(),getAxe().getOwner());
+  }
+
+  @Test
+  @Override
+  public void notGiveAwayItemNotOwned(){
+    assertEquals(0, getTestUnit().getNumberOfItems());
+    assertEquals(0, getTargetAlpaca().getNumberOfItems());
+    assertNull(getAxe().getOwner());
+    getTargetAlpaca().giveItemAwayTo(getTestUnit(), getAxe());
+    assertEquals(0, getTestUnit().getNumberOfItems());
     assertEquals(0, getTargetAlpaca().getNumberOfItems());
   }
 
