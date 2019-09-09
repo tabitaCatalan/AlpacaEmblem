@@ -41,7 +41,8 @@ La distancia entre todos los nodos que están directamente conectados es 1.
 **Agregar diagrama UML**
 - Para tratar con los distintos tipos de ítem se utiliza Double Dispatch.
 - Se crea una clase <code>NullItem</code> (que no hace nada), que implementa la interfaz <code>IEquipableItem</code>. Se utiliza para tratar con las unidades que no tienen un ítem equipado. Tiene rango [0,0], y <code>power</code> 0.
- - Se tiene una interfaz <code>IEquipableItem</code>, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta <code>AbstractItem</code>. Esta clase, a su vez, se separa en dos clases abstractas <code>AbstractWeapon</code>, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como <code>Bow</code> o <code>Axe</code>), y <code>AbstractHealer</code>, para ítems que pueden sanar, pero que no pueden contratacar (como <code>Staff</code>).   
+- Las unidades no equipadas son vulnerables: recibirán daño aumentado. La Alpaca, por tanto, siempre recibe más daño.
+- Se tiene una interfaz <code>IEquipableItem</code>, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta <code>AbstractItem</code>. Esta clase, a su vez, se separa en dos clases abstractas <code>AbstractWeapon</code>, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como <code>Bow</code> o <code>Axe</code>), y <code>AbstractHealer</code>, para ítems que pueden sanar, pero que no pueden contratacar (como <code>Staff</code>).   
 - Para el combate, se agregaron los métodos <code>actOn</code> and <code>reactTo</code> en <code>AbstractItem</code>, simplemente dejándolos en blanco (el comportamiento de un ítem por defecto). Se implementan en <code>AbstractWeapon</code> y <code>AbstractHealer</code> con sus correspondientes variaciones.
 ## Descripción de los tests
 

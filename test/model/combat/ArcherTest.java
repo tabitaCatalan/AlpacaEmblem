@@ -1,8 +1,8 @@
 package model.combat;
 
+import model.items.Bow;
 import model.units.Archer;
 import model.units.IUnit;
-import org.junit.jupiter.api.Test;
 
 public class ArcherTest extends CombatTest {
     private Archer testArcher;
@@ -19,15 +19,18 @@ public class ArcherTest extends CombatTest {
 
     @Override
     public void equipTestUnit(){
-        getTestUnit().addItem(bow);
-        getTestUnit().equipItem(bow);
+        Bow testBow = new Bow("Test Bow", 10, 1, 2);
+        getTestUnit().addItem(testBow);
+        getTestUnit().equipItem(testBow);
     }
 
     @Override
-    @Test
-    void useItemOnAllTargetUnitsTest() {
-        attackUnitsTest();
+    public void attackEquippedUnitsTest(){
+        normalDamageTest(archer);
+        normalDamageTest(cleric);
+        normalDamageTest(fighter);
+        normalDamageTest(hero);
+        normalDamageTest(swordMaster);
     }
-
 
 }

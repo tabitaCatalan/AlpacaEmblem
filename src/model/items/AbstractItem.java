@@ -74,10 +74,14 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public void actOn(IUnit targetUnit){}
+  public void actOn(IUnit targetUnit){
+    // intentionally left blank
+  }
 
   @Override
-  public void reactTo(IUnit unit){}
+  public void reactTo(IUnit unit){
+    // intentionally left blank
+  }
 
   public void receiveBowAttack(Bow bow){
     receiveNormalAttack(bow);

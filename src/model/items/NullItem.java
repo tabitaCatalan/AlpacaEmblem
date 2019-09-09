@@ -23,6 +23,26 @@ public class NullItem extends AbstractItem{
     }
 
     @Override
+    public void receiveBowAttack(Bow bow){
+        receiveStrongAttack(bow);
+    }
+
+    @Override
+    public void receiveAxeAttack(Axe axe){
+        receiveStrongAttack(axe);
+    }
+
+    @Override
+    public void receiveSpearAttack(Spear spear){
+        receiveStrongAttack(spear);
+    }
+
+    @Override
+    public void receiveSwordAttack(Sword sword){
+        receiveStrongAttack(sword);
+    }
+
+    @Override
     public boolean isNullItem(){
         return true;
     }

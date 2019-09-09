@@ -106,32 +106,52 @@ public abstract class CombatTest {
         assertEquals(expectedLife, targetUnit.getCurrentHitPoints());
     }
 
-    /**
-     * testUnit uses it's item to attack targetUnit
-     */
-    public void attackUnitsTest(){
-        useItemOnUnitTest(40, alpaca); // normal damage
-        useItemOnUnitTest(40, archer); // normal damage
-        useItemOnUnitTest(40, cleric); // normal damage
-        useItemOnUnitTest(40, fighter); // normal damage
-        useItemOnUnitTest(40, hero); // normal damage
-        useItemOnUnitTest(40, swordMaster); // normal damage
+    public void equipUnit(IUnit unit, IEquipableItem item){
+        unit.addItem(item);
+        unit.equipItem(item);
     }
 
-    /**
-     * testUnit uses it's item to heal targetUnit
-     */
-    public void healUnitsTest(){
-        useItemOnUnitTest(50, alpaca);
-        useItemOnUnitTest(50, archer);
-        useItemOnUnitTest(50, cleric);
-        useItemOnUnitTest(50, fighter);
-        useItemOnUnitTest(50, hero);
-        useItemOnUnitTest(50, swordMaster);
+    public void strongDamageTest(IUnit targetUnit){
+        useItemOnUnitTest(35, targetUnit);
+    }
+
+    public void normalDamageTest(IUnit targetUnit){
+        useItemOnUnitTest(40, targetUnit);
+    }
+
+    public void weakDamageTest(IUnit targetUnit){
+        useItemOnUnitTest(50, targetUnit);
+    }
+
+    public void attackUnEquippedUnitsTest(){
+        strongDamageTest(alpaca);
+        strongDamageTest(archer);
+        strongDamageTest(cleric);
+        strongDamageTest(fighter);
+        strongDamageTest(hero);
+        strongDamageTest(swordMaster);
+    }
+
+    public void equipTargetUnits(){
+        equipUnit(archer, bow);
+        equipUnit(cleric, staff);
+        equipUnit(fighter, axe);
+        equipUnit(hero, spear);
+        equipUnit(swordMaster, sword);
+    }
+
+    public abstract void attackEquippedUnitsTest();
+
+    @Test
+    void useItemOnUnEquippedTargetUnitsTest() {
+        attackUnEquippedUnitsTest();
     }
 
     @Test
-    abstract void useItemOnAllTargetUnitsTest();
+    void equipTargetsAndUseItemOnEquippedTargetUnitsTest() {
+        equipTargetUnits();
+        attackEquippedUnitsTest();
+    }
 
     @Test
     public void distanceTest(){

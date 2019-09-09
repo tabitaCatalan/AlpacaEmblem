@@ -43,6 +43,7 @@ public class Axe extends AbstractWeapon {
     receiveWeakAttack(spear);
   }
 
+
   @Override
   public void attack(IUnit targetUnit){
     targetUnit.receiveAxeAttack(this);
