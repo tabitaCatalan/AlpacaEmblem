@@ -21,7 +21,7 @@ Los tipos de unidades se listan a continuación:
 - Unidades básicas:
   - **Archer:** Sólo pueden equiparse *Bows*.  <img src="images/archerEquipped.svg" title="Archer" width="50"/>
   - **Fighter:** Sólo pueden equiparse *Axes*. 
-  - **Sword Master:** Sólo pueden equiparse *Swords*. <img src="images/swordMasterReady.svg" title="Sword Master" width="50"/>
+  - **Sword Master:** Sólo pueden equiparse *Swords*. <img src="images/swordMasterReady.svg" title="SwordMaster" width="50"/>
 - Unidades especiales:
   - **Alpaca:** No pueden equiparse ningún tipo de objeto, pero pueden cargar una cantidad ilimitada de ellos. <img src="images/alpaca.svg" title="Alpaca" width="50"/>
   - **Cleric:** Sólo pueden equiparse *Staffs* y no pueden realizar ataques. <img src="images/clericCombat.svg" title="Cleric" width="50"/>
@@ -68,11 +68,7 @@ Su comportamiento depende de la clase. Se testea que las clases equipen exitosam
 - <code>notGiveAwayItemNotOwned()</code> verifica que no se pueda entregar un ítem que no está en el inventario.
 
 #### Movimiento
-- <code>testMovement</code>
-
-
-
-
+- <code>testMovement</code> verifica que una unidad no puede moverse a una celda que esté a una distancia mayor que su capacidad de movimiento, que es capaz de moverse a una celda válida, y que no se mueve a una celda ocupada por otra unidad.
 
 ### Tests de Combate
 Se crea la clase abstracta <code>CombatTest</code>, donde se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>CombatTest</code>). Las posiciones usadas se muestran en la imagen:

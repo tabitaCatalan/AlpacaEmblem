@@ -96,9 +96,30 @@ public abstract class CombatTest {
     }
 
     /**
-     * testUnit uses it's item on targetUnit
+     * add item to unit's inventory and tries to equip the item
+     * @param unit: unit who'll receive the item
+     * @param item: item to be equipped
+     */
+    public void equipUnit(IUnit unit, IEquipableItem item){
+        unit.addItem(item);
+        unit.equipItem(item);
+    }
+
+    /**
+     * equip all target units
+     */
+    public void equipTargetUnits(){
+        equipUnit(archer, bow);
+        equipUnit(cleric, staff);
+        equipUnit(fighter, axe);
+        equipUnit(hero, spear);
+        equipUnit(swordMaster, sword);
+    }
+
+    /**
+     * check currentHP of testUnit, after using the equipped item on targetUnit
      * @param expectedLife: targetUnit's HP expected after the use of the item
-     * @param targetUnit: object unit of the attack
+     * @param targetUnit: unit that receives the action
      */
     public void useItemOnUnitTest(int expectedLife, IUnit targetUnit){
         assertTrue(getTestUnit().isInRange(targetUnit));
@@ -106,23 +127,33 @@ public abstract class CombatTest {
         assertEquals(expectedLife, targetUnit.getCurrentHitPoints());
     }
 
-    public void equipUnit(IUnit unit, IEquipableItem item){
-        unit.addItem(item);
-        unit.equipItem(item);
-    }
-
+    /**
+     * check that targetUnit received strong damage after the use of an object
+     * @param targetUnit: unit who'll receive the item's effect
+     */
     public void strongDamageTest(IUnit targetUnit){
         useItemOnUnitTest(35, targetUnit);
     }
 
+    /**
+     * check that targetUnit received normal damage after the use of an object
+     * @param targetUnit: unit who'll receive the item's effect
+     */
     public void normalDamageTest(IUnit targetUnit){
         useItemOnUnitTest(40, targetUnit);
     }
 
+    /**
+     * check that targetUnit received weak damage after the use of an object
+     * @param targetUnit: unit who'll receive the item's effect
+     */
     public void weakDamageTest(IUnit targetUnit){
         useItemOnUnitTest(50, targetUnit);
     }
 
+    /**
+     * function that checks that all units receives strong damage after being attacked while unequipped.
+     */
     public void attackUnEquippedUnitsTest(){
         strongDamageTest(alpaca);
         strongDamageTest(archer);
@@ -132,27 +163,31 @@ public abstract class CombatTest {
         strongDamageTest(swordMaster);
     }
 
-    public void equipTargetUnits(){
-        equipUnit(archer, bow);
-        equipUnit(cleric, staff);
-        equipUnit(fighter, axe);
-        equipUnit(hero, spear);
-        equipUnit(swordMaster, sword);
-    }
-
+    /**
+     * function that checks that all units receives the correct amount of damage after being attacked while equipped with their item.
+     */
     public abstract void attackEquippedUnitsTest();
 
+    /**
+     * checks that all units receives strong damage after being attacked while unequipped.
+     */
     @Test
     void useItemOnUnEquippedTargetUnitsTest() {
         attackUnEquippedUnitsTest();
     }
 
+    /**
+     * equip target units and checks that all units receives the correct amount of damage after being attacked while equipped with their item.
+     */
     @Test
     void equipTargetsAndUseItemOnEquippedTargetUnitsTest() {
         equipTargetUnits();
         attackEquippedUnitsTest();
     }
 
+    /**
+     *checks that distance to target units is correct
+     */
     @Test
     public void distanceTest(){
         assertEquals(2, getTestUnit().distanceTo(alpaca));
@@ -163,6 +198,9 @@ public abstract class CombatTest {
         assertEquals(2, getTestUnit().distanceTo(swordMaster));
     }
 
+    /**
+     *checks that all units are in range
+     */
     @Test
     public void isInRangeTest(){
         assertTrue(getTestUnit().isInRange(alpaca));
