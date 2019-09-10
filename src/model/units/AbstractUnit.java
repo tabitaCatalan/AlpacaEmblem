@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import jdk.jfr.Percentage;
 import model.items.*;
+import model.items.magic.*;
+import model.items.nonMagic.Axe;
+import model.items.nonMagic.Bow;
+import model.items.nonMagic.Spear;
+import model.items.nonMagic.Sword;
 import model.map.Location;
 
 /**
@@ -114,6 +120,9 @@ public abstract class AbstractUnit implements IUnit {
   public void equipSword(Sword sword) {}
 
   @Override
+  public void equipMagicBook(IMagical magicBook) {}
+
+  @Override
   public Location getLocation() {
     return location;
   }
@@ -199,6 +208,15 @@ public abstract class AbstractUnit implements IUnit {
   public void receiveSwordAttack(Sword sword){
     equippedItem.receiveSwordAttack(sword);
   }
+
+  @Override
+  public void receiveSpectralAttack(SpectralBook spectralBook){equippedItem.receiveSpectralAttack(spectralBook);}
+
+  @Override
+  public void receiveLightAttack(LightBook lightBook){equippedItem.receiveLightAttack(lightBook);}
+
+  @Override
+  public void receiveDarknessAttack(DarknessBook darknessBook){equippedItem.receiveDarknessAttack(darknessBook);}
 
   @Override
   public void reactToAttack(IUnit unit){

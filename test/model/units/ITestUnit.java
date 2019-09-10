@@ -2,6 +2,10 @@ package model.units;
 
 
 import model.items.*;
+import model.items.nonMagic.Axe;
+import model.items.nonMagic.Bow;
+import model.items.nonMagic.Spear;
+import model.items.nonMagic.Sword;
 import model.map.Field;
 import org.junit.jupiter.api.Test;
 

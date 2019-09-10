@@ -1,6 +1,6 @@
-package model.items;
+package model.items.nonMagic;
 
-import jdk.jfr.Percentage;
+import model.items.AbstractDamageItem;
 import model.units.IUnit;
 
 /**

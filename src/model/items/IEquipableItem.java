@@ -1,5 +1,12 @@
 package model.items;
 
+import model.items.magic.DarknessBook;
+import model.items.magic.LightBook;
+import model.items.magic.SpectralBook;
+import model.items.nonMagic.Axe;
+import model.items.nonMagic.Bow;
+import model.items.nonMagic.Spear;
+import model.items.nonMagic.Sword;
 import model.units.IUnit;
 
 /**
@@ -14,12 +21,9 @@ import model.units.IUnit;
 public interface IEquipableItem {
 
   /**
-   * Equips this item to a unit.
-   *
-   * @param unit
-   *     the unit that will be quipped with the item
+   * @return the name of the item
    */
-  void equipTo(IUnit unit);
+  String getName();
 
   /**
    * @return the unit that has currently equipped this item
@@ -27,9 +31,14 @@ public interface IEquipableItem {
   IUnit getOwner();
 
   /**
-   * @return the name of the item
+   * @return sets owner's item
    */
-  String getName();
+  void setOwner(IUnit testUnit);
+
+  /**
+   * @return true if item is in an unit's inventary
+   */
+  boolean hasOwner();
 
   /**
    * @return the power of the item
@@ -47,15 +56,12 @@ public interface IEquipableItem {
   int getMaxRange();
 
   /**
-   * @return true if item is in an unit's inventary
+   * Equips this item to a unit.
+   *
+   * @param unit
+   *     the unit that will be quipped with the item
    */
-  boolean hasOwner();
-
-  /**
-   * @return sets owner's item
-   */
-  void setOwner(IUnit testUnit);
-
+  void equipTo(IUnit unit);
 
   /**
    * Item receives an attack from a bow
@@ -80,6 +86,24 @@ public interface IEquipableItem {
    * @param sword : the sword that attacks
    * */
   void receiveSwordAttack(Sword sword);
+
+  /**
+   * Item receives an attack from a magic book of type Spectral
+   * @param spectralBook : the book that attacks
+   * */
+  void receiveSpectralAttack(SpectralBook spectralBook);
+
+  /**
+   * Item receives an attack from a magic book of type Light
+   * @param lightBook : the book that attacks
+   * */
+  void receiveLightAttack(LightBook lightBook);
+
+  /**
+   * Item receives an attack from a magic book of type Darkness
+   * @param darknessBook : the book that attacks
+   * */
+  void receiveDarknessAttack(DarknessBook darknessBook);
 
   /**
    * Item uses it's power on targetUnit

@@ -1,5 +1,12 @@
 package model.items;
 
+import model.items.magic.DarknessBook;
+import model.items.magic.LightBook;
+import model.items.magic.SpectralBook;
+import model.items.nonMagic.Axe;
+import model.items.nonMagic.Bow;
+import model.items.nonMagic.Spear;
+import model.items.nonMagic.Sword;
 import model.units.IUnit;
 
 /**
@@ -97,6 +104,18 @@ public abstract class AbstractItem implements IEquipableItem {
 
   public void receiveSwordAttack(Sword sword){
     receiveNormalAttack(sword);
+  }
+
+  public void receiveSpectralAttack(SpectralBook spectralBook){
+    receiveNormalAttack(spectralBook);
+  }
+
+  public void receiveLightAttack(LightBook lightBook){
+    receiveNormalAttack(lightBook);
+  }
+
+  public void receiveDarknessAttack(DarknessBook darknessBook){
+    receiveNormalAttack(darknessBook);
   }
 
   /**

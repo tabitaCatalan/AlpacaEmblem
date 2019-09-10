@@ -1,5 +1,6 @@
-package model.items;
+package model.items.nonMagic;
 
+import model.items.AbstractDamageItem;
 import model.units.IUnit;
 
 /**
@@ -42,7 +43,6 @@ public class Axe extends AbstractWeapon {
   public void receiveSpearAttack(Spear spear){
     receiveWeakAttack(spear);
   }
-
 
   @Override
   public void attack(IUnit targetUnit){

@@ -1,6 +1,6 @@
 package model.units;
 
-import model.items.Bow;
+import model.items.nonMagic.Bow;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -31,15 +31,6 @@ public class Archer extends AbstractUnit {
     super(hitPoints, movement, position, 3, items);
   }
 
-
-  /**
-   * Sets the currently equipped item of this unit.
-   * <p>
-   * The <i>Archer</i> can <b>only equip Bows</b>.
-   *
-   * @param bow
-   *     the bow to equip. If not in the inventory nothing happens
-   */
   @Override
   public void equipBow(Bow bow) {
     this.setEquippedItem(bow);

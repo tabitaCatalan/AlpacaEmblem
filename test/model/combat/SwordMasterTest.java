@@ -1,6 +1,6 @@
 package model.combat;
 
-import model.items.Sword;
+import model.items.nonMagic.Sword;
 import model.units.IUnit;
 import model.units.SwordMaster;
 

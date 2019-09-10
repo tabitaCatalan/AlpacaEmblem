@@ -1,6 +1,6 @@
 package model.combat;
 
-import model.items.Bow;
+import model.items.nonMagic.Bow;
 import model.units.Archer;
 import model.units.IUnit;
 

@@ -2,6 +2,7 @@ package model.units;
 
 import model.items.IEquipableItem;
 import model.items.Staff;
+import model.items.magic.MagicBook;
 import model.map.Location;
 
 /**
@@ -30,4 +31,5 @@ public class Cleric extends AbstractUnit {
   public void equipStaff(Staff staff) {
     this.setEquippedItem(staff);
   }
+
 }

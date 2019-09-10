@@ -3,6 +3,11 @@ package model.units;
 import java.util.List;
 
 import model.items.*;
+import model.items.magic.*;
+import model.items.nonMagic.Axe;
+import model.items.nonMagic.Bow;
+import model.items.nonMagic.Spear;
+import model.items.nonMagic.Sword;
 import model.map.Location;
 
 /**
@@ -51,8 +56,6 @@ public interface IUnit {
    *     the item in inventory to be equipped
    */
   void setEquippedItem(IEquipableItem itemInInventory);
-
-
 
     /**
    * @return the current location of the unit
@@ -110,6 +113,12 @@ public interface IUnit {
     void equipStaff(Staff staff);
 
     /**
+     * Unit tries to equip a MagicBook. If unit it's a Sorcerer, it successes.
+     * If not, nothing happens
+     */
+    void equipMagicBook(IMagical magicBook);
+
+    /**
      * Unit tries to equip a Spear. If unit it's the Hero, it successes.
      * If not, nothing happens
      */
@@ -120,6 +129,11 @@ public interface IUnit {
      * If not, nothing happens
      */
     void equipSword(Sword sword);
+
+    /**
+     * Unit is note equipped anymore.
+     */
+    void disarm();
 
     /**
      * Unit gives one of her items to targetUnit, if has space in inventory
@@ -134,7 +148,7 @@ public interface IUnit {
      * */
     void removeFromInventory(IEquipableItem item);
 
-    void disarm();
+
 
     /**
      * true if item is in the inventory
@@ -175,6 +189,24 @@ public interface IUnit {
     void receiveSwordAttack(Sword sword);
 
     /**
+     * Unit receives an attack from a magic book of type Spectral
+     * @param spectralBook : the book that attacks
+     * */
+    void receiveSpectralAttack(SpectralBook spectralBook);
+
+    /**
+     * Unit receives an attack from a magic book of type Light
+     * @param lightBook : the book that attacks
+     * */
+    void receiveLightAttack(LightBook lightBook);
+
+    /**
+     * Unit receives an attack from a magic book of type Darkness
+     * @param darknessBook : the book that attacks
+     * */
+    void receiveDarknessAttack(DarknessBook darknessBook);
+
+    /**
      * Unit receives certain amount of damage
      * @param damageAmount :
      * */
@@ -200,4 +232,6 @@ public interface IUnit {
      * @param amountHP to be healed
      * */
     void beingHealed(int amountHP);
+
+
 }

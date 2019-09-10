@@ -1,6 +1,6 @@
 package model.combat;
 
-import model.items.Axe;
+import model.items.nonMagic.Axe;
 import model.units.Fighter;
 import model.units.IUnit;
 

@@ -1,5 +1,6 @@
-package model.items;
+package model.items.nonMagic;
 
+import model.items.AbstractDamageItem;
 import model.units.IUnit;
 
 /**

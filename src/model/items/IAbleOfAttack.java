@@ -8,10 +8,4 @@ public interface IAbleOfAttack {
      * @param targetUnit
      */
     void attack(IUnit targetUnit);
-
-    /*
-     * item attacks targetUnit, after being attacked by her.
-     * @param targetUnit
-     */
-    //void counterAttack(IUnit targetUnit);*/
 }

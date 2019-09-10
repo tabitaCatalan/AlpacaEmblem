@@ -1,6 +1,6 @@
 package model.combat;
 
-import model.items.Spear;
+import model.items.nonMagic.Spear;
 import model.units.Hero;
 import model.units.IUnit;
 
