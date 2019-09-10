@@ -32,6 +32,45 @@ Los tipos de unidades se listan a continuación:
 ### Objetos
 Los objetos son elementos que una unidad puede ocupar sobre otra. Para ocupar un objeto, la unidad primero debe equipárselo. Cada objeto tiene un rango definido en [*minRange*, *maxRange*] y sólo pueden utilizarse en unidades que estén dentro de ese rango. El rango de un objeto está acotado inferiormente por 0 y el máximo debe ser estrictamente mayor que el mínimo.
 
+Los ítems disponibles son:
+- **Axe:** Solo puede ser equipado por *Fighter*. Puede atacar y contratacar.
+- **Bow:** Solo puede ser equipado por *Archer*. Puede atacar y contratacar, pero no pueden tener un rango menor a 2 (i.e. no pueden atacar ni contratacar a unidades adyacentes).
+- **Sword:** Solo puede ser equipado por *SwordMaster*. Puede atacar y contratacar.
+- **Staff:** Solo puede ser equipado por *Cleric*. No puede atacar ni contratacar, pero puede curar daño a otras unidades.
+- **Spear:** Solo puede ser equipado por *Hero*. Puede atacar y contratacar.
+- **MagicBook:** Solo pueden ser equipados por un *Sorcerer*. Puede atacar y contratacar. 
+
+### Mapa
+
+### Combate
+Una unidad puede utilizar el objeto que tiene equipado sobre otra unidad, siempre y cuando la esta se encuentre dentro del rango definido por el ítem. Cuando esto sucede se entra en un combate. Si el ítem usado puede atacar (i.e. puede realizar daño), entonces el oponente tiene la posibilidad de contratacar, lo que podrá hacer si él también tiene un ítem que pueda atacar (también tendrá que considerar el rango de su ítem). 
+También hay ítems (como <code>Staff</code>) que no pueden realizar ataques, pero pueden sanar a otras unidades. Estos ítems no dan la posibilidad de realizar un contrataque, aunque tampoco podrán contratacar si son atacados.
+Cuando un ítem ataca a otro, al calcular el daño se debe considerar las debilidades y fortalezas de los ítems.
+
+| Item   | Debil contra | Fuerte contra |
+| :---:    |    :----:    |         :---: |
+| Hacha  | Espada       | Lanza |
+| Espada | Lanza        | Hacha |
+| Lanza  | Hacha        | Espada |
+
+Existen 3 tipos de magia: *Light*, *Darkness* y *Spectral*, cada uno con sus propias debilidades y fortalezas.
+
+| Item     | Débil contra | Fuerte contra |
+| :---:    |    :----:    |         :---: |
+| Spectral | Darkness     | Light         |
+| Darkness | Light        | Spectral      |
+| Light    | Spectral     | Darkness      |
+
+Cuando un objeto es fuerte contra otro, su daño aumenta en 1.5 veces, mientras que si es débil contra otro, entonces su daño disminuye en 20 puntos.
+
+Además de las tablas anteriores, los libros de magia son al mismo tiempo fuertes contra todas las armas no mágicas, y todas las armas no mágicas son fuertes contra los libros mágicos (e.g. si se ataca con libro de luz a una unidad que tenga espada, entonces realizará 1.5 veces su dañoo, pero también recibirá 1.5 veces el daño de la espada).
+
+### Intercambio
+
+
+
+
+
 ### Mapa
 El mapa se puede pensar como una grilla de dimensiones <img src="https://latex.codecogs.com/svg.latex?n&space;\times&space;n" title="n \times n" />, en la que cada casilla puede ser parte del mapa o no.
 Más específicamente, el campo de juego se define como un grafo en el que cada nodo representa una celda del mapa. Las celdas pueden estar o no conectadas a otras celdas. Una celda está conectada a otra si son adyacentes: por ejemplo, la celda <img src="https://latex.codecogs.com/svg.latex?(0,0)" title="(0,0)" /> puede estar conectada con la <img src="https://latex.codecogs.com/svg.latex?(0,1)" title="(0,1)" />, referenciándose la una a la otra como vecinas, pero no podría estar conectada con la celda <img src="https://latex.codecogs.com/svg.latex?(1,1)" title="(1,1)" />.
