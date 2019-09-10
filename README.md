@@ -22,6 +22,7 @@ Los tipos de unidades se listan a continuación:
   - **Archer:** Sólo pueden equiparse *Bows*.  <img src="images/archerEquipped.svg" title="Archer" width="50"/>
   - **Fighter:** Sólo pueden equiparse *Axes*. 
   - **Sword Master:** Sólo pueden equiparse *Swords*. <img src="images/swordMasterReady.svg" title="SwordMaster" width="50"/>
+  - **Sorcerer:** Sólo pueden equiparse *Magic Books*. <img src="images/sorcererSpectralCombat.svg" title="Sorcerer" width="50"/>
 - Unidades especiales:
   - **Alpaca:** No pueden equiparse ningún tipo de objeto, pero pueden cargar una cantidad ilimitada de ellos. <img src="images/alpaca.svg" title="Alpaca" width="50"/>
   - **Cleric:** Sólo pueden equiparse *Staffs* y no pueden realizar ataques. <img src="images/clericCombat.svg" title="Cleric" width="50"/>
