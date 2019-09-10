@@ -2,7 +2,7 @@ package model.items.nonMagic;
 
 import model.items.AbstractDamageItem;
 import model.items.magic.DarknessBook;
-import model.items.magic.IMagical;
+import model.items.magic.IMagicBook;
 import model.items.magic.LightBook;
 import model.items.magic.SpectralBook;
 import model.units.IUnit;
@@ -29,7 +29,7 @@ public abstract class AbstractWeapon extends AbstractDamageItem implements INonM
     public abstract void attack(IUnit targetUnit);
 
     @Override
-    public void receiveMagicalAttack(IMagical magicWeapon) {
+    public void receiveMagicalAttack(IMagicBook magicWeapon) {
         receiveStrongAttack(magicWeapon);
     }
 

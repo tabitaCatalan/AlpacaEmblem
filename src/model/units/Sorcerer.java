@@ -1,7 +1,7 @@
 package model.units;
 
 import model.items.IEquipableItem;
-import model.items.magic.IMagical;
+import model.items.magic.IMagicBook;
 import model.map.Location;
 
 public class Sorcerer extends AbstractUnit{
@@ -19,7 +19,7 @@ public class Sorcerer extends AbstractUnit{
     }
 
     @Override
-    public void equipMagicBook(IMagical magicBook) {
+    public void equipMagicBook(IMagicBook magicBook) {
         this.setEquippedItem(magicBook);
     }
 }

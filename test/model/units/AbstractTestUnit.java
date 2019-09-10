@@ -1,6 +1,10 @@
 package model.units;
 
 import model.items.*;
+import model.items.magic.DarknessBook;
+import model.items.magic.IMagicBook;
+import model.items.magic.LightBook;
+import model.items.magic.SpectralBook;
 import model.items.nonMagic.Axe;
 import model.items.nonMagic.Bow;
 import model.items.nonMagic.Spear;
@@ -25,6 +29,10 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
+  protected IMagicBook spectralBook;
+  protected IMagicBook darknessBook;
+  protected IMagicBook lightBook;
+
 
 
   /**
@@ -72,6 +80,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
+    this.spectralBook = new SpectralBook("Book of Souls", 10, 1, 2);
+    this.darknessBook = new DarknessBook("Necronomicon", 10, 1, 2);
+    this.lightBook = new LightBook("Light Book", 10, 1, 2);
   }
 
   /**
@@ -92,15 +103,6 @@ public abstract class AbstractTestUnit implements ITestUnit {
    */
   @Override
   public abstract IUnit getTestUnit();
-
-  /**
-   * Checks if the axe is equipped correctly to the unit
-   */
-  @Override
-  @Test
-  public void equipAxeTest() {
-    checkIncorrectEquippedItem(getAxe());
-  }
 
   @Override
   @Test
@@ -139,6 +141,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertTrue(getTestUnit().getEquippedItem().isNullItem());
   }
 
+
   /**
    * Tries to equip an correct weapon to a Unit and verifies that it was equipped. Item has to be added to inventory first.
    *
@@ -153,6 +156,15 @@ public abstract class AbstractTestUnit implements ITestUnit {
     unit.addItem(item);
     unit.equipItem(item);
     assertEquals(item, unit.getEquippedItem());
+  }
+
+  /**
+   * Checks if the axe is equipped correctly to the unit
+   */
+  @Override
+  @Test
+  public void equipAxeTest() {
+    checkIncorrectEquippedItem(getAxe());
   }
 
   /**
@@ -209,6 +221,48 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Test
   public void equipBowTest() {
     checkIncorrectEquippedItem(getBow());
+  }
+
+  /**
+   * @return the test magic book of type Spectral
+   */
+  @Override
+  public IMagicBook getSpectralBookBook() {
+    return spectralBook;
+  }
+
+  /**
+   * @return the test magic book of type Darkness
+   */
+  @Override
+  public IMagicBook getDarknessBook() {
+    return darknessBook;
+  }
+
+  /**
+   * @return the test magic book of type Light
+   */
+  @Override
+  public IMagicBook getLightBook() {
+    return lightBook;
+  }
+
+  @Override
+  @Test
+  public void equipSpectralBookTest() {
+    checkIncorrectEquippedItem(getSpectralBookBook());
+  }
+
+  @Override
+  @Test
+  public void equipDarknessBookTest() {
+    checkIncorrectEquippedItem(getDarknessBook());
+  }
+
+  @Override
+  @Test
+  public void equipLightBookTest() {
+    checkIncorrectEquippedItem(getLightBook());
   }
 
   /**

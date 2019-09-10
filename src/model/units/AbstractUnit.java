@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import jdk.jfr.Percentage;
 import model.items.*;
 import model.items.magic.*;
 import model.items.nonMagic.Axe;
@@ -120,7 +119,7 @@ public abstract class AbstractUnit implements IUnit {
   public void equipSword(Sword sword) {}
 
   @Override
-  public void equipMagicBook(IMagical magicBook) {}
+  public void equipMagicBook(IMagicBook magicBook) {}
 
   @Override
   public Location getLocation() {

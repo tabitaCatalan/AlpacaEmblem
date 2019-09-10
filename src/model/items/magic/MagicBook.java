@@ -12,7 +12,7 @@ import model.units.IUnit;
  * @author Tabita Catalan Muñoz
  * @since
  */
-public abstract class MagicBook extends AbstractDamageItem implements IMagical{
+public abstract class MagicBook extends AbstractDamageItem implements IMagicBook {
 
     /**
      * Creates a new Magic Book.

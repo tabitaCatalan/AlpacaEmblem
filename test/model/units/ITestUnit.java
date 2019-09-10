@@ -2,6 +2,7 @@ package model.units;
 
 
 import model.items.*;
+import model.items.magic.IMagicBook;
 import model.items.nonMagic.Axe;
 import model.items.nonMagic.Bow;
 import model.items.nonMagic.Spear;
@@ -89,6 +90,39 @@ public interface ITestUnit {
    */
   @Test
   void equipBowTest();
+
+  /**
+   * @return the test spectral book
+   */
+  IMagicBook getSpectralBookBook();
+
+  /**
+   * @return the test darkness book
+   */
+  IMagicBook getDarknessBook();
+
+  /**
+   * @return the test light book
+   */
+  IMagicBook getLightBook();
+
+  /**
+   * Checks if the spectral book is equipped correctly to the unit
+   */
+  @Test
+  void equipSpectralBookTest();
+
+  /**
+   * Checks if the darkness book is equipped correctly to the unit
+   */
+  @Test
+  void equipDarknessBookTest();
+
+  /**
+   * Checks if the light book is equipped correctly to the unit
+   */
+  @Test
+  void equipLightBookTest();
 
   /**
    * @return the test bow

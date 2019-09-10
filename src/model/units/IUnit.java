@@ -116,7 +116,7 @@ public interface IUnit {
      * Unit tries to equip a MagicBook. If unit it's a Sorcerer, it successes.
      * If not, nothing happens
      */
-    void equipMagicBook(IMagical magicBook);
+    void equipMagicBook(IMagicBook magicBook);
 
     /**
      * Unit tries to equip a Spear. If unit it's the Hero, it successes.
