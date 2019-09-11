@@ -12,4 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public abstract class AbstractMagicBookTest extends AbstractDamageItemTest {
+
+    @Override
+    public abstract IMagicBook getTestItem();
 }

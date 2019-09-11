@@ -20,17 +20,18 @@ public abstract class AbstractHealerTest extends AbstractTestItem {
     @Override
     public abstract IHealer getTestItem();
 
-    /*@Override
-    public void actOnTest(IUnit targetUnit){
-        getTestItem().heal(targetUnit);
-    }*/
+    public void actOnTest(){
+        //getTestItem().heal(getTargetUnit());
+    }
 
-    @Test
-    public void testHealing(IUnit targetUnit){
+    protected void testHealing(IUnit targetUnit){
         assertEquals(unitHP, targetUnit.getCurrentHitPoints());
         assertEquals(expectedPower, getTestItem().getPower());
         targetUnit.beingHealed(getTestItem().getPower());
-        assertEquals(unitHP - expectedPower, targetUnit.getCurrentHitPoints());
+        targetUnit.receiveDamage(expectedPower - 1);
+        assertEquals(unitHP, targetUnit.getCurrentHitPoints());
+        targetUnit.receiveDamage(expectedPower + 1);
+        assertEquals(unitHP - 1, targetUnit.getCurrentHitPoints());
     }
 
 }

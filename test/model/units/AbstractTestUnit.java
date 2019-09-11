@@ -1,5 +1,6 @@
 package model.units;
 
+import model.AbstractModelTest;
 import model.items.*;
 import model.items.magic.DarknessBook;
 import model.items.magic.IMagicBook;
@@ -20,32 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public abstract class AbstractTestUnit implements ITestUnit {
-
-  // target units
-  protected Alpaca alpaca;
-  protected Archer archer;
-  protected Cleric cleric;
-  protected Fighter fighter;
-  protected Hero hero;
-  protected SwordMaster swordMaster;
-  protected Sorcerer darknessSorcerer;
-  protected Sorcerer lightSorcerer;
-  protected Sorcerer spectralSorcerer;
-
-
-  // test items
-  protected Bow bow;
-  protected Field field;
-  protected Axe axe;
-  protected Sword sword;
-  protected Staff staff;
-  protected Spear spear;
-  protected IMagicBook spectralBook;
-  protected IMagicBook darknessBook;
-  protected IMagicBook lightBook;
-
-
+public abstract class AbstractTestUnit extends AbstractModelTest implements ITestUnit {
 
   // SETTINGS
   /**
@@ -57,52 +33,6 @@ public abstract class AbstractTestUnit implements ITestUnit {
     setTestUnit();
     setTargetUnits();
     setWeapons();
-  }
-
-  /**
-   * Set up the game field
-   */
-  public void setField() {
-    this.field = new Field();
-    this.field.addCells(true,
-            new Location(0, 0), new Location(0, 1), new Location(0, 2), new Location(0, 3), new Location(0, 4),
-            new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(1, 3), new Location(1, 4),
-            new Location(2, 0), new Location(2, 1), new Location(2, 2) , new Location(2, 3), new Location(2, 4),
-            new Location(3, 0), new Location(3, 1), new Location(3, 2), new Location(3, 3), new Location(3, 4),
-            new Location(4, 0), new Location(4, 1), new Location(4, 2), new Location(4, 3), new Location(4, 4));
-  }
-
-  /**
-   * Set up the main unit that's going to be tested in the test set
-   */
-  @Override
-  public abstract void setTestUnit();
-
-  /**
-   * Set up the target units
-   */
-  public void setTargetUnits(){
-    alpaca = new Alpaca(50, 2, field.getCell(0, 2));
-    archer = new Archer(50, 2, field.getCell(3, 3));
-    cleric = new Cleric(50, 2, field.getCell(2, 4));
-    fighter = new Fighter(50, 2, field.getCell(2, 0));
-    hero = new Hero(50, 2, field.getCell(1, 3));
-    swordMaster = new SwordMaster(50, 2, field.getCell(3,1));
-  }
-
-  /**
-   * Creates a set of testing weapons
-   */
-  @Override
-  public void setWeapons() {
-    this.axe = new Axe("Axe", 10, 1, 2);
-    this.sword = new Sword("Sword", 10, 1, 2);
-    this.spear = new Spear("Spear", 10, 1, 2);
-    this.staff = new Staff("Staff", 10, 1, 2);
-    this.bow = new Bow("Bow", 10, 2, 3);
-    this.spectralBook = new SpectralBook("Book of Souls", 10, 1, 2);
-    this.darknessBook = new DarknessBook("Necronomicon", 10, 1, 2);
-    this.lightBook = new LightBook("Light Book", 10, 1, 2);
   }
 
 
@@ -120,99 +50,6 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(getTestUnit(), getTestUnit().getLocation().getUnit());
     assertFalse(getTestUnit().hasEquippedItem());
     assertTrue(getTestUnit().getEquippedItem().isNullItem());
-  }
-
-  // GETTERS
-
-  // Getter field
-  /**
-   * @return the test field
-   */
-  @Override
-  public Field getField() {
-    return field;
-  }
-
-  // Getters units
-
-  /**
-   * @return the current unit being tested
-   */
-  @Override
-  public abstract IUnit getTestUnit();
-
-  /**
-   * @return the target Alpaca
-   */
-  @Override
-  public Alpaca getAlpaca() {
-    return alpaca;
-  }
-
-
-  // Getters items
-  /**
-   * @return the test bow
-   */
-  @Override
-  public Bow getBow() {
-    return bow;
-  }
-
-  /**
-   * @return the test axe
-   */
-  @Override
-  public Axe getAxe() {
-    return axe;
-  }
-
-  /**
-   * @return the test sword
-   */
-  @Override
-  public Sword getSword() {
-    return sword;
-  }
-
-  /**
-   * @return the test spear
-   */
-  @Override
-  public Spear getSpear() {
-    return spear;
-  }
-
-  /**
-   * @return the test staff
-   */
-  @Override
-  public Staff getStaff() {
-    return staff;
-  }
-
-  /**
-   * @return the test magic book of type Spectral
-   */
-  @Override
-  public IMagicBook getSpectralBookBook() {
-    return spectralBook;
-  }
-
-  /**
-   * @return the test magic book of type Darkness
-   */
-  @Override
-  public IMagicBook getDarknessBook() {
-    return darknessBook;
-  }
-
-  /**
-   * @return the test magic book of type Light
-   */
-  @Override
-  public IMagicBook getLightBook() {
-    return lightBook;
   }
 
   // INVENTORY TESTS

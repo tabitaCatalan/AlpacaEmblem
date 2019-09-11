@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import model.units.Archer;
 import model.units.IUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,13 @@ public abstract class AbstractTestItem {
   protected int unitHP = 10;
   protected int unitMovement = 5;
 
+  // target and parameters
+  protected IUnit targetUnit;
+  protected int targetHP = 20;
+
+
+
+
 
   /**
    * Sets up the items to be tested
@@ -36,7 +44,9 @@ public abstract class AbstractTestItem {
     setTestItem();
     setWrongRangeItem();
     setTestUnit();
+    //setTargetUnit();
   }
+
 
   /**
    * Sets up a correctly implemented item that's going to be tested
@@ -140,8 +150,13 @@ public abstract class AbstractTestItem {
     assertEquals(getTestUnit(), getTestItem().getOwner());
   }
 
+  /**
+   * Checks item acts correctly when acting (attacking, healing) on targetUnit
+   *
+  public abstract void actOnTest();*/
+
   /*@Test
   void actOnTargetUnitTest(){
-    getTestItem().actOn(getTestUnit());
+    actOnTest();
   }*/
 }

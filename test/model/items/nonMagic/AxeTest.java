@@ -1,6 +1,7 @@
 package model.items.nonMagic;
 
 import model.items.AbstractTestItem;
+import model.items.IAbleOfAttack;
 import model.items.IEquipableItem;
 import model.items.nonMagic.Axe;
 import model.map.Location;
@@ -50,7 +51,7 @@ class AxeTest extends AbstractWeaponTest {
   }
 
   @Override
-  public IEquipableItem getTestItem() {
+  public INonMagical getTestItem() {
     return axe;
   }
 

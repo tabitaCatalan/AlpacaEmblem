@@ -1,6 +1,7 @@
 package model.items.nonMagic;
 
 import model.items.AbstractTestItem;
+import model.items.IAbleOfAttack;
 import model.items.IEquipableItem;
 import model.items.nonMagic.Spear;
 import model.map.Location;
@@ -56,7 +57,7 @@ public class SpearTest extends AbstractWeaponTest {
    * @return the item being tested
    */
   @Override
-  public IEquipableItem getTestItem() {
+  public INonMagical getTestItem() {
     return javelin;
   }
 
