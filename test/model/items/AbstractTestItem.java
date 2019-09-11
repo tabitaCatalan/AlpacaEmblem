@@ -17,10 +17,16 @@ import org.junit.jupiter.api.Test;
  */
 public abstract class AbstractTestItem {
 
+  // Parameters constructor testItem
   protected String expectedName;
   protected int expectedPower;
   protected short expectedMinRange;
   protected short expectedMaxRange;
+
+  // Parameters constructor testUnit
+  protected int unitHP = 10;
+  protected int unitMovement = 5;
+
 
   /**
    * Sets up the items to be tested
@@ -109,6 +115,7 @@ public abstract class AbstractTestItem {
   public void equippedToTest() {
     assertNull(getTestItem().getOwner());
     IUnit unit = getTestUnit();
+    getTestUnit().addItem(getTestItem());
     getTestItem().equipTo(unit);
     assertEquals(unit, getTestItem().getOwner());
   }
@@ -132,4 +139,9 @@ public abstract class AbstractTestItem {
     assertTrue(getTestItem().hasOwner());
     assertEquals(getTestUnit(), getTestItem().getOwner());
   }
+
+  /*@Test
+  void actOnTargetUnitTest(){
+    getTestItem().actOn(getTestUnit());
+  }*/
 }

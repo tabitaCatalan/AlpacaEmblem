@@ -2,7 +2,6 @@ package model.units;
 
 import model.items.magic.IMagicBook;
 import model.items.magic.SpectralBook;
-import model.items.nonMagic.Sword;
 import org.junit.jupiter.api.Test;
 
 public class SorcererTest extends AbstractTestUnit {

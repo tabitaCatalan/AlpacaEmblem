@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="385.09415"
-     inkscape:cy="256.86151"
+     inkscape:cx="514.38954"
+     inkscape:cy="344.93391"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -430,38 +430,53 @@
          sodipodi:role="line"
          x="1.5757372"
          y="186.95827"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332;fill:#333333"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#333333;stroke-width:0.26458332"
          id="tspan916-0">TestUnit</tspan><tspan
          sodipodi:role="line"
          x="1.5757372"
          y="195.42493"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332;fill:#ff6600"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#ff6600;stroke-width:0.26458332"
          id="tspan1190">Alpaca</tspan><tspan
          sodipodi:role="line"
          x="1.5757372"
          y="203.8916"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332;fill:#ff0000"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#ff0000;stroke-width:0.26458332"
          id="tspan1198">Archer</tspan><tspan
          sodipodi:role="line"
          x="1.5757372"
          y="212.35826"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332;fill:#000080"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#000080;stroke-width:0.26458332"
          id="tspan1194">Cleric</tspan><tspan
          sodipodi:role="line"
          x="1.5757372"
          y="220.82494"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332;fill:#ffcc00"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#ffcc00;stroke-width:0.26458332"
          id="tspan1200">Fighter</tspan><tspan
          sodipodi:role="line"
          x="1.5757372"
          y="229.2916"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332;fill:#00ff00"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#00ff00;stroke-width:0.26458332"
          id="tspan1202">Hero</tspan><tspan
          sodipodi:role="line"
          x="1.5757372"
          y="237.75827"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332;fill:#800080"
-         id="tspan1204">SwordMaster</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#800080;stroke-width:0.26458332"
+         id="tspan1204">SwordMaster</tspan><tspan
+         sodipodi:role="line"
+         x="1.5757372"
+         y="246.22493"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#00ffff;stroke-width:0.26458332"
+         id="tspan91">Sorcerer(Spectral)</tspan><tspan
+         sodipodi:role="line"
+         x="1.5757372"
+         y="254.6916"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#803300;stroke-width:0.26458332"
+         id="tspan93">Sorcerer(Darkness)</tspan><tspan
+         sodipodi:role="line"
+         x="1.5757372"
+         y="263.15826"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;fill:#ff00ff;stroke-width:0.26458332"
+         id="tspan95">Sorcerer(Light)</tspan></text>
     <circle
        style="opacity:1;fill:#333333;fill-opacity:1;stroke:#000000;stroke-width:1.23850763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path1206-0"
@@ -520,5 +535,23 @@
          y="167.45468"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:0.80000001;font-family:sans-serif;-inkscape-font-specification:sans-serif;writing-mode:lr-tb;stroke-width:0.26458332"
          id="tspan916-08">CombatTest</tspan></text>
+    <circle
+       style="opacity:1;fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:1.23850763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1206-3-3"
+       cx="114.12408"
+       cy="245.1497"
+       r="5.1412716" />
+    <circle
+       style="opacity:1;fill:#aa4400;fill-opacity:1;stroke:#000000;stroke-width:1.23850763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1206-3-39"
+       cx="140.85104"
+       cy="165.77066"
+       r="5.1412716" />
+    <circle
+       style="opacity:1;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:1.23850763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1206-3-39-5"
+       cx="167.84526"
+       cy="217.62096"
+       r="5.1412716" />
   </g>
 </svg>

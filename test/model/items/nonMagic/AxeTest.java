@@ -1,5 +1,7 @@
-package model.items;
+package model.items.nonMagic;
 
+import model.items.AbstractTestItem;
+import model.items.IEquipableItem;
 import model.items.nonMagic.Axe;
 import model.map.Location;
 import model.units.Fighter;
@@ -11,7 +13,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-class AxeTest extends AbstractTestItem {
+class AxeTest extends AbstractWeaponTest {
 
   private Axe axe;
   private Axe wrongAxe;
@@ -39,7 +41,7 @@ class AxeTest extends AbstractTestItem {
    */
   @Override
   public void setTestUnit() {
-    fighter = new Fighter(10, 5, new Location(0, 0));
+    fighter = new Fighter(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override

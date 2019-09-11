@@ -1,5 +1,7 @@
-package model.items;
+package model.items.nonMagic;
 
+import model.items.AbstractTestItem;
+import model.items.IEquipableItem;
 import model.items.nonMagic.Spear;
 import model.map.Location;
 import model.units.Hero;
@@ -11,7 +13,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class SpearTest extends AbstractTestItem {
+public class SpearTest extends AbstractWeaponTest {
 
   private Spear javelin;
   private Spear wrongSpear;
@@ -42,7 +44,7 @@ public class SpearTest extends AbstractTestItem {
    */
   @Override
   public void setTestUnit() {
-    hero = new Hero(10, 5, new Location(0, 0));
+    hero = new Hero(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override

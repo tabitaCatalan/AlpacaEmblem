@@ -1,5 +1,7 @@
-package model.items;
+package model.items.nonMagic;
 
+import model.items.AbstractTestItem;
+import model.items.IEquipableItem;
 import model.items.nonMagic.Sword;
 import model.map.Location;
 import model.units.IUnit;
@@ -11,7 +13,7 @@ import model.units.SwordMaster;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class SwordTest extends AbstractTestItem {
+public class SwordTest extends AbstractWeaponTest {
 
   private Sword sword;
   private Sword wrongSword;
@@ -25,7 +27,7 @@ public class SwordTest extends AbstractTestItem {
     expectedName = "Common sword";
     expectedPower = 10;
     expectedMinRange = 1;
-    expectedMaxRange = 1;
+    expectedMaxRange = 2;
     sword = new Sword(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
@@ -42,7 +44,7 @@ public class SwordTest extends AbstractTestItem {
    */
   @Override
   public void setTestUnit() {
-    swordMaster = new SwordMaster(10, 5, new Location(0, 0));
+    swordMaster = new SwordMaster(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override

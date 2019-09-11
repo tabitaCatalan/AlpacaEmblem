@@ -10,7 +10,7 @@ import model.units.IUnit;
  * @author Tabita Catalan Muñoz
  * @since
  */
-public class SpectralBook extends MagicBook  {
+public class SpectralBook extends AbstractMagicBook {
 
     /**
      * Creates a new Magic Book, of type Spectral

@@ -2,7 +2,6 @@ package model.units;
 
 import model.items.IEquipableItem;
 import model.items.Staff;
-import model.items.magic.MagicBook;
 import model.map.Location;
 
 /**

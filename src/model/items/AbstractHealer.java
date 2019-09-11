@@ -2,7 +2,7 @@ package model.items;
 
 import model.units.IUnit;
 
-public abstract class AbstractHealer extends AbstractItem{
+public abstract class AbstractHealer extends AbstractItem implements IHealer{
 
     /**
      * Constructor for a default healer item

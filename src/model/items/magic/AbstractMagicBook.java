@@ -12,7 +12,7 @@ import model.units.IUnit;
  * @author Tabita Catalan Muñoz
  * @since
  */
-public abstract class MagicBook extends AbstractDamageItem implements IMagicBook {
+public abstract class AbstractMagicBook extends AbstractDamageItem implements IMagicBook {
 
     /**
      * Creates a new Magic Book.
@@ -28,7 +28,7 @@ public abstract class MagicBook extends AbstractDamageItem implements IMagicBook
      * @param maxRange
      *     the maximum range of the magic book
      */
-    public MagicBook(final String name, final int power, final int minRange, final int maxRange) {
+    public AbstractMagicBook(final String name, final int power, final int minRange, final int maxRange) {
         super(name, power, minRange, maxRange);
     }
 

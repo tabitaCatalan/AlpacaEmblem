@@ -1,7 +1,9 @@
-package model.items;
+package model.items.nonMagic;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import model.items.AbstractTestItem;
+import model.items.IEquipableItem;
 import model.items.nonMagic.Bow;
 import model.map.Location;
 import model.units.Archer;
@@ -14,7 +16,7 @@ import org.junit.jupiter.api.Test;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class BowTest extends AbstractTestItem {
+public class BowTest extends AbstractWeaponTest {
 
   private Bow bow;
   private Bow wrongBow;
@@ -26,7 +28,7 @@ public class BowTest extends AbstractTestItem {
   @Override
   public void setTestItem() {
     expectedName = "Common bow";
-    expectedPower = 8;
+    expectedPower = 10;
     expectedMinRange = 2;
     expectedMaxRange = 4;
     bow = new Bow(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
@@ -45,7 +47,7 @@ public class BowTest extends AbstractTestItem {
    */
   @Override
   public void setTestUnit() {
-    archer = new Archer(10, 5, new Location(0, 0));
+    archer = new Archer(unitHP, unitMovement, new Location(0, 0));
   }
 
   /**

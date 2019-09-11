@@ -289,6 +289,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   public void checkIncorrectEquippedItem(IEquipableItem item) {
     assertTrue(getTestUnit().getEquippedItem().isNullItem());
+    getTestUnit().addItem(item);
     getTestUnit().equipItem(item);
     assertTrue(getTestUnit().getEquippedItem().isNullItem());
   }

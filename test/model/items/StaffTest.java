@@ -10,7 +10,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class StaffTest extends AbstractTestItem {
+public class StaffTest extends AbstractHealerTest {
 
   private Staff staff;
   private Staff wrongStaff;
@@ -21,10 +21,8 @@ public class StaffTest extends AbstractTestItem {
    */
   @Override
   public void setTestItem() {
+    super.setTestItem();
     expectedName = "Common staff";
-    expectedPower = 5;
-    expectedMinRange = 1;
-    expectedMaxRange = 1;
     staff = new Staff(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
@@ -41,7 +39,7 @@ public class StaffTest extends AbstractTestItem {
    */
   @Override
   public void setTestUnit() {
-    cleric = new Cleric(10, 5, new Location(0, 0));
+    cleric = new Cleric(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override
@@ -53,7 +51,7 @@ public class StaffTest extends AbstractTestItem {
    * @return the item being tested
    */
   @Override
-  public IEquipableItem getTestItem() {
+  public IHealer getTestItem() {
     return staff;
   }
 

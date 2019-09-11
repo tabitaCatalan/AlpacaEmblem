@@ -10,7 +10,7 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Staff extends AbstractItem {
+public class Staff extends AbstractHealer {
 
   /**
    * Creates a new Staff item.

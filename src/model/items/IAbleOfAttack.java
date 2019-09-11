@@ -2,7 +2,7 @@ package model.items;
 
 import model.units.IUnit;
 
-public interface IAbleOfAttack {
+public interface IAbleOfAttack extends IEquipableItem {
     /**
      * item inflicts damage on targetUnit
      * @param targetUnit
