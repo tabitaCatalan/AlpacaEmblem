@@ -47,11 +47,11 @@ Una unidad puede utilizar el objeto que tiene equipado sobre otra unidad, siempr
 También hay ítems (como <code>Staff</code>) que no pueden realizar ataques, pero pueden sanar a otras unidades. Estos ítems no dan la posibilidad de realizar un contrataque, aunque tampoco podrán contratacar si son atacados.
 Cuando un ítem ataca a otro, al calcular el daño se debe considerar las debilidades y fortalezas de los ítems.
 
-| Item   | Debil contra | Fuerte contra |
+| Item   | Débil contra | Fuerte contra |
 | :---:    |    :----:    |         :---: |
-| Hacha  | Espada       | Lanza |
-| Espada | Lanza        | Hacha |
-| Lanza  | Hacha        | Espada |
+| Axe  | Sword       | Spear |
+| Sword | Spear        | Axe |
+| Spear  | Axe        | Sword |
 
 Existen 3 tipos de magia: *Light*, *Darkness* y *Spectral*, cada uno con sus propias debilidades y fortalezas.
 

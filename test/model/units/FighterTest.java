@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.nonMagic.Axe;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -10,14 +11,14 @@ import org.junit.jupiter.api.Test;
  */
 public class FighterTest extends AbstractTestUnit {
 
-  private Fighter fighter;
+  private Fighter testFighter;
 
   /**
    * Set up the main unit that's going to be tested in the test set
    */
   @Override
   public void setTestUnit() {
-    fighter = new Fighter(50, 2, field.getCell(0, 0));
+    testFighter = new Fighter(50, 2, field.getCell(2, 2));
   }
 
   /**
@@ -25,7 +26,7 @@ public class FighterTest extends AbstractTestUnit {
    */
   @Override
   public IUnit getTestUnit() {
-    return fighter;
+    return testFighter;
   }
 
 
@@ -35,6 +36,25 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipAxeTest() {
-    checkCorrectEquippedItem(fighter, axe);
+    checkCorrectEquippedItem(testFighter, axe);
   }
+
+
+  @Override
+  public void equipTestUnit(){
+    Axe testAxe = new Axe("Test Axe", 10, 1, 2);
+    getTestUnit().addItem(testAxe);
+    getTestUnit().equipItem(testAxe);
+  }
+
+  @Override
+  public void attackEquippedUnitsTest(){
+    normalDamageTest(archer);
+    normalDamageTest(cleric);
+    normalDamageTest(fighter);
+    strongDamageTest(hero);
+    weakDamageTest(swordMaster);
+  }
+
+
 }

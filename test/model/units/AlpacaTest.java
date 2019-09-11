@@ -1,5 +1,6 @@
 package model.units;
 
+import model.items.nonMagic.Sword;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,16 +13,16 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class AlpacaTest extends AbstractTestUnit {
 
-  private Alpaca alpaca;
+  private Alpaca testAlpaca;
 
   @Override
   public void setTestUnit() {
-    alpaca = new Alpaca(50, 2, field.getCell(0, 0));
+    testAlpaca = new Alpaca(50, 2, field.getCell(2, 2));
   }
 
   @Override
   public Alpaca getTestUnit() {
-    return alpaca;
+    return testAlpaca;
   }
 
   @Override
@@ -34,5 +35,54 @@ public class AlpacaTest extends AbstractTestUnit {
     getTestUnit().addItem(getSword());
     assertTrue(getTestUnit().hasSpaceInInventory());
     assertEquals(4, getTestUnit().getNumberOfItems());
+  }
+
+  @Override
+  public void equipTestUnit(){}
+
+  /**{@inheritDoc}
+   *
+   * Alpaca can't equip items
+   * */
+  @Test
+  protected void isEquippedTest(){
+    equipTestUnit();
+    assertFalse(getTestUnit().hasEquippedItem());
+  }
+
+  /** {@inheritDoc}
+   * Alpaca doesn't cause damage on other units, cause can't get equipped.
+   */
+  public void attackUnEquippedUnitsTest(){
+    zeroDamageTest(alpaca);
+    zeroDamageTest(archer);
+    zeroDamageTest(cleric);
+    zeroDamageTest(fighter);
+    zeroDamageTest(hero);
+    zeroDamageTest(swordMaster);
+  }
+
+  @Override
+  public void attackEquippedUnitsTest(){
+    zeroDamageTest(archer);
+    zeroDamageTest(cleric);
+    zeroDamageTest(fighter);
+    zeroDamageTest(hero);
+    zeroDamageTest(swordMaster);
+  }
+
+  /**
+   * {@inheritDoc}
+   * Alpaca can't equip any item, so it has range 0
+   */
+  @Test
+  public void isInRangeTest(){
+    equipTestUnit();
+    assertFalse(getTestUnit().isInRange(alpaca));
+    assertFalse(getTestUnit().isInRange(archer));
+    assertFalse(getTestUnit().isInRange(cleric));
+    assertFalse(getTestUnit().isInRange(fighter));
+    assertFalse(getTestUnit().isInRange(hero));
+    assertFalse(getTestUnit().isInRange(swordMaster));
   }
 }

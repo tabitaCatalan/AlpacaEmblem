@@ -40,14 +40,9 @@ public interface ITestUnit {
   IUnit getTestUnit();
 
   /**
-   * Set up a target Alpaca
-   */
-  void setTargetAlpaca();
-
-  /**
    * @return the target Alpaca
    */
-  Alpaca getTargetAlpaca();
+  Alpaca getAlpaca();
 
   /**
    * Creates a set of testing weapons

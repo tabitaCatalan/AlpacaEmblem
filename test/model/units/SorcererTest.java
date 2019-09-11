@@ -1,16 +1,19 @@
 package model.units;
 
+import model.items.magic.IMagicBook;
+import model.items.magic.SpectralBook;
+import model.items.nonMagic.Sword;
 import org.junit.jupiter.api.Test;
 
 public class SorcererTest extends AbstractTestUnit {
-    private Sorcerer sorcerer;
+    private Sorcerer testSorcerer;
 
     /**
      * Set up the main unit that's going to be tested in the test set
      */
     @Override
     public void setTestUnit() {
-        sorcerer = new Sorcerer(50, 2, field.getCell(0, 0));
+        testSorcerer = new Sorcerer(50, 2, field.getCell(2, 2));
     }
 
     /**
@@ -18,24 +21,40 @@ public class SorcererTest extends AbstractTestUnit {
      */
     @Override
     public IUnit getTestUnit() {
-        return sorcerer;
+        return testSorcerer;
     }
 
     @Test
     @Override
     public void equipSpectralBookTest(){
-        checkCorrectEquippedItem(sorcerer, spectralBook);
+        checkCorrectEquippedItem(testSorcerer, spectralBook);
     }
 
     @Test
     @Override
     public void equipDarknessBookTest(){
-        checkCorrectEquippedItem(sorcerer, darknessBook);
+        checkCorrectEquippedItem(testSorcerer, darknessBook);
     }
 
     @Test
     @Override
     public void equipLightBookTest(){
-        checkCorrectEquippedItem(sorcerer, lightBook);
+        checkCorrectEquippedItem(testSorcerer, lightBook);
+    }
+
+    @Override
+    public void equipTestUnit(){
+        IMagicBook magicBook = new SpectralBook("Test Magic Book", 10, 1, 2);
+        getTestUnit().addItem(magicBook);
+        getTestUnit().equipItem(magicBook);
+    }
+
+    @Override
+    public void attackEquippedUnitsTest() {
+        strongDamageTest(archer);
+        strongDamageTest(cleric);
+        strongDamageTest(fighter);
+        strongDamageTest(hero);
+        strongDamageTest(swordMaster);
     }
 }

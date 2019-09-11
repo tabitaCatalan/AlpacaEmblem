@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Staff;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -10,14 +11,14 @@ import org.junit.jupiter.api.Test;
  */
 public class ClericTest extends AbstractTestUnit {
 
-  private Cleric cleric;
+  private Cleric testCleric;
 
   /**
    * Set up the main unit that's going to be tested in the test set
    */
   @Override
   public void setTestUnit() {
-    cleric = new Cleric(50, 2, field.getCell(0, 0));
+    testCleric = new Cleric(50, 2, field.getCell(2, 2));
   }
 
   /**
@@ -25,7 +26,7 @@ public class ClericTest extends AbstractTestUnit {
    */
   @Override
   public IUnit getTestUnit() {
-    return cleric;
+    return testCleric;
   }
 
   /**
@@ -34,6 +35,41 @@ public class ClericTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipStaffTest() {
-    checkCorrectEquippedItem(cleric, staff);
+    checkCorrectEquippedItem(testCleric, staff);
   }
+
+  @Override
+  public void equipTestUnit(){
+    Staff testStaff = new Staff("Test Staff", 10, 1, 2);
+    getTestUnit().addItem(testStaff);
+    getTestUnit().equipItem(testStaff);
+  }
+
+  @Override
+  public void attackEquippedUnitsTest(){}
+
+  /**
+   * testUnit uses it's item to heal targetUnit
+   */
+  public void healUnitsTest(){
+    useItemOnUnitTest(50, alpaca);
+    useItemOnUnitTest(50, archer);
+    useItemOnUnitTest(50, cleric);
+    useItemOnUnitTest(50, fighter);
+    useItemOnUnitTest(50, hero);
+    useItemOnUnitTest(50, swordMaster);
+  }
+
+  @Override
+  @Test
+  void useItemOnUnEquippedTargetUnitsTest() {
+    healUnitsTest();
+  }
+  @Override
+  @Test
+  void equipTargetsAndUseItemOnEquippedTargetUnitsTest() {
+    equipTargetUnits();
+    healUnitsTest();
+  }
+
 }
