@@ -1,5 +1,6 @@
 package model;
 
+import model.items.IEquipableItem;
 import model.items.Staff;
 import model.items.magic.DarknessBook;
 import model.items.magic.IMagicBook;
@@ -13,6 +14,8 @@ import model.map.Field;
 import model.map.Location;
 import model.units.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * This class implements some basic methods that will be used in testing in <i>items</i> and <i>units</i> packages.
  * It defines a field, units and weapons.
@@ -21,6 +24,8 @@ import model.units.*;
  */
 
 public abstract class AbstractModelTest {
+    // Field
+    protected Field field;
 
     // target units parameters
     protected int targetHP = 50;
@@ -37,9 +42,11 @@ public abstract class AbstractModelTest {
     protected Sorcerer lightSorcerer;
     protected Sorcerer spectralSorcerer;
 
+    // target units parameters
+    protected int targetPower = 10;
+
     // test items
     protected Bow bow;
-    protected Field field;
     protected Axe axe;
     protected Sword sword;
     protected Staff staff;
@@ -68,6 +75,11 @@ public abstract class AbstractModelTest {
     public abstract void setTestUnit();
 
     /**
+     * Sets up the main item being tested
+     */
+    protected abstract void setTestItem();
+
+    /**
      * Set up the target units
      */
     public void setTargetUnits(){
@@ -83,14 +95,14 @@ public abstract class AbstractModelTest {
      * Creates a set of testing weapons
      */
     public void setWeapons() {
-        this.axe = new Axe("Axe", 10, 1, 2);
-        this.sword = new Sword("Sword", 10, 1, 2);
-        this.spear = new Spear("Spear", 10, 1, 2);
-        this.staff = new Staff("Staff", 10, 1, 2);
-        this.bow = new Bow("Bow", 10, 2, 3);
-        this.spectralBook = new SpectralBook("Book of Souls", 10, 1, 2);
-        this.darknessBook = new DarknessBook("Necronomicon", 10, 1, 2);
-        this.lightBook = new LightBook("Light Book", 10, 1, 2);
+        this.axe = new Axe("Axe", targetPower, 1, 2);
+        this.sword = new Sword("Sword", targetPower, 1, 2);
+        this.spear = new Spear("Spear", targetPower, 1, 2);
+        this.staff = new Staff("Staff", targetPower, 1, 2);
+        this.bow = new Bow("Bow", targetPower, 2, 3);
+        this.spectralBook = new SpectralBook("Book of Souls", targetPower, 1, 2);
+        this.darknessBook = new DarknessBook("Necronomicon", targetPower, 1, 2);
+        this.lightBook = new LightBook("Light Book", targetPower, 1, 2);
     }
 
 
@@ -111,70 +123,120 @@ public abstract class AbstractModelTest {
      */
     public abstract IUnit getTestUnit();
 
+
     /**
      * @return the target Alpaca
      */
-    public Alpaca getAlpaca() {
+    protected Alpaca getAlpaca() {
         return alpaca;
     }
 
 
     // Getters items
+
+    /**
+     * @return the current item being tested
+     */
+    protected abstract IEquipableItem getTestItem();
+
     /**
      * @return the test bow
      */
-    public Bow getBow() {
+    protected Bow getBow() {
         return bow;
     }
 
     /**
      * @return the test axe
      */
-    public Axe getAxe() {
+    protected Axe getAxe() {
         return axe;
     }
 
     /**
      * @return the test sword
      */
-    public Sword getSword() {
+    protected Sword getSword() {
         return sword;
     }
 
     /**
      * @return the test spear
      */
-    public Spear getSpear() {
+    protected Spear getSpear() {
         return spear;
     }
 
     /**
      * @return the test staff
      */
-    public Staff getStaff() {
+    protected Staff getStaff() {
         return staff;
     }
 
     /**
      * @return the test magic book of type Spectral
      */
-    public IMagicBook getSpectralBookBook() {
+    protected IMagicBook getSpectralBookBook() {
         return spectralBook;
     }
 
     /**
      * @return the test magic book of type Darkness
      */
-    public IMagicBook getDarknessBook() {
+    protected IMagicBook getDarknessBook() {
         return darknessBook;
     }
 
     /**
      * @return the test magic book of type Light
      */
-    public IMagicBook getLightBook() {
+    protected IMagicBook getLightBook() {
         return lightBook;
     }
 
+
+    /**
+     * check currentHP of testUnit, after using the equipped item on targetUnit
+     * @param expectedLife: targetUnit's HP expected after the use of the item
+     * @param targetUnit: unit that receives the action
+     */
+    protected void checkHPAfterUseItemOnUnitTest(int expectedLife, IUnit targetUnit){
+        getTestUnit().useEquippedItemOn(targetUnit);
+        assertEquals(expectedLife, targetUnit.getCurrentHitPoints());
+    }
+
+    /**
+     * check that targetUnit received strong damage after the use of an object
+     * @param targetUnit: unit who'll receive the item's effect
+     */
+    protected void strongDamageTest(IUnit targetUnit){
+        int damage = (int) Math.round(targetPower* 1.5);
+        checkHPAfterUseItemOnUnitTest(Math.max(0,targetHP - damage), targetUnit);
+    }
+
+    /**
+     * check that targetUnit received normal damage after the use of an object
+     * @param targetUnit: unit who'll receive the item's effect
+     */
+    protected void normalDamageTest(IUnit targetUnit){
+        checkHPAfterUseItemOnUnitTest(Math.max(0, targetHP - targetPower), targetUnit);
+    }
+
+    /**
+     * check that targetUnit received weak damage after the use of an object
+     * @param targetUnit: unit who'll receive the item's effect
+     */
+    protected void weakDamageTest(IUnit targetUnit){
+        checkHPAfterUseItemOnUnitTest(Math.max(0,targetHP - Math.max(0, targetPower - 20)), targetUnit);
+    }
+
+    /**
+     * check that targetUnit didn't receive damage after the use of an object
+     * @param targetUnit: unit who'll receive the item's effect
+     */
+    protected void zeroDamageTest(IUnit targetUnit){
+        checkHPAfterUseItemOnUnitTest(targetHP, targetUnit);
+    }
 
 }

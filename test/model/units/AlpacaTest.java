@@ -1,5 +1,7 @@
 package model.units;
 
+import model.items.IEquipableItem;
+import model.items.NullItem;
 import model.items.nonMagic.Sword;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AlpacaTest extends AbstractTestUnit {
 
   private Alpaca testAlpaca;
+  private NullItem testNullItem;
 
   @Override
   public void setTestUnit() {
@@ -24,6 +27,17 @@ public class AlpacaTest extends AbstractTestUnit {
   public Alpaca getTestUnit() {
     return testAlpaca;
   }
+
+  @Override
+  public void setTestItem(){
+    testNullItem = new NullItem();
+  }
+
+  @Override
+  public IEquipableItem getTestItem(){
+    return testNullItem;
+  }
+
 
   @Override
   @Test

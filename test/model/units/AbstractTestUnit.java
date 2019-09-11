@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public abstract class AbstractTestUnit extends AbstractModelTest implements ITestUnit {
+public abstract class AbstractTestUnit extends AbstractModelTest {
 
   // SETTINGS
   /**
@@ -31,6 +31,7 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
   public void setUp() {
     setField();
     setTestUnit();
+    setTestItem();
     setTargetUnits();
     setWeapons();
   }
@@ -40,7 +41,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
   /**
    * Checks that the constructor works properly.
    */
-  @Override
   @Test
   public void constructorTest() {
     assertEquals(50, getTestUnit().getCurrentHitPoints());
@@ -54,7 +54,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
 
   // INVENTORY TESTS
 
-  @Override
   @Test
   public void addItemTest(){
     assertTrue(getTestUnit().getInventory().isEmpty());
@@ -62,7 +61,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
     assertEquals(1, getTestUnit().getInventory().size());
   }
 
-  @Override
   @Test
   public void addItemMoreThanMaxTest(){
     assertTrue(getTestUnit().hasSpaceInInventory());
@@ -107,7 +105,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
    * @param item
    *     to be equipped
    */
-  @Override
   public void checkCorrectEquippedItem(IUnit unit, IEquipableItem item) {
     assertTrue(unit.getEquippedItem().isNullItem());
     item.equipTo(unit);
@@ -123,7 +120,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
    * @param item
    *     to be equipped
    */
-  @Override
   public void checkIncorrectEquippedItem(IEquipableItem item) {
     assertTrue(getTestUnit().getEquippedItem().isNullItem());
     getTestUnit().addItem(item);
@@ -131,49 +127,41 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
     assertTrue(getTestUnit().getEquippedItem().isNullItem());
   }
 
-  @Override
   @Test
   public void equipAxeTest() {
     checkIncorrectEquippedItem(getAxe());
   }
 
-  @Override
   @Test
   public void equipSwordTest() {
     checkIncorrectEquippedItem(getSword());
   }
 
-  @Override
   @Test
   public void equipSpearTest() {
     checkIncorrectEquippedItem(getSpear());
   }
 
-  @Override
   @Test
   public void equipStaffTest() {
     checkIncorrectEquippedItem(getStaff());
   }
 
-  @Override
   @Test
   public void equipBowTest() {
     checkIncorrectEquippedItem(getBow());
   }
 
-  @Override
   @Test
   public void equipSpectralBookTest() {
     checkIncorrectEquippedItem(getSpectralBookBook());
   }
 
-  @Override
   @Test
   public void equipDarknessBookTest() {
     checkIncorrectEquippedItem(getDarknessBook());
   }
 
-  @Override
   @Test
   public void equipLightBookTest() {
     checkIncorrectEquippedItem(getLightBook());
@@ -181,7 +169,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
 
 
   // EXCHANGES TESTS
-  @Override
   @Test
   public void successfulExchange() {
     assertEquals(0, getTestUnit().getNumberOfItems());
@@ -195,7 +182,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
   }
 
   @Test
-  @Override
   public void notGiveAwayItemNotOwned(){
     assertEquals(0, getTestUnit().getNumberOfItems());
     assertEquals(0, getAlpaca().getNumberOfItems());
@@ -210,7 +196,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
   /**
    * Checks if the unit moves correctly
    */
-  @Override
   @Test
   public void testMovement() {
     // out of range
@@ -248,48 +233,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest implements ITes
         equipUnit(swordMaster, sword);
     }
 
-    /**
-     * check currentHP of testUnit, after using the equipped item on targetUnit
-     * @param expectedLife: targetUnit's HP expected after the use of the item
-     * @param targetUnit: unit that receives the action
-     */
-    public void useItemOnUnitTest(int expectedLife, IUnit targetUnit){
-        //assertTrue(getTestUnit().isInRange(targetUnit));
-        getTestUnit().useEquippedItemOn(targetUnit);
-        assertEquals(expectedLife, targetUnit.getCurrentHitPoints());
-    }
-
-    /**
-     * check that targetUnit received strong damage after the use of an object
-     * @param targetUnit: unit who'll receive the item's effect
-     */
-    public void strongDamageTest(IUnit targetUnit){
-        useItemOnUnitTest(35, targetUnit);
-    }
-
-    /**
-     * check that targetUnit received normal damage after the use of an object
-     * @param targetUnit: unit who'll receive the item's effect
-     */
-    public void normalDamageTest(IUnit targetUnit){
-        useItemOnUnitTest(40, targetUnit);
-    }
-
-    /**
-     * check that targetUnit received weak damage after the use of an object
-     * @param targetUnit: unit who'll receive the item's effect
-     */
-    public void weakDamageTest(IUnit targetUnit){
-        useItemOnUnitTest(50, targetUnit);
-    }
-
-    /**
-     * check that targetUnit didn't receive damage after the use of an object
-     * @param targetUnit: unit who'll receive the item's effect
-     */
-    public void zeroDamageTest(IUnit targetUnit){
-        useItemOnUnitTest(50, targetUnit);
-    }
 
     /**
      * function that checks that all units receives strong damage after being attacked while unequipped.

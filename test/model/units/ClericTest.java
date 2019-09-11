@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.IEquipableItem;
 import model.items.Staff;
 import org.junit.jupiter.api.Test;
 
@@ -12,24 +13,29 @@ import org.junit.jupiter.api.Test;
 public class ClericTest extends AbstractTestUnit {
 
   private Cleric testCleric;
+  private Staff testStaff;
 
-  /**
-   * Set up the main unit that's going to be tested in the test set
-   */
   @Override
   public void setTestUnit() {
     testCleric = new Cleric(50, 2, field.getCell(2, 2));
   }
 
-  /**
-   * @return the current unit being tested
-   */
+  @Override
+  public void setTestItem(){testStaff = new Staff("Test Staff", 10, 1, 2);}
+
   @Override
   public IUnit getTestUnit() {
     return testCleric;
   }
 
+  @Override
+  public IEquipableItem getTestItem() {
+    return testStaff;
+  }
+
   /**
+   * {@inheritDoc}
+   *
    * Checks if the staff is equipped correctly to the unit
    */
   @Test
@@ -40,7 +46,6 @@ public class ClericTest extends AbstractTestUnit {
 
   @Override
   public void equipTestUnit(){
-    Staff testStaff = new Staff("Test Staff", 10, 1, 2);
     getTestUnit().addItem(testStaff);
     getTestUnit().equipItem(testStaff);
   }
@@ -52,12 +57,12 @@ public class ClericTest extends AbstractTestUnit {
    * testUnit uses it's item to heal targetUnit
    */
   public void healUnitsTest(){
-    useItemOnUnitTest(50, alpaca);
-    useItemOnUnitTest(50, archer);
-    useItemOnUnitTest(50, cleric);
-    useItemOnUnitTest(50, fighter);
-    useItemOnUnitTest(50, hero);
-    useItemOnUnitTest(50, swordMaster);
+    checkHPAfterUseItemOnUnitTest(50, alpaca);
+    checkHPAfterUseItemOnUnitTest(50, archer);
+    checkHPAfterUseItemOnUnitTest(50, cleric);
+    checkHPAfterUseItemOnUnitTest(50, fighter);
+    checkHPAfterUseItemOnUnitTest(50, hero);
+    checkHPAfterUseItemOnUnitTest(50, swordMaster);
   }
 
   @Override
@@ -65,6 +70,7 @@ public class ClericTest extends AbstractTestUnit {
   void useItemOnUnEquippedTargetUnitsTest() {
     healUnitsTest();
   }
+
   @Override
   @Test
   void equipTargetsAndUseItemOnEquippedTargetUnitsTest() {

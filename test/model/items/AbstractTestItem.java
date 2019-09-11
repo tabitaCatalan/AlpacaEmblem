@@ -152,8 +152,8 @@ public abstract class AbstractTestItem {
 
   /**
    * Checks item acts correctly when acting (attacking, healing) on targetUnit
-   *
-  public abstract void actOnTest();*/
+   * *
+  public abstract void actOnTest(IUnit targetUnit);*/
 
   /*@Test
   void actOnTargetUnitTest(){

@@ -1,5 +1,6 @@
 package model.units;
 
+import model.items.IEquipableItem;
 import model.items.nonMagic.Sword;
 import org.junit.jupiter.api.Test;
 
@@ -12,21 +13,26 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class SwordMasterTest extends AbstractTestUnit {
 
   private SwordMaster testSwordMaster;
+  private Sword testSword;
 
-  /**
-   * Set up the main unit that's going to be tested in the test set
-   */
   @Override
   public void setTestUnit() {
     testSwordMaster = new SwordMaster(50, 2, field.getCell(2, 2));
   }
 
-  /**
-   * @return the current unit being tested
-   */
   @Override
   public IUnit getTestUnit() {
     return testSwordMaster;
+  }
+
+  @Override
+  public void setTestItem(){
+    testSword = new Sword("Test Sword", 10, 1, 2);
+  }
+
+  @Override
+  public IEquipableItem getTestItem() {
+    return testSword;
   }
 
   @Test
@@ -38,7 +44,6 @@ public class SwordMasterTest extends AbstractTestUnit {
 
   @Override
   public void equipTestUnit(){
-    Sword testSword = new Sword("Test Sword", 10, 1, 2);
     getTestUnit().addItem(testSword);
     getTestUnit().equipItem(testSword);
   }

@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.IEquipableItem;
 import model.items.nonMagic.Spear;
 import org.junit.jupiter.api.Test;
 
@@ -12,21 +13,26 @@ import org.junit.jupiter.api.Test;
 public class HeroTest extends AbstractTestUnit {
 
   private Hero testHero;
+  private Spear testSpear;
 
-  /**
-   * Set up the main unit that's going to be tested in the test set
-   */
   @Override
   public void setTestUnit() {
     testHero = new Hero(50, 2, field.getCell(2, 2));
   }
 
-  /**
-   * @return the current unit being tested
-   */
   @Override
   public IUnit getTestUnit() {
     return testHero;
+  }
+
+  @Override
+  public void setTestItem(){
+    testSpear = new Spear("Test Spear", 10, 1, 2);
+  }
+
+  @Override
+  public IEquipableItem getTestItem(){
+    return testSpear;
   }
 
   @Test
@@ -38,7 +44,6 @@ public class HeroTest extends AbstractTestUnit {
 
   @Override
   public void equipTestUnit(){
-    Spear testSpear = new Spear("Test Spear", 10, 1, 2);
     getTestUnit().addItem(testSpear);
     getTestUnit().equipItem(testSpear);
   }
