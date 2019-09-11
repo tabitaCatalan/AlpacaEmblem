@@ -87,7 +87,11 @@ La distancia entre todos los nodos que están directamente conectados es 1.
 - Para manejar la muerte de las unidades se agrega una interfaz <code>IState</code>. Esta será implementada por las clases <code>Alive</code> and <code>Dead</code>, y permite ser extendido fácilmente a otros estados como  <code>Confused</code> or  <code>Paralysed</code>.
 ## Descripción de los tests
 
+
 ### Tests de <code>IUnit</code>
+
+Se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>AbstractTestUnit</code>). Las posiciones usadas se muestran en la imagen:
+<img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
 
 #### Inventario
 Test para el correcto manejo de los ítems en inventario.
@@ -111,9 +115,7 @@ Su comportamiento depende de la clase. Se testea que las clases equipen exitosam
 #### Movimiento
 - <code>testMovement</code> verifica que una unidad no puede moverse a una celda que esté a una distancia mayor que su capacidad de movimiento, que es capaz de moverse a una celda válida, y que no se mueve a una celda ocupada por otra unidad.
 
-### Tests de Combate
-Se crea la clase abstracta <code>CombatTest</code>, donde se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>CombatTest</code>). Las posiciones usadas se muestran en la imagen:
-<img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
+#### Combate
 La idea es que <code>testUnit</code> ataque (o sane, si el el caso) a todas las unidades a su alrededor.
 - En el test <code>useItemOnUnEquippedTargetUnitsTest</code> ninguna unidad objetivo está equipada, por lo que deben recibir daño aumentado.
 - El test <code>equipTargetsAndUseItemOnEquippedTargetUnitsTest</code>, las unidades objetivo son equipadas antes de ser atacadas. Se verifica que los <code>currentHitPoints</code> coinciden con lo esperado al considerar fortalezas y debilidades entre armas. 
