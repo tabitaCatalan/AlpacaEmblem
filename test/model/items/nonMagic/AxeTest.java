@@ -69,7 +69,7 @@ class AxeTest extends AbstractWeaponTest {
   @Override
   @Test
   public void beingEquippedByFighter() {
-    checkCorrectEquippedItem(getFighter(),getTestItem());
+    checkCorrectEquippedItemTest(getFighter(),getTestItem());
   }
 
   @Override

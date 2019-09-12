@@ -37,7 +37,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipSwordTest() {
-    checkCorrectEquippedItem(testSwordMaster, sword);
+    checkCorrectEquippedItemTest(testSwordMaster, sword);
   }
 
 

@@ -87,7 +87,7 @@ public class BowTest extends AbstractWeaponTest {
   @Override
   @Test
   public void beingEquippedByArcher() {
-    checkCorrectEquippedItem(getArcher(),getTestItem());
+    checkCorrectEquippedItemTest(getArcher(),getTestItem());
   }
 
   @Override

@@ -35,19 +35,19 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipSpectralBookTest(){
-        checkCorrectEquippedItem(testSorcerer, spectralBook);
+        checkCorrectEquippedItemTest(testSorcerer, spectralBook);
     }
 
     @Test
     @Override
     public void equipDarknessBookTest(){
-        checkCorrectEquippedItem(testSorcerer, darknessBook);
+        checkCorrectEquippedItemTest(testSorcerer, darknessBook);
     }
 
     @Test
     @Override
     public void equipLightBookTest(){
-        checkCorrectEquippedItem(testSorcerer, lightBook);
+        checkCorrectEquippedItemTest(testSorcerer, lightBook);
     }
 
     @Override

@@ -75,7 +75,7 @@ public class SpearTest extends AbstractWeaponTest {
   @Override
   @Test
   public void beingEquippedByHero() {
-    checkCorrectEquippedItem(getHero(),getTestItem());
+    checkCorrectEquippedItemTest(getHero(),getTestItem());
   }
 
   @Override

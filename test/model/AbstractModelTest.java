@@ -336,7 +336,7 @@ public abstract class AbstractModelTest {
      * @param unit that will receive the item
      * @param item to be equipped
      */
-    public void checkCorrectEquippedItem(IUnit unit, IEquipableItem item) {
+    public void checkCorrectEquippedItemTest(IUnit unit, IEquipableItem item) {
         assertTrue(unit.getEquippedItem().isNullItem());
         item.equipTo(unit);
         assertTrue(unit.getEquippedItem().isNullItem());
@@ -352,7 +352,7 @@ public abstract class AbstractModelTest {
      * @param unit that will receive the item
      * @param item to be equipped
      */
-    public void checkIncorrectEquippedItem(IUnit unit, IEquipableItem item) {
+    public void checkIncorrectEquippedItemTest(IUnit unit, IEquipableItem item) {
         assertTrue(unit.getEquippedItem().isNullItem());
         unit.addItem(item);
         unit.equipItem(item);

@@ -4,7 +4,6 @@ import model.items.IEquipableItem;
 import model.items.Staff;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -41,7 +40,7 @@ public class ClericTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipStaffTest() {
-    checkCorrectEquippedItem(testCleric, staff);
+    checkCorrectEquippedItemTest(testCleric, staff);
   }
 
   @Override

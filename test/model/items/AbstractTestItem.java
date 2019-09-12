@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import model.AbstractModelTest;
-import model.units.Archer;
 import model.units.IUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -145,37 +144,37 @@ public abstract class AbstractTestItem extends AbstractModelTest {
 
   @Test
   protected void beingEquippedByAlpaca() {
-    checkIncorrectEquippedItem(getAlpaca(),getTestItem());
+    checkIncorrectEquippedItemTest(getAlpaca(),getTestItem());
   }
 
   @Test
   protected void beingEquippedByArcher() {
-    checkIncorrectEquippedItem(getArcher(),getTestItem());
+    checkIncorrectEquippedItemTest(getArcher(),getTestItem());
   }
 
   @Test
   protected void beingEquippedByCleric() {
-    checkIncorrectEquippedItem(getCleric(),getTestItem());
+    checkIncorrectEquippedItemTest(getCleric(),getTestItem());
   }
 
   @Test
   protected void beingEquippedByFighter() {
-    checkIncorrectEquippedItem(getFighter(),getTestItem());
+    checkIncorrectEquippedItemTest(getFighter(),getTestItem());
   }
 
   @Test
   protected void beingEquippedByHero() {
-    checkIncorrectEquippedItem(getHero(),getTestItem());
+    checkIncorrectEquippedItemTest(getHero(),getTestItem());
   }
 
   @Test
   protected void beingEquippedBySorcerer() {
-    checkIncorrectEquippedItem(getSpectralSorcerer(),getTestItem());
+    checkIncorrectEquippedItemTest(getSpectralSorcerer(),getTestItem());
   }
 
   @Test
   protected void beingEquippedBySwordMaster() {
-    checkIncorrectEquippedItem(getSwordMaster(),getTestItem());
+    checkIncorrectEquippedItemTest(getSwordMaster(),getTestItem());
   }
 
   /**

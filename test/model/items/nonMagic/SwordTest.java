@@ -75,7 +75,7 @@ public class SwordTest extends AbstractWeaponTest {
   @Override
   @Test
   public void beingEquippedBySwordMaster() {
-    checkCorrectEquippedItem(getSwordMaster(),getTestItem());
+    checkCorrectEquippedItemTest(getSwordMaster(),getTestItem());
   }
 
   @Override

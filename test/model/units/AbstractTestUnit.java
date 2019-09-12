@@ -1,7 +1,6 @@
 package model.units;
 
 import model.AbstractModelTest;
-import model.items.*;
 import model.map.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,42 +76,42 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
 
   @Test
   public void equipAxeTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getAxe());
+    checkIncorrectEquippedItemTest(getTestUnit(), getAxe());
   }
 
   @Test
   public void equipSwordTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getSword());
+    checkIncorrectEquippedItemTest(getTestUnit(), getSword());
   }
 
   @Test
   public void equipSpearTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getSpear());
+    checkIncorrectEquippedItemTest(getTestUnit(), getSpear());
   }
 
   @Test
   public void equipStaffTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getStaff());
+    checkIncorrectEquippedItemTest(getTestUnit(), getStaff());
   }
 
   @Test
   public void equipBowTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getBow());
+    checkIncorrectEquippedItemTest(getTestUnit(), getBow());
   }
 
   @Test
   public void equipSpectralBookTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getSpectralBook());
+    checkIncorrectEquippedItemTest(getTestUnit(), getSpectralBook());
   }
 
   @Test
   public void equipDarknessBookTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getDarknessBook());
+    checkIncorrectEquippedItemTest(getTestUnit(), getDarknessBook());
   }
 
   @Test
   public void equipLightBookTest() {
-    checkIncorrectEquippedItem(getTestUnit(), getLightBook());
+    checkIncorrectEquippedItemTest(getTestUnit(), getLightBook());
   }
 
 

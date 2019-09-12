@@ -40,7 +40,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipAxeTest() {
-    checkCorrectEquippedItem(testFighter, axe);
+    checkCorrectEquippedItemTest(testFighter, axe);
   }
 
 

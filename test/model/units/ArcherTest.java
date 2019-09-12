@@ -45,7 +45,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipBowTest() {
-    checkCorrectEquippedItem(testArcher, getBow());
+    checkCorrectEquippedItemTest(testArcher, getBow());
   }
 
   @Override

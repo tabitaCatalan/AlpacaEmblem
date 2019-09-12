@@ -61,7 +61,7 @@ public class DarknessBookTest extends AbstractMagicBookTest {
     @Override
     @Test
     public void beingEquippedBySorcerer() {
-        checkCorrectEquippedItem(getSpectralSorcerer(),getTestItem());
+        checkCorrectEquippedItemTest(getSpectralSorcerer(),getTestItem());
     }
 
     @Override

@@ -37,7 +37,7 @@ public class HeroTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipSpearTest() {
-    checkCorrectEquippedItem(testHero, spear);
+    checkCorrectEquippedItemTest(testHero, spear);
   }
 
 

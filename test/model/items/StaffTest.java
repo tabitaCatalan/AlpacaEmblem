@@ -66,6 +66,6 @@ public class StaffTest extends AbstractHealerTest {
   @Override
   @Test
   public void beingEquippedByCleric() {
-    checkCorrectEquippedItem(getCleric(),getTestItem());
+    checkCorrectEquippedItemTest(getCleric(),getTestItem());
   }
 }
