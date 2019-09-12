@@ -7,6 +7,7 @@ import model.items.nonMagic.Axe;
 import model.map.Location;
 import model.units.Fighter;
 import model.units.IUnit;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test set for Axes
@@ -61,5 +62,11 @@ class AxeTest extends AbstractWeaponTest {
   @Override
   public IUnit getTestUnit() {
     return fighter;
+  }
+
+  @Override
+  @Test
+  public void beingEquippedByFighter() {
+    checkCorrectEquippedItem(getFighter(),getTestItem());
   }
 }

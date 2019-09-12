@@ -30,6 +30,10 @@ public class SpectralBook extends AbstractMagicBook {
         super(name, power, minRange, maxRange);
     }
 
+    @Override
+    public void equipTo(IUnit unit) {
+        unit.equipMagicBook(this);
+    }
 
     @Override
     public void attack(IUnit targetUnit){

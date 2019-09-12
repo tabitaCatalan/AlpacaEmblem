@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import model.AbstractModelTest;
 import model.units.Archer;
 import model.units.IUnit;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ import org.junit.jupiter.api.Test;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public abstract class AbstractTestItem {
+public abstract class AbstractTestItem extends AbstractModelTest {
 
   // Parameters constructor testItem
   protected String expectedName;
@@ -28,23 +29,17 @@ public abstract class AbstractTestItem {
   protected int unitHP = 10;
   protected int unitMovement = 5;
 
-  // target and parameters
-  protected IUnit targetUnit;
-  protected int targetHP = 20;
-
-
-
-
-
   /**
    * Sets up the items to be tested
    */
   @BeforeEach
   public void setUp() {
+    setField();
     setTestItem();
     setWrongRangeItem();
     setTestUnit();
-    //setTargetUnit();
+    setTargetUnits();
+    setWeapons();
   }
 
 
@@ -130,11 +125,6 @@ public abstract class AbstractTestItem {
     assertEquals(unit, getTestItem().getOwner());
   }
 
-  /**
-   * @return a unit that can equip the item being tested
-   */
-  public abstract IUnit getTestUnit();
-
   @Test
   public void hasOwnerTest(){
     assertFalse(getTestItem().hasOwner());
@@ -150,9 +140,45 @@ public abstract class AbstractTestItem {
     assertEquals(getTestUnit(), getTestItem().getOwner());
   }
 
+  @Test
+  public void beingEquippedByAlpaca() {
+    checkIncorrectEquippedItem(getAlpaca(),getTestItem());
+  }
+
+  @Test
+  public void beingEquippedByArcher() {
+    checkIncorrectEquippedItem(getArcher(),getTestItem());
+  }
+
+  @Test
+  public void beingEquippedByCleric() {
+    checkIncorrectEquippedItem(getCleric(),getTestItem());
+  }
+
+  @Test
+  public void beingEquippedByFighter() {
+    checkIncorrectEquippedItem(getFighter(),getTestItem());
+  }
+
+  @Test
+  public void beingEquippedByHero() {
+    checkIncorrectEquippedItem(getHero(),getTestItem());
+  }
+
+  @Test
+  public void beingEquippedBySorcerer() {
+    checkIncorrectEquippedItem(getSpectralSorcerer(),getTestItem());
+  }
+
+  @Test
+  public void beingEquippedBySwordMaster() {
+    checkIncorrectEquippedItem(getSwordMaster(),getTestItem());
+  }
+
+
   /**
    * Checks item acts correctly when acting (attacking, healing) on targetUnit
-   * *
+   *
   public abstract void actOnTest(IUnit targetUnit);*/
 
   /*@Test

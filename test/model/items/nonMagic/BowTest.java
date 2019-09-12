@@ -81,4 +81,10 @@ public class BowTest extends AbstractWeaponTest {
   public IUnit getTestUnit() {
     return archer;
   }
+
+  @Override
+  @Test
+  public void beingEquippedByArcher() {
+    checkCorrectEquippedItem(getArcher(),getTestItem());
+  }
 }

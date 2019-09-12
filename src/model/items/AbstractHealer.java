@@ -1,5 +1,8 @@
 package model.items;
 
+import model.items.magic.DarknessBook;
+import model.items.magic.LightBook;
+import model.items.magic.SpectralBook;
 import model.units.IUnit;
 
 public abstract class AbstractHealer extends AbstractItem implements IHealer{
@@ -23,5 +26,17 @@ public abstract class AbstractHealer extends AbstractItem implements IHealer{
 
     public void heal(IUnit targetUnit){
         targetUnit.beingHealed(getPower());
+    }
+
+    public void receiveSpectralAttack(SpectralBook spectralBook){
+        receiveStrongAttack(spectralBook);
+    }
+
+    public void receiveLightAttack(LightBook lightBook){
+        receiveStrongAttack(lightBook);
+    }
+
+    public void receiveDarknessAttack(DarknessBook darknessBook){
+        receiveStrongAttack(darknessBook);
     }
 }

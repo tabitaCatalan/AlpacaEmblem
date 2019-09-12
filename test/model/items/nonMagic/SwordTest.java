@@ -7,6 +7,7 @@ import model.items.nonMagic.Sword;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.SwordMaster;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test set for swords
@@ -67,5 +68,11 @@ public class SwordTest extends AbstractWeaponTest {
   @Override
   public IUnit getTestUnit() {
     return swordMaster;
+  }
+
+  @Override
+  @Test
+  public void beingEquippedBySwordMaster() {
+    checkCorrectEquippedItem(getSwordMaster(),getTestItem());
   }
 }

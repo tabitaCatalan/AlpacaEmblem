@@ -18,10 +18,10 @@ public class NullItemTest extends AbstractTestItem {
      */
     @Override
     public void setTestItem() {
-        expectedName = "NullItem";
+        expectedName = "Null Item";
         expectedPower = 0;
-        expectedMinRange = 0;
-        expectedMaxRange = 0;
+        expectedMinRange = 1;
+        expectedMaxRange = 1;
         nullItem = new NullItem();
     }
 

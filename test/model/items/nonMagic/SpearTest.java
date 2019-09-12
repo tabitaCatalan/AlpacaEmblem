@@ -7,6 +7,7 @@ import model.items.nonMagic.Spear;
 import model.map.Location;
 import model.units.Hero;
 import model.units.IUnit;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test set for spears
@@ -67,5 +68,11 @@ public class SpearTest extends AbstractWeaponTest {
   @Override
   public IUnit getTestUnit() {
     return hero;
+  }
+
+  @Override
+  @Test
+  public void beingEquippedByHero() {
+    checkCorrectEquippedItem(getHero(),getTestItem());
   }
 }

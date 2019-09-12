@@ -4,8 +4,7 @@ import model.items.IEquipableItem;
 import model.items.nonMagic.Sword;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -57,5 +56,11 @@ public class SwordMasterTest extends AbstractTestUnit {
     normalDamageTest(swordMaster);
   }
 
+  @Test
+  @Override
+  public void isInRangeTest(){
+    super.isInRangeTest();
+    assertTrue(getTestUnit().isInRange(lightSorcerer));
+  }
 
 }

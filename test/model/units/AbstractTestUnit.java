@@ -2,15 +2,6 @@ package model.units;
 
 import model.AbstractModelTest;
 import model.items.*;
-import model.items.magic.DarknessBook;
-import model.items.magic.IMagicBook;
-import model.items.magic.LightBook;
-import model.items.magic.SpectralBook;
-import model.items.nonMagic.Axe;
-import model.items.nonMagic.Bow;
-import model.items.nonMagic.Spear;
-import model.items.nonMagic.Sword;
-import model.map.Field;
 import model.map.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -94,77 +85,49 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
    * Check test unit has been correctly equipped
    * */
   @Test
-  protected void isEquippedTest(){
+  protected void isTestUnitEquippedTest(){
       equipTestUnit();
       assertTrue(getTestUnit().hasEquippedItem());
   }
 
-  /**
-   * Tries to equip an correct weapon to a Unit and verifies that it was equipped. Item has to be added to inventory first.
-   *
-   * @param item
-   *     to be equipped
-   */
-  public void checkCorrectEquippedItem(IUnit unit, IEquipableItem item) {
-    assertTrue(unit.getEquippedItem().isNullItem());
-    item.equipTo(unit);
-    assertTrue(unit.getEquippedItem().isNullItem());
-    unit.addItem(item);
-    unit.equipItem(item);
-    assertEquals(item, unit.getEquippedItem());
-  }
-
-  /**
-   * Tries to equip an incorrect weapon to a Unit and verifies that it was not equipped
-   *
-   * @param item
-   *     to be equipped
-   */
-  public void checkIncorrectEquippedItem(IEquipableItem item) {
-    assertTrue(getTestUnit().getEquippedItem().isNullItem());
-    getTestUnit().addItem(item);
-    getTestUnit().equipItem(item);
-    assertTrue(getTestUnit().getEquippedItem().isNullItem());
-  }
-
   @Test
   public void equipAxeTest() {
-    checkIncorrectEquippedItem(getAxe());
+    checkIncorrectEquippedItem(getTestUnit(), getAxe());
   }
 
   @Test
   public void equipSwordTest() {
-    checkIncorrectEquippedItem(getSword());
+    checkIncorrectEquippedItem(getTestUnit(), getSword());
   }
 
   @Test
   public void equipSpearTest() {
-    checkIncorrectEquippedItem(getSpear());
+    checkIncorrectEquippedItem(getTestUnit(), getSpear());
   }
 
   @Test
   public void equipStaffTest() {
-    checkIncorrectEquippedItem(getStaff());
+    checkIncorrectEquippedItem(getTestUnit(), getStaff());
   }
 
   @Test
   public void equipBowTest() {
-    checkIncorrectEquippedItem(getBow());
+    checkIncorrectEquippedItem(getTestUnit(), getBow());
   }
 
   @Test
   public void equipSpectralBookTest() {
-    checkIncorrectEquippedItem(getSpectralBookBook());
+    checkIncorrectEquippedItem(getTestUnit(), getSpectralBook());
   }
 
   @Test
   public void equipDarknessBookTest() {
-    checkIncorrectEquippedItem(getDarknessBook());
+    checkIncorrectEquippedItem(getTestUnit(), getDarknessBook());
   }
 
   @Test
   public void equipLightBookTest() {
-    checkIncorrectEquippedItem(getLightBook());
+    checkIncorrectEquippedItem(getTestUnit(), getLightBook());
   }
 
 
@@ -172,13 +135,26 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
   @Test
   public void successfulExchange() {
     assertEquals(0, getTestUnit().getNumberOfItems());
-    assertEquals(0, getAlpaca().getNumberOfItems());
-    getAlpaca().addItem(getAxe());
-    assertEquals(getAlpaca(),getAxe().getOwner());
-    getAlpaca().giveItemAwayTo(getTestUnit(), getAxe());
+    assertEquals(0, getLightSorcerer().getNumberOfItems());
+    getLightSorcerer().addItem(getAxe());
+    assertEquals(getLightSorcerer(),getAxe().getOwner());
+    getLightSorcerer().giveItemAwayTo(getTestUnit(), getAxe());
     assertEquals(1, getTestUnit().getNumberOfItems());
-    assertEquals(0, getAlpaca().getNumberOfItems());
+    assertEquals(0, getLightSorcerer().getNumberOfItems());
     assertEquals(getTestUnit(),getAxe().getOwner());
+  }
+
+  @Test
+  public void notInRangeFailedExchange() {
+    /*
+    assertEquals(0, getTestUnit().getNumberOfItems());
+    assertEquals(0, getLightSorcerer().getNumberOfItems());
+    getLightSorcerer().addItem(getAxe());
+    assertEquals(getLightSorcerer(),getAxe().getOwner());
+    getLightSorcerer().giveItemAwayTo(getTestUnit(), getAxe());
+    assertEquals(1, getTestUnit().getNumberOfItems());
+    assertEquals(0, getLightSorcerer().getNumberOfItems());
+    assertEquals(getTestUnit(),getAxe().getOwner());*/
   }
 
   @Test
@@ -231,6 +207,9 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
         equipUnit(fighter, axe);
         equipUnit(hero, spear);
         equipUnit(swordMaster, sword);
+        equipUnit(darknessSorcerer, darknessBook);
+        equipUnit(lightSorcerer, lightBook);
+        equipUnit(spectralSorcerer, spectralBook);
     }
 
 
@@ -244,6 +223,9 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
         strongDamageTest(fighter);
         strongDamageTest(hero);
         strongDamageTest(swordMaster);
+        strongDamageTest(darknessSorcerer);
+        strongDamageTest(lightSorcerer);
+        strongDamageTest(spectralSorcerer);
     }
 
     /**
@@ -277,25 +259,30 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
      */
     @Test
     public void distanceTest(){
-        assertEquals(2, getTestUnit().distanceTo(alpaca));
-        assertEquals(2, getTestUnit().distanceTo(archer));
-        assertEquals(2, getTestUnit().distanceTo(cleric));
-        assertEquals(2, getTestUnit().distanceTo(fighter));
-        assertEquals(2, getTestUnit().distanceTo(hero));
-        assertEquals(2, getTestUnit().distanceTo(swordMaster));
+      assertEquals(2, getTestUnit().distanceTo(alpaca));
+      assertEquals(2, getTestUnit().distanceTo(archer));
+      assertEquals(2, getTestUnit().distanceTo(cleric));
+      assertEquals(2, getTestUnit().distanceTo(fighter));
+      assertEquals(2, getTestUnit().distanceTo(hero));
+      assertEquals(2, getTestUnit().distanceTo(swordMaster));
+      assertEquals(2, getTestUnit().distanceTo(spectralSorcerer));
+      assertEquals(2, getTestUnit().distanceTo(darknessSorcerer));
+      assertEquals(1, getTestUnit().distanceTo(lightSorcerer));
     }
 
     /**
-     *checks that all units are in range
+     *checks that all units are in range (or not)
      */
     @Test
     public void isInRangeTest(){
-        equipTestUnit();
-        assertTrue(getTestUnit().isInRange(alpaca));
-        assertTrue(getTestUnit().isInRange(archer));
-        assertTrue(getTestUnit().isInRange(cleric));
-        assertTrue(getTestUnit().isInRange(fighter));
-        assertTrue(getTestUnit().isInRange(hero));
-        assertTrue(getTestUnit().isInRange(swordMaster));
+      equipTestUnit();
+      assertTrue(getTestUnit().isInRange(alpaca));
+      assertTrue(getTestUnit().isInRange(archer));
+      assertTrue(getTestUnit().isInRange(cleric));
+      assertTrue(getTestUnit().isInRange(fighter));
+      assertTrue(getTestUnit().isInRange(hero));
+      assertTrue(getTestUnit().isInRange(swordMaster));
+      assertTrue(getTestUnit().isInRange(darknessSorcerer));
+      assertTrue(getTestUnit().isInRange(spectralSorcerer));
     }
 }

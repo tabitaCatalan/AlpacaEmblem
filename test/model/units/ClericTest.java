@@ -1,11 +1,11 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import model.items.IEquipableItem;
 import model.items.Staff;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -76,6 +76,13 @@ public class ClericTest extends AbstractTestUnit {
   void equipTargetsAndUseItemOnEquippedTargetUnitsTest() {
     equipTargetUnits();
     healUnitsTest();
+  }
+
+  @Test
+  @Override
+  public void isInRangeTest(){
+    super.isInRangeTest();
+    assertTrue(getTestUnit().isInRange(lightSorcerer));
   }
 
 }

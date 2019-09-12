@@ -31,6 +31,11 @@ public class LightBook extends AbstractMagicBook {
     }
 
     @Override
+    public void equipTo(IUnit unit) {
+        unit.equipMagicBook(this);
+    }
+
+    @Override
     public void attack(IUnit targetUnit){
         targetUnit.receiveLightAttack(this);
     }

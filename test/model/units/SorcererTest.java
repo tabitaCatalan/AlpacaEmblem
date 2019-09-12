@@ -5,6 +5,8 @@ import model.items.magic.IMagicBook;
 import model.items.magic.SpectralBook;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class SorcererTest extends AbstractTestUnit {
     private Sorcerer testSorcerer;
     private IMagicBook testMagicBook;
@@ -56,10 +58,22 @@ public class SorcererTest extends AbstractTestUnit {
 
     @Override
     public void attackEquippedUnitsTest() {
+        strongDamageTest(alpaca);
         strongDamageTest(archer);
         strongDamageTest(cleric);
         strongDamageTest(fighter);
         strongDamageTest(hero);
         strongDamageTest(swordMaster);
+        strongDamageTest(lightSorcerer);
+        weakDamageTest(darknessSorcerer);
+        normalDamageTest(spectralSorcerer);
     }
+
+    @Test
+    @Override
+    public void isInRangeTest(){
+        super.isInRangeTest();
+        assertTrue(getTestUnit().isInRange(lightSorcerer));
+    }
+
 }

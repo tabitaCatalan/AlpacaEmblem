@@ -4,6 +4,7 @@ import model.items.IEquipableItem;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.Sorcerer;
+import org.junit.jupiter.api.Test;
 
 public class DarknessBookTest extends AbstractMagicBookTest {
     private DarknessBook darknessBook;
@@ -51,5 +52,11 @@ public class DarknessBookTest extends AbstractMagicBookTest {
     @Override
     public IUnit getTestUnit() {
         return sorcerer;
+    }
+
+    @Override
+    @Test
+    public void beingEquippedBySorcerer() {
+        checkCorrectEquippedItem(getSpectralSorcerer(),getTestItem());
     }
 }

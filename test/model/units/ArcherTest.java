@@ -1,11 +1,11 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import model.items.IEquipableItem;
 import model.items.nonMagic.Bow;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test set for the Archer unit.
@@ -32,7 +32,7 @@ public class ArcherTest extends AbstractTestUnit {
   }
 
   @Override
-  public void setTestItem(){testBow = new Bow("Test Bow", 10, 1, 2);}
+  public void setTestItem(){testBow = new Bow("Test Bow", 10, 2, 3);}
 
   @Override
   public IEquipableItem getTestItem() {
@@ -45,7 +45,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipBowTest() {
-    checkCorrectEquippedItem(testArcher, bow);
+    checkCorrectEquippedItem(testArcher, getBow());
   }
 
   @Override
@@ -62,4 +62,17 @@ public class ArcherTest extends AbstractTestUnit {
     normalDamageTest(hero);
     normalDamageTest(swordMaster);
   }
+
+  /**
+   * {@inheritDoc}
+   *
+   * Archer can't have adjacent units in range
+   * */
+  @Test
+  @Override
+  public void isInRangeTest(){
+    super.isInRangeTest();
+    assertFalse(getTestUnit().isInRange(lightSorcerer));
+  }
+
 }

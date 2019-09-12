@@ -59,7 +59,7 @@ public class AlpacaTest extends AbstractTestUnit {
    * Alpaca can't equip items
    * */
   @Test
-  protected void isEquippedTest(){
+  protected void isTestUnitEquippedTest(){
     equipTestUnit();
     assertFalse(getTestUnit().hasEquippedItem());
   }
@@ -87,9 +87,11 @@ public class AlpacaTest extends AbstractTestUnit {
 
   /**
    * {@inheritDoc}
-   * Alpaca can't equip any item, so it has range 0
+   * <p>
+   * Alpaca can't equip any item, so it has range 1 (because of the NullItem).
    */
   @Test
+  @Override
   public void isInRangeTest(){
     equipTestUnit();
     assertFalse(getTestUnit().isInRange(alpaca));
@@ -98,5 +100,8 @@ public class AlpacaTest extends AbstractTestUnit {
     assertFalse(getTestUnit().isInRange(fighter));
     assertFalse(getTestUnit().isInRange(hero));
     assertFalse(getTestUnit().isInRange(swordMaster));
+    assertFalse(getTestUnit().isInRange(darknessSorcerer));
+    assertFalse(getTestUnit().isInRange(spectralSorcerer));
+    assertTrue(getTestUnit().isInRange(lightSorcerer));
   }
 }

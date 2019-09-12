@@ -3,6 +3,7 @@ package model.items;
 import model.map.Location;
 import model.units.Cleric;
 import model.units.IUnit;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test set for staffs
@@ -55,11 +56,14 @@ public class StaffTest extends AbstractHealerTest {
     return staff;
   }
 
-  /**
-   * @return a unit that can equip the item being tested
-   */
   @Override
   public IUnit getTestUnit() {
     return cleric;
+  }
+
+  @Override
+  @Test
+  public void beingEquippedByCleric() {
+    checkCorrectEquippedItem(getCleric(),getTestItem());
   }
 }

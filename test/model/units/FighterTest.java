@@ -1,11 +1,10 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import model.items.IEquipableItem;
 import model.items.nonMagic.Axe;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -58,6 +57,13 @@ public class FighterTest extends AbstractTestUnit {
     normalDamageTest(fighter);
     strongDamageTest(hero);
     weakDamageTest(swordMaster);
+  }
+
+  @Test
+  @Override
+  public void isInRangeTest(){
+    super.isInRangeTest();
+    assertTrue(getTestUnit().isInRange(lightSorcerer));
   }
 
 

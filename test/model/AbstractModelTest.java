@@ -15,6 +15,7 @@ import model.map.Location;
 import model.units.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This class implements some basic methods that will be used in testing in <i>items</i> and <i>units</i> packages.
@@ -89,6 +90,9 @@ public abstract class AbstractModelTest {
         fighter = new Fighter(targetHP, targetMovement, field.getCell(2, 0));
         hero = new Hero(targetHP, targetMovement, field.getCell(1, 3));
         swordMaster = new SwordMaster(targetHP, targetMovement, field.getCell(3,1));
+        spectralSorcerer = new Sorcerer(targetHP, targetMovement, field.getCell(1,1));
+        darknessSorcerer = new Sorcerer(targetHP, targetMovement, field.getCell(4,2));
+        lightSorcerer = new Sorcerer(targetHP, targetMovement, field.getCell(2,3));
     }
 
     /**
@@ -129,6 +133,62 @@ public abstract class AbstractModelTest {
      */
     protected Alpaca getAlpaca() {
         return alpaca;
+    }
+
+    /**
+     * @return the target Archer
+     */
+    protected Archer getArcher() {
+        return archer;
+    }
+
+    /**
+     * @return the target Cleric
+     */
+    protected Cleric getCleric() {
+        return cleric;
+    }
+
+    /**
+     * @return the target Fighter
+     */
+    protected Fighter getFighter() {
+        return fighter;
+    }
+
+    /**
+     * @return the target Hero
+     */
+    protected Hero getHero() {
+        return hero;
+    }
+
+    /**
+     * @return the target Dark Sorcerer
+     */
+    protected Sorcerer getDarknessSorcerer() {
+        return darknessSorcerer;
+    }
+
+    /**
+     * @return the target LightSorcerer
+     */
+    protected Sorcerer getLightSorcerer() {
+        return lightSorcerer;
+    }
+
+    /**
+     * @return the target SpectralSorcerer
+     */
+    protected Sorcerer getSpectralSorcerer() {
+        return spectralSorcerer;
+    }
+
+    /**
+     * @return the target Alpaca
+     */
+    protected SwordMaster getSwordMaster() {
+        return swordMaster;
     }
 
 
@@ -177,7 +237,7 @@ public abstract class AbstractModelTest {
     /**
      * @return the test magic book of type Spectral
      */
-    protected IMagicBook getSpectralBookBook() {
+    protected IMagicBook getSpectralBook() {
         return spectralBook;
     }
 
@@ -239,4 +299,31 @@ public abstract class AbstractModelTest {
         checkHPAfterUseItemOnUnitTest(targetHP, targetUnit);
     }
 
+    /**
+     * Tries to equip an correct weapon to a Unit and verifies that it was equipped. Item has to be added to inventory first.
+     * @param unit that will receive the item
+     * @param item to be equipped
+     */
+    public void checkCorrectEquippedItem(IUnit unit, IEquipableItem item) {
+        assertTrue(unit.getEquippedItem().isNullItem());
+        item.equipTo(unit);
+        assertTrue(unit.getEquippedItem().isNullItem());
+        unit.addItem(item);
+        assertEquals(unit,item.getOwner());
+        unit.equipItem(item);
+        assertEquals(item, unit.getEquippedItem());
+    }
+
+    /**
+     * Tries to equip an incorrect weapon to a Unit and verifies that it was not equipped
+     *
+     * @param unit that will receive the item
+     * @param item to be equipped
+     */
+    public void checkIncorrectEquippedItem(IUnit unit, IEquipableItem item) {
+        assertTrue(unit.getEquippedItem().isNullItem());
+        unit.addItem(item);
+        unit.equipItem(item);
+        assertTrue(unit.getEquippedItem().isNullItem());
+    }
 }
