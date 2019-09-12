@@ -85,13 +85,35 @@ La distancia entre todos los nodos que están directamente conectados es 1.
 - Se tiene una interfaz <code>IEquipableItem</code>, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta <code>AbstractItem</code>. Esta clase, a su vez, se separa en dos clases abstractas <code>AbstractWeapon</code>, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como <code>Bow</code> o <code>Axe</code>), y <code>AbstractHealer</code>, para ítems que pueden sanar, pero que no pueden contratacar (como <code>Staff</code>).   
 - Para el combate, se agregaron los métodos <code>actOn</code> and <code>reactTo</code> en <code>AbstractItem</code>, simplemente dejándolos en blanco (el comportamiento de un ítem por defecto). Se implementan en <code>AbstractWeapon</code> y <code>AbstractHealer</code> con sus correspondientes variaciones.
 - Para manejar la muerte de las unidades se agrega una interfaz <code>IState</code>. Esta será implementada por las clases <code>Alive</code> and <code>Dead</code>, y permite ser extendido fácilmente a otros estados como  <code>Confused</code> or  <code>Paralysed</code>.
+
 ## Descripción de los tests
+
+### Clase <code>AbstractModelTest</code>
+Se creó una clase <code>AbstractModelTest</code> con métodos útiles para varios tests. Implementa un campo de batalla con todas las unidades disponibles, la mayoría a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>AbstractTestUnit</code>). Las posiciones de las unidades se muestran en la imagen:
+<img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
+Se cuenta además con un ítem de cada tipo.
+La implementa los siguientes métodos:
+- <code>setField()</code> y <code>getField()</code>
+- <code>setTestUnit()</code> y <code>getTestUnit()</code>
+- <code>setTestItem()</code> y <code>getTestItem()</code>
+- <code>setTargetUnits()</code>
+- Getters para todas las unidades (<code>getAlpaca()</code>, etc)
+- Getters para todos los ítems (<code>getBow()</code>, etc)
+- <code>checkHPAfterUseItemOnUnitTest</code> revisa que los <code>currentHitPoints</code> de una unidad sean los esperados después de usar <code>testItem</code> en esa unidad.
+- <code>strongDamageTest</code> revisa que una unidad haya recibido daño fuerte después de usar un ítem sobre ella.
+- <code>normalDamageTest</code> revisa que una unidad haya recibido daño normal después de usar un ítem sobre ella.
+- <code>weakDamageTest</code> revisa que una unidad haya recibido daño débil después de usar un ítem sobre ella.
+- <code>zeroDamageTest</code> revisa que una unidad no haya recibido daño después de usar un ítem sobre ella.
+- <code>equipUnit</code> añade un ítem al inventario de una unidad y trata de equiparlo.
+- <code>equipTestUnit()</code> equipa a <code>testUnit</code> con <code>testItem</code>.
+- <code>equipTargetUnits()</code> equipa a todas las unidades con si ítem correspondiente.
+- <code>checkCorrectEquippedItemTest</code> trata de equipar un ítem a una unidad, y verifica que fue correctamente equipado.
+- <code>checkIncorrectEquippedItemTest</code> trata de equipar un ítem a una unidad, y verifica que no fue equipado.
 
 
 ### Tests de <code>IUnit</code>
 
-Se implementa un campo de batalla con todas las unidades disponibles, a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>AbstractTestUnit</code>). Las posiciones usadas se muestran en la imagen:
-<img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
+
 
 #### Inventario
 Test para el correcto manejo de los ítems en inventario.
