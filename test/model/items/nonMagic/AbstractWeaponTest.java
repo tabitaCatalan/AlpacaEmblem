@@ -8,4 +8,14 @@ public abstract class AbstractWeaponTest extends AbstractDamageItemTest {
 
     @Override
     public abstract INonMagical getTestItem();
+
+    @Override
+    public void attackEquippedTargetUnitsTest(){
+        strongDamageTest(alpaca);
+        normalDamageTest(archer);
+        normalDamageTest(cleric);
+        strongDamageTest(darknessSorcerer);
+        strongDamageTest(spectralSorcerer);
+        strongDamageTest(lightSorcerer);
+    }
 }

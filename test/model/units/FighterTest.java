@@ -57,6 +57,9 @@ public class FighterTest extends AbstractTestUnit {
     normalDamageTest(fighter);
     strongDamageTest(hero);
     weakDamageTest(swordMaster);
+    strongDamageTest(lightSorcerer);
+    strongDamageTest(darknessSorcerer);
+    strongDamageTest(spectralSorcerer);
   }
 
   @Test

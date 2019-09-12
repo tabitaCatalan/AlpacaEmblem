@@ -83,6 +83,9 @@ public class AlpacaTest extends AbstractTestUnit {
     zeroDamageTest(fighter);
     zeroDamageTest(hero);
     zeroDamageTest(swordMaster);
+    zeroDamageTest(lightSorcerer);
+    zeroDamageTest(darknessSorcerer);
+    zeroDamageTest(spectralSorcerer);
   }
 
   /**

@@ -266,6 +266,7 @@ public abstract class AbstractModelTest {
         assertEquals(expectedLife, targetUnit.getCurrentHitPoints());
     }
 
+
     /**
      * check that targetUnit received strong damage after the use of an object
      * @param targetUnit: unit who'll receive the item's effect
@@ -299,6 +300,37 @@ public abstract class AbstractModelTest {
         checkHPAfterUseItemOnUnitTest(targetHP, targetUnit);
     }
 
+
+    // EQUIP METHODS
+    /**
+     * add item to unit's inventory and tries to equip the item
+     * @param unit: unit who'll receive the item
+     * @param item: item to be equipped
+     */
+    public void equipUnit(IUnit unit, IEquipableItem item){
+        unit.addItem(item);
+        unit.equipItem(item);
+    }
+
+    /**
+     * Equip item to TestUnit
+     * */
+    protected abstract void equipTestUnit();
+
+    /**
+     * equip all target units
+     */
+    public void equipTargetUnits(){
+        equipUnit(archer, bow);
+        equipUnit(cleric, staff);
+        equipUnit(fighter, axe);
+        equipUnit(hero, spear);
+        equipUnit(swordMaster, sword);
+        equipUnit(darknessSorcerer, darknessBook);
+        equipUnit(lightSorcerer, lightBook);
+        equipUnit(spectralSorcerer, spectralBook);
+    }
+
     /**
      * Tries to equip an correct weapon to a Unit and verifies that it was equipped. Item has to be added to inventory first.
      * @param unit that will receive the item
@@ -325,5 +357,21 @@ public abstract class AbstractModelTest {
         unit.addItem(item);
         unit.equipItem(item);
         assertTrue(unit.getEquippedItem().isNullItem());
+    }
+
+    /**
+     * Inflicts damage to all target units
+     * @param damage amount of damage
+     * */
+    protected void hurtAllTargetUnits(int damage){
+        alpaca.receiveDamage(damage);
+        archer.receiveDamage(damage);
+        cleric.receiveDamage(damage);
+        fighter.receiveDamage(damage);
+        hero.receiveDamage(damage);
+        swordMaster.receiveDamage(damage);
+        lightSorcerer.receiveDamage(damage);
+        darknessSorcerer.receiveDamage(damage);
+        spectralSorcerer.receiveDamage(damage);
     }
 }

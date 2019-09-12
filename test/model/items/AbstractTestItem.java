@@ -35,9 +35,9 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   @BeforeEach
   public void setUp() {
     setField();
+    setTestUnit();
     setTestItem();
     setWrongRangeItem();
-    setTestUnit();
     setTargetUnits();
     setWeapons();
   }
@@ -46,6 +46,7 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   /**
    * Sets up a correctly implemented item that's going to be tested
    */
+  @Override
   public abstract void setTestItem();
 
   /**
@@ -56,24 +57,25 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   /**
    * Sets the unit that will be equipped with the test item
    */
+  @Override
   public abstract void setTestUnit();
 
   /**
    * Checks that the tested item cannot have ranges outside of certain bounds.
    */
   @Test
-  public void incorrectRangeTest() {
+  protected void incorrectRangeTest() {
     assertTrue(getWrongTestItem().getMinRange() >= 0);
     assertTrue(getWrongTestItem().getMaxRange() >= getWrongTestItem().getMinRange());
   }
 
-  public abstract IEquipableItem getWrongTestItem();
+  protected abstract IEquipableItem getWrongTestItem();
 
   /**
    * Tests that the constructor for the tested item works properly
    */
   @Test
-  public void constructorTest() {
+  protected void constructorTest() {
     assertEquals(getExpectedName(), getTestItem().getName());
     assertEquals(getExpectedBasePower(), getTestItem().getPower());
     assertEquals(getExpectedMinRange(), getTestItem().getMinRange());
@@ -83,33 +85,34 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   /**
    * @return the expected name of the item
    */
-  public String getExpectedName() {
+  protected String getExpectedName() {
     return expectedName;
   }
 
   /**
    * @return the item being tested
    */
+  @Override
   public abstract IEquipableItem getTestItem();
 
   /**
    * @return the expected power of the Item
    */
-  public int getExpectedBasePower() {
+  protected int getExpectedBasePower() {
     return expectedPower;
   }
 
   /**
    * @return the expected minimum range of the item
    */
-  public int getExpectedMinRange() {
+  protected int getExpectedMinRange() {
     return expectedMinRange;
   }
 
   /**
    * @return the expected maximum range of the item
    */
-  public int getExpectedMaxRange() {
+  protected int getExpectedMaxRange() {
     return expectedMaxRange;
   }
 
@@ -117,7 +120,7 @@ public abstract class AbstractTestItem extends AbstractModelTest {
    * Checks that the Item can be correctly equipped to a unit
    */
   @Test
-  public void equippedToTest() {
+  protected void equippedToTest() {
     assertNull(getTestItem().getOwner());
     IUnit unit = getTestUnit();
     getTestUnit().addItem(getTestItem());
@@ -126,14 +129,14 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   }
 
   @Test
-  public void hasOwnerTest(){
+  protected void hasOwnerTest(){
     assertFalse(getTestItem().hasOwner());
     getTestItem().setOwner(getTestUnit());
     assertTrue(getTestItem().hasOwner());
   }
 
   @Test
-  public void addItemSetsOwnerItem(){
+  protected void addItemSetsOwnerItem(){
     assertFalse(getTestItem().hasOwner());
     getTestUnit().addItem(getTestItem());
     assertTrue(getTestItem().hasOwner());
@@ -141,48 +144,86 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   }
 
   @Test
-  public void beingEquippedByAlpaca() {
+  protected void beingEquippedByAlpaca() {
     checkIncorrectEquippedItem(getAlpaca(),getTestItem());
   }
 
   @Test
-  public void beingEquippedByArcher() {
+  protected void beingEquippedByArcher() {
     checkIncorrectEquippedItem(getArcher(),getTestItem());
   }
 
   @Test
-  public void beingEquippedByCleric() {
+  protected void beingEquippedByCleric() {
     checkIncorrectEquippedItem(getCleric(),getTestItem());
   }
 
   @Test
-  public void beingEquippedByFighter() {
+  protected void beingEquippedByFighter() {
     checkIncorrectEquippedItem(getFighter(),getTestItem());
   }
 
   @Test
-  public void beingEquippedByHero() {
+  protected void beingEquippedByHero() {
     checkIncorrectEquippedItem(getHero(),getTestItem());
   }
 
   @Test
-  public void beingEquippedBySorcerer() {
+  protected void beingEquippedBySorcerer() {
     checkIncorrectEquippedItem(getSpectralSorcerer(),getTestItem());
   }
 
   @Test
-  public void beingEquippedBySwordMaster() {
+  protected void beingEquippedBySwordMaster() {
     checkIncorrectEquippedItem(getSwordMaster(),getTestItem());
   }
 
+  /**
+   * Item attack all target units when they are equipped, and checks damage is correct.
+   * */
+  protected abstract void attackEquippedTargetUnitsTest();
 
   /**
-   * Checks item acts correctly when acting (attacking, healing) on targetUnit
-   *
-  public abstract void actOnTest(IUnit targetUnit);*/
+   * Default: attack all targetUnits. LightSorcerer it's treated differently because it's is not in range for all units.
+   * */
+  void attackUnEquippedTargetUnitsTest(){
+    strongDamageTest(alpaca);
+    strongDamageTest(archer);
+    strongDamageTest(cleric);
+    strongDamageTest(fighter);
+    strongDamageTest(hero);
+    strongDamageTest(swordMaster);
+    strongDamageTest(darknessSorcerer);
+    strongDamageTest(spectralSorcerer);
+    strongDamageTest(lightSorcerer);
+  }
 
-  /*@Test
-  void actOnTargetUnitTest(){
-    actOnTest();
-  }*/
+  /**
+   * Checks item act correctly on all targetUnits when they are equipped.
+   * Default: attack units (it could heal also)
+   * */
+  @Test
+  protected void actOnEquippedTargetUnitsTest(){
+    equipTargetUnits();
+    equipTestUnit();
+    attackEquippedTargetUnitsTest();
+  }
+
+  /**
+   * Checks item act correctly on all targetUnits when they aren't equipped.
+   * Default: attack units (it could heal also)
+   * */
+  @Test
+  protected void actOnUnEquippedTargetUnitsTest(){
+    equipTestUnit();
+    attackUnEquippedTargetUnitsTest();
+  }
+
+
+  protected void receiveBowAttackTest(){
+    equipTestUnit();
+    getTestItem().receiveBowAttack(bow);
+    assertEquals(unitHP - targetPower,getTestUnit().getCurrentHitPoints());
+  }
+
 }

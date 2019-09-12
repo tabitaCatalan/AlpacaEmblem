@@ -24,14 +24,54 @@ public abstract class AbstractHealerTest extends AbstractTestItem {
         //getTestItem().heal(getTargetUnit());
     }
 
-    protected void testHealing(IUnit targetUnit){
-        assertEquals(unitHP, targetUnit.getCurrentHitPoints());
+    /**
+     * Checks item heals the correct amount of HP of targetUnit
+     * */
+    private void testHealing(IUnit targetUnit){
+        assertEquals(targetHP, targetUnit.getCurrentHitPoints());
         assertEquals(expectedPower, getTestItem().getPower());
-        targetUnit.beingHealed(getTestItem().getPower());
         targetUnit.receiveDamage(expectedPower - 1);
-        assertEquals(unitHP, targetUnit.getCurrentHitPoints());
+        getTestItem().heal(targetUnit);
+        assertEquals(targetHP, targetUnit.getCurrentHitPoints());
         targetUnit.receiveDamage(expectedPower + 1);
-        assertEquals(unitHP - 1, targetUnit.getCurrentHitPoints());
+        assertEquals(targetHP - 1, targetUnit.getCurrentHitPoints());
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Healers don't attack
+     * */
+    @Override
+    public void attackEquippedTargetUnitsTest(){}
+
+    /**
+     * testUnit uses it's item to heal targetUnit
+     */
+    public void healUnitsTest(){
+        testHealing(alpaca);
+        testHealing(archer);
+        testHealing(cleric);
+        testHealing(fighter);
+        testHealing(hero);
+        testHealing(swordMaster);
+        testHealing(lightSorcerer);
+        testHealing(darknessSorcerer);
+        testHealing(spectralSorcerer);
+    }
+
+
+    @Override
+    @Test
+    protected void actOnUnEquippedTargetUnitsTest() {
+        healUnitsTest();
+    }
+
+    @Override
+    @Test
+    protected void actOnEquippedTargetUnitsTest() {
+        equipTargetUnits();
+        healUnitsTest();
     }
 
 }

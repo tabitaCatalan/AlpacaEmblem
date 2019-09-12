@@ -6,9 +6,9 @@ import model.units.Sorcerer;
 import org.junit.jupiter.api.Test;
 
 public class LightBookTest extends AbstractMagicBookTest  {
-    private LightBook lightBook;
+    private LightBook testLightBook;
     private LightBook wrongLightBook;
-    private Sorcerer sorcerer;
+    private Sorcerer testSorcerer;
 
     @Override
     public void setTestItem() {
@@ -16,7 +16,7 @@ public class LightBookTest extends AbstractMagicBookTest  {
         expectedPower = 10;
         expectedMinRange = 1;
         expectedMaxRange = 2;
-        lightBook = new LightBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+        testLightBook = new LightBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
     }
 
     /**
@@ -32,7 +32,7 @@ public class LightBookTest extends AbstractMagicBookTest  {
      */
     @Override
     public void setTestUnit() {
-        sorcerer = new Sorcerer(unitHP, unitMovement, new Location(0, 0));
+        testSorcerer = new Sorcerer(unitHP, unitMovement, new Location(0, 0));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LightBookTest extends AbstractMagicBookTest  {
 
     @Override
     public IMagicBook getTestItem() {
-        return lightBook;
+        return testLightBook;
     }
 
     /**
@@ -50,12 +50,25 @@ public class LightBookTest extends AbstractMagicBookTest  {
      */
     @Override
     public IUnit getTestUnit() {
-        return sorcerer;
+        return testSorcerer;
+    }
+
+    @Override
+    public void equipTestUnit(){
+        equipUnit(testSorcerer, testLightBook);
     }
 
     @Override
     @Test
     public void beingEquippedBySorcerer() {
         checkCorrectEquippedItem(getSpectralSorcerer(),getTestItem());
+    }
+
+    @Override
+    public void attackEquippedTargetUnitsTest(){
+        super.attackEquippedTargetUnitsTest();
+        strongDamageTest(darknessSorcerer);
+        weakDamageTest(spectralSorcerer);
+        normalDamageTest(lightSorcerer);
     }
 }

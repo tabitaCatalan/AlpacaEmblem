@@ -2,10 +2,7 @@ package model.items.nonMagic;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import model.items.AbstractTestItem;
-import model.items.IAbleOfAttack;
 import model.items.IEquipableItem;
-import model.items.nonMagic.Bow;
 import model.map.Location;
 import model.units.Archer;
 import model.units.IUnit;
@@ -19,9 +16,9 @@ import org.junit.jupiter.api.Test;
  */
 public class BowTest extends AbstractWeaponTest {
 
-  private Bow bow;
+  private Bow testBow;
   private Bow wrongBow;
-  private Archer archer;
+  private Archer testArcher;
 
   /**
    * Sets which item is going to be tested
@@ -32,7 +29,7 @@ public class BowTest extends AbstractWeaponTest {
     expectedPower = 10;
     expectedMinRange = 2;
     expectedMaxRange = 4;
-    bow = new Bow(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testBow = new Bow(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
   /**
@@ -48,7 +45,7 @@ public class BowTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    archer = new Archer(unitHP, unitMovement, new Location(0, 0));
+    testArcher = new Archer(unitHP, unitMovement, new Location(0, 0));
   }
 
   /**
@@ -71,7 +68,7 @@ public class BowTest extends AbstractWeaponTest {
    */
   @Override
   public INonMagical getTestItem() {
-    return bow;
+    return testBow;
   }
 
   /**
@@ -79,12 +76,25 @@ public class BowTest extends AbstractWeaponTest {
    */
   @Override
   public IUnit getTestUnit() {
-    return archer;
+    return testArcher;
+  }
+
+  @Override
+  public void equipTestUnit(){
+    equipUnit(testArcher, testBow);
   }
 
   @Override
   @Test
   public void beingEquippedByArcher() {
     checkCorrectEquippedItem(getArcher(),getTestItem());
+  }
+
+  @Override
+  public void attackEquippedTargetUnitsTest(){
+    super.attackEquippedTargetUnitsTest();
+    normalDamageTest(fighter);
+    normalDamageTest(hero);
+    normalDamageTest(swordMaster);
   }
 }

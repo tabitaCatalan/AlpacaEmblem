@@ -1,9 +1,6 @@
 package model.items.nonMagic;
 
-import model.items.AbstractTestItem;
-import model.items.IAbleOfAttack;
 import model.items.IEquipableItem;
-import model.items.nonMagic.Sword;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.SwordMaster;
@@ -17,9 +14,9 @@ import org.junit.jupiter.api.Test;
  */
 public class SwordTest extends AbstractWeaponTest {
 
-  private Sword sword;
+  private Sword testSword;
   private Sword wrongSword;
-  private SwordMaster swordMaster;
+  private SwordMaster testSwordMaster;
 
   /**
    * Sets which item is going to be tested
@@ -30,7 +27,7 @@ public class SwordTest extends AbstractWeaponTest {
     expectedPower = 10;
     expectedMinRange = 1;
     expectedMaxRange = 2;
-    sword = new Sword(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testSword = new Sword(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
   /**
@@ -46,7 +43,7 @@ public class SwordTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    swordMaster = new SwordMaster(unitHP, unitMovement, new Location(0, 0));
+    testSwordMaster = new SwordMaster(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override
@@ -59,7 +56,7 @@ public class SwordTest extends AbstractWeaponTest {
    */
   @Override
   public INonMagical getTestItem() {
-    return sword;
+    return testSword;
   }
 
   /**
@@ -67,12 +64,25 @@ public class SwordTest extends AbstractWeaponTest {
    */
   @Override
   public IUnit getTestUnit() {
-    return swordMaster;
+    return testSwordMaster;
+  }
+
+  @Override
+  public void equipTestUnit(){
+    equipUnit(testSwordMaster, testSword);
   }
 
   @Override
   @Test
   public void beingEquippedBySwordMaster() {
     checkCorrectEquippedItem(getSwordMaster(),getTestItem());
+  }
+
+  @Override
+  public void attackEquippedTargetUnitsTest(){
+    super.attackEquippedTargetUnitsTest();
+    strongDamageTest(fighter);
+    weakDamageTest(hero);
+    normalDamageTest(swordMaster);
   }
 }

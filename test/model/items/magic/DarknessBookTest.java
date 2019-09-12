@@ -1,15 +1,14 @@
 package model.items.magic;
 
-import model.items.IEquipableItem;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.Sorcerer;
 import org.junit.jupiter.api.Test;
 
 public class DarknessBookTest extends AbstractMagicBookTest {
-    private DarknessBook darknessBook;
+    private DarknessBook testDarknessBook;
     private DarknessBook wrongDarknessBook;
-    private Sorcerer sorcerer;
+    private Sorcerer testSorcerer;
 
     @Override
     public void setTestItem() {
@@ -17,7 +16,7 @@ public class DarknessBookTest extends AbstractMagicBookTest {
         expectedPower = 10;
         expectedMinRange = 1;
         expectedMaxRange = 2;
-        darknessBook = new DarknessBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+        testDarknessBook = new DarknessBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
     }
 
     /**
@@ -33,7 +32,7 @@ public class DarknessBookTest extends AbstractMagicBookTest {
      */
     @Override
     public void setTestUnit() {
-        sorcerer = new Sorcerer(unitHP, unitMovement, new Location(0, 0));
+        testSorcerer = new Sorcerer(unitHP, unitMovement, new Location(0, 0));
     }
 
     @Override
@@ -43,7 +42,7 @@ public class DarknessBookTest extends AbstractMagicBookTest {
 
     @Override
     public IMagicBook getTestItem() {
-        return darknessBook;
+        return testDarknessBook;
     }
 
     /**
@@ -51,12 +50,25 @@ public class DarknessBookTest extends AbstractMagicBookTest {
      */
     @Override
     public IUnit getTestUnit() {
-        return sorcerer;
+        return testSorcerer;
+    }
+
+    @Override
+    public void equipTestUnit(){
+        equipUnit(testSorcerer, testDarknessBook);
     }
 
     @Override
     @Test
     public void beingEquippedBySorcerer() {
         checkCorrectEquippedItem(getSpectralSorcerer(),getTestItem());
+    }
+
+    @Override
+    public void attackEquippedTargetUnitsTest(){
+        super.attackEquippedTargetUnitsTest();
+        normalDamageTest(darknessSorcerer);
+        strongDamageTest(spectralSorcerer);
+        weakDamageTest(lightSorcerer);
     }
 }

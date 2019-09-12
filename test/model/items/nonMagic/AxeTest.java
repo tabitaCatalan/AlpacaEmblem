@@ -1,9 +1,6 @@
 package model.items.nonMagic;
 
-import model.items.AbstractTestItem;
-import model.items.IAbleOfAttack;
 import model.items.IEquipableItem;
-import model.items.nonMagic.Axe;
 import model.map.Location;
 import model.units.Fighter;
 import model.units.IUnit;
@@ -17,9 +14,9 @@ import org.junit.jupiter.api.Test;
  */
 class AxeTest extends AbstractWeaponTest {
 
-  private Axe axe;
+  private Axe testAxe;
   private Axe wrongAxe;
-  private Fighter fighter;
+  private Fighter testFighter;
 
   @Override
   public void setTestItem() {
@@ -27,7 +24,7 @@ class AxeTest extends AbstractWeaponTest {
     expectedPower = 10;
     expectedMinRange = 1;
     expectedMaxRange = 2;
-    axe = new Axe(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testAxe = new Axe(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
   /**
@@ -43,7 +40,7 @@ class AxeTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    fighter = new Fighter(unitHP, unitMovement, new Location(0, 0));
+    testFighter = new Fighter(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override
@@ -53,7 +50,7 @@ class AxeTest extends AbstractWeaponTest {
 
   @Override
   public INonMagical getTestItem() {
-    return axe;
+    return testAxe;
   }
 
   /**
@@ -61,7 +58,12 @@ class AxeTest extends AbstractWeaponTest {
    */
   @Override
   public IUnit getTestUnit() {
-    return fighter;
+    return testFighter;
+  }
+
+  @Override
+  public void equipTestUnit(){
+    equipUnit(testFighter, testAxe);
   }
 
   @Override
@@ -69,4 +71,13 @@ class AxeTest extends AbstractWeaponTest {
   public void beingEquippedByFighter() {
     checkCorrectEquippedItem(getFighter(),getTestItem());
   }
+
+  @Override
+  public void attackEquippedTargetUnitsTest(){
+    super.attackEquippedTargetUnitsTest();
+    normalDamageTest(fighter);
+    strongDamageTest(hero);
+    weakDamageTest(swordMaster);
+  }
+
 }

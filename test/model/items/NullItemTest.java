@@ -51,6 +51,9 @@ public class NullItemTest extends AbstractTestItem {
     }
 
     @Override
+    public void equipTestUnit(){}
+
+    @Override
     @Test
     public void equippedToTest() {
         assertNull(getTestItem().getOwner());
@@ -66,6 +69,32 @@ public class NullItemTest extends AbstractTestItem {
         assertFalse(getTestItem().hasOwner());
         getTestUnit().addItem(getTestItem()); // nothing happens, its null item
         assertFalse(getTestItem().hasOwner());
+    }
+
+    @Override
+    public void attackUnEquippedTargetUnitsTest(){
+        zeroDamageTest(alpaca);
+        zeroDamageTest(archer);
+        zeroDamageTest(cleric);
+        zeroDamageTest(fighter);
+        zeroDamageTest(hero);
+        zeroDamageTest(swordMaster);
+        zeroDamageTest(darknessSorcerer);
+        zeroDamageTest(spectralSorcerer);
+        zeroDamageTest(lightSorcerer);
+    }
+
+    @Override
+    public void attackEquippedTargetUnitsTest(){
+        zeroDamageTest(alpaca);
+        zeroDamageTest(archer);
+        zeroDamageTest(cleric);
+        zeroDamageTest(fighter);
+        zeroDamageTest(hero);
+        zeroDamageTest(swordMaster);
+        zeroDamageTest(darknessSorcerer);
+        zeroDamageTest(spectralSorcerer);
+        zeroDamageTest(lightSorcerer);
     }
 
 }

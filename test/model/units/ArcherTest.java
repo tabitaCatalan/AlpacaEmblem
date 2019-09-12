@@ -61,6 +61,9 @@ public class ArcherTest extends AbstractTestUnit {
     normalDamageTest(fighter);
     normalDamageTest(hero);
     normalDamageTest(swordMaster);
+    strongDamageTest(lightSorcerer);
+    strongDamageTest(darknessSorcerer);
+    strongDamageTest(spectralSorcerer);
   }
 
   /**

@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
  */
 public class StaffTest extends AbstractHealerTest {
 
-  private Staff staff;
+  private Staff testStaff;
   private Staff wrongStaff;
-  private Cleric cleric;
+  private Cleric testCleric;
 
   /**
    * Sets which item is going to be tested
@@ -24,7 +24,7 @@ public class StaffTest extends AbstractHealerTest {
   public void setTestItem() {
     super.setTestItem();
     expectedName = "Common staff";
-    staff = new Staff(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testStaff = new Staff(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
   /**
@@ -40,7 +40,7 @@ public class StaffTest extends AbstractHealerTest {
    */
   @Override
   public void setTestUnit() {
-    cleric = new Cleric(unitHP, unitMovement, new Location(0, 0));
+    testCleric = new Cleric(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override
@@ -48,17 +48,19 @@ public class StaffTest extends AbstractHealerTest {
     return wrongStaff;
   }
 
-  /**
-   * @return the item being tested
-   */
+  @Override
+  public void equipTestUnit(){
+    equipUnit(testCleric, testStaff);
+  }
+
   @Override
   public IHealer getTestItem() {
-    return staff;
+    return testStaff;
   }
 
   @Override
   public IUnit getTestUnit() {
-    return cleric;
+    return testCleric;
   }
 
   @Override

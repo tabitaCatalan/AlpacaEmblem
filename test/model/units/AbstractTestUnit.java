@@ -67,21 +67,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
   // EQUIP ITEMS TESTS
 
   /**
-   * add item to unit's inventory and tries to equip the item
-   * @param unit: unit who'll receive the item
-   * @param item: item to be equipped
-   */
-  public void equipUnit(IUnit unit, IEquipableItem item){
-    unit.addItem(item);
-    unit.equipItem(item);
-  }
-
-  /**
-   * Equip item to TestUnit
-   * */
-  protected abstract void equipTestUnit();
-
-  /**
    * Check test unit has been correctly equipped
    * */
   @Test
@@ -198,21 +183,6 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
   }
 
   // ATTACKS AND COUNTERATTACKS
-    /**
-     * equip all target units
-     */
-    public void equipTargetUnits(){
-        equipUnit(archer, bow);
-        equipUnit(cleric, staff);
-        equipUnit(fighter, axe);
-        equipUnit(hero, spear);
-        equipUnit(swordMaster, sword);
-        equipUnit(darknessSorcerer, darknessBook);
-        equipUnit(lightSorcerer, lightBook);
-        equipUnit(spectralSorcerer, spectralBook);
-    }
-
-
     /**
      * function that checks that all units receives strong damage after being attacked while unequipped.
      */

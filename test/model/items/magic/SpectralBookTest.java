@@ -6,9 +6,9 @@ import model.units.Sorcerer;
 import org.junit.jupiter.api.Test;
 
 public class SpectralBookTest extends AbstractMagicBookTest {
-    private SpectralBook spectralBook;
+    private SpectralBook testSpectralBook;
     private SpectralBook wrongSpectralBook ;
-    private Sorcerer sorcerer;
+    private Sorcerer testSorcerer;
 
     @Override
     public void setTestItem() {
@@ -16,7 +16,7 @@ public class SpectralBookTest extends AbstractMagicBookTest {
         expectedPower = 10;
         expectedMinRange = 1;
         expectedMaxRange = 2;
-        spectralBook = new SpectralBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+        testSpectralBook = new SpectralBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
     }
 
     /**
@@ -32,7 +32,7 @@ public class SpectralBookTest extends AbstractMagicBookTest {
      */
     @Override
     public void setTestUnit() {
-        sorcerer = new Sorcerer(unitHP, unitMovement, new Location(0, 0));
+        testSorcerer = new Sorcerer(unitHP, unitMovement, new Location(0, 0));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SpectralBookTest extends AbstractMagicBookTest {
 
     @Override
     public IMagicBook getTestItem() {
-        return spectralBook;
+        return testSpectralBook;
     }
 
     /**
@@ -50,12 +50,25 @@ public class SpectralBookTest extends AbstractMagicBookTest {
      */
     @Override
     public IUnit getTestUnit() {
-        return sorcerer;
+        return testSorcerer;
+    }
+
+    @Override
+    public void equipTestUnit(){
+        equipUnit(testSorcerer, testSpectralBook);
     }
 
     @Override
     @Test
     public void beingEquippedBySorcerer() {
         checkCorrectEquippedItem(getSpectralSorcerer(),getTestItem());
+    }
+
+    @Override
+    public void attackEquippedTargetUnitsTest(){
+        super.attackEquippedTargetUnitsTest();
+        weakDamageTest(darknessSorcerer);
+        normalDamageTest(spectralSorcerer);
+        strongDamageTest(lightSorcerer);
     }
 }

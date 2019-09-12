@@ -1,9 +1,6 @@
 package model.items.nonMagic;
 
-import model.items.AbstractTestItem;
-import model.items.IAbleOfAttack;
 import model.items.IEquipableItem;
-import model.items.nonMagic.Spear;
 import model.map.Location;
 import model.units.Hero;
 import model.units.IUnit;
@@ -17,9 +14,9 @@ import org.junit.jupiter.api.Test;
  */
 public class SpearTest extends AbstractWeaponTest {
 
-  private Spear javelin;
+  private Spear testSpear;
   private Spear wrongSpear;
-  private Hero hero;
+  private Hero testHero;
 
   /**
    * Sets which item is going to be tested
@@ -30,7 +27,7 @@ public class SpearTest extends AbstractWeaponTest {
     expectedPower = 10;
     expectedMinRange = 1;
     expectedMaxRange = 3;
-    javelin = new Spear(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testSpear = new Spear(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
   /**
@@ -46,7 +43,7 @@ public class SpearTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    hero = new Hero(unitHP, unitMovement, new Location(0, 0));
+    testHero = new Hero(unitHP, unitMovement, new Location(0, 0));
   }
 
   @Override
@@ -59,7 +56,7 @@ public class SpearTest extends AbstractWeaponTest {
    */
   @Override
   public INonMagical getTestItem() {
-    return javelin;
+    return testSpear;
   }
 
   /**
@@ -67,12 +64,25 @@ public class SpearTest extends AbstractWeaponTest {
    */
   @Override
   public IUnit getTestUnit() {
-    return hero;
+    return testHero;
+  }
+
+  @Override
+  public void equipTestUnit(){
+    equipUnit(testHero, testSpear);
   }
 
   @Override
   @Test
   public void beingEquippedByHero() {
     checkCorrectEquippedItem(getHero(),getTestItem());
+  }
+
+  @Override
+  public void attackEquippedTargetUnitsTest(){
+    super.attackEquippedTargetUnitsTest();
+    weakDamageTest(fighter);
+    normalDamageTest(hero);
+    strongDamageTest(swordMaster);
   }
 }

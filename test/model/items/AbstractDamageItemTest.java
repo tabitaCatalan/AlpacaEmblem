@@ -16,11 +16,4 @@ public abstract class AbstractDamageItemTest extends AbstractTestItem{
     @Override
     public abstract IAbleOfAttack getTestItem();
 
-    protected void attacking(IUnit targetUnit){
-        assertEquals(unitHP, targetUnit.getCurrentHitPoints());
-        assertEquals(expectedPower, getTestItem().getPower());
-        targetUnit.beingHealed(getTestItem().getPower());
-        assertEquals(unitHP - expectedPower, targetUnit.getCurrentHitPoints());
-    }
-
 }
