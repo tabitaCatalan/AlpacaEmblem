@@ -77,8 +77,20 @@ Más específicamente, el campo de juego se define como un grafo en el que cada 
 La distancia entre todos los nodos que están directamente conectados es 1.
 
 ## Detalles de la Implementación
+El modelo se separa en tres partes: unidades, ítems y mapa.
+### Unidades: <code>IUnit</code> 
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>units</code>.
+<img src="images/UML/Package units.png" title="UMLResumenUnits"/>
 
-**Agregar diagrama UML**
+### Ítems <code>IEquipableItem</code> 
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>items</code>.
+<img src="images/UML/Package items.png" title="UMLResumenItems"/>
+A su vez, el paquete <code>items</code> se separa en los paquetes <code>items</code>.
+<img src="images/UML/Package magic.png" title="UMLResumenMagic"/>
+<img src="images/UML/Package nonMagic.png" title="UMLResumenNonMagic"/>
+
+
+
 - Para tratar con los distintos tipos de ítem se utiliza Double Dispatch.
 - Se crea una clase <code>NullItem</code> (que no hace nada), que implementa la interfaz <code>IEquipableItem</code>. Se utiliza para tratar con las unidades que no tienen un ítem equipado. Tiene rango [0,0], y <code>power</code> 0.
 - Las unidades no equipadas son vulnerables: recibirán daño aumentado. La Alpaca, por tanto, siempre recibe más daño.
