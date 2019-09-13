@@ -67,9 +67,7 @@ Además de las tablas anteriores, los libros de magia son al mismo tiempo fuerte
 
 ### Intercambio
 
-
-
-
+Todas las unidades pueden dar y recibir objetos de otras, siempre y cuando estas estén a distancia 1 entre ellas y que no se supere la cantidad máxima de objetos que puede portar. *(Creo que no hice test para checker la distancia :C).*
 
 ### Mapa
 El mapa se puede pensar como una grilla de dimensiones <img src="https://latex.codecogs.com/svg.latex?n&space;\times&space;n" title="n \times n" />, en la que cada casilla puede ser parte del mapa o no.
@@ -77,26 +75,33 @@ Más específicamente, el campo de juego se define como un grafo en el que cada 
 La distancia entre todos los nodos que están directamente conectados es 1.
 
 ## Detalles de la Implementación
-El modelo se separa en tres partes: unidades, ítems y mapa.
+El modelo se separa en tres partes: unidades, ítems y mapa. Los diagramas UML con más detalle pueden verse en la carpeta [reportes/UML](reportes/UML)
 ### Unidades: <code>IUnit</code> 
 A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>units</code>.
-<img src="images/UML/Package units.png" title="UMLResumenUnits"/>
+<img src="reportes/UML/PackageUnits.png" title="UMLResumenUnits"/>
 
-### Ítems <code>IEquipableItem</code> 
+### Ítems: paquete <code>items</code>
 A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>items</code>.
-<img src="images/UML/Package items.png" title="UMLResumenItems"/>
-A su vez, el paquete <code>items</code> se separa en los paquetes <code>items</code>.
-<img src="images/UML/Package magic.png" title="UMLResumenMagic"/>
-<img src="images/UML/Package nonMagic.png" title="UMLResumenNonMagic"/>
+<img src="reportes/UML/PackageItems.png" title="UMLResumenItems"/>
+Se usa la interfaz <code>IEquipableItem</code> para describir el comportamiento de un ítem genérico. Esto se implementa en la clase abstracta <code>AbstractItem</code>. Esta tiene las subclases abstractas <code>AbstractHealer</code>, que describe el comportamiento de los ítems que pueden curar otras unidades (por ahora solo <code>Staff</code>), y <code>AbstractDamageItem</code>, que describe los ítems que pueden atacar. Debido a esta implementación, no es posible tener ítems que puedan atacar y curar.
+Se cuenta además con las interfaces <code>IHealer</code> y <code>IAbleOfAttack</code> para las clases abstractas <code>AbstractHealer</code> y <code>AbstractDamageItem</code> respectivamente.
 
+A su vez, el paquete <code>items</code> contiene los paquetes <code>magic</code> y  <code>nonMagic</code>. Ambos son vistos como una extensión de <code>AbstractDamageItem</code>, así que los ítems que sanan no se consideran mágicos ni no mágicos.
+#### Ítems mágicos: paquete <code>items.magic</code>.
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>items.magic</code>.
+<img src="reportes/UML/PackageMagic.png" title="UMLResumenMagic"/>
+Se tiene la interfaz <code>IMagicBook</code>, implementada por la clase abstracta <code>AbstracMagicBook</code>, la cual es subclaseada por las clases <code>DarknessBook</code>, <code>LightBook</code>, <code>SpectralBook</code>.
+#### Ítems no mágicos: paquete <code>items.nonMagic</code>
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>items.nonMagic</code>.
+<img src="reportes/UML/PackageNonMagic.png" title="UMLResumenNonMagic"/>
+Se tiene la interfaz <code>INonMagical</code>, implementada por la clase abstracta <code>AbstracWeapon</code>, la cual es subclaseada por la mayor parte de los ítems (<code>Bow</code>, <code>Axe</code>, etc).
 
-
-- Para tratar con los distintos tipos de ítem se utiliza Double Dispatch.
+### Comentarios
+- Para distinguir los distintos tipos de ítems se utiliza Double Dispatch (para equipar los ítems y para atacar unidades).
 - Se crea una clase <code>NullItem</code> (que no hace nada), que implementa la interfaz <code>IEquipableItem</code>. Se utiliza para tratar con las unidades que no tienen un ítem equipado. Tiene rango [0,0], y <code>power</code> 0.
-- Las unidades no equipadas son vulnerables: recibirán daño aumentado. La Alpaca, por tanto, siempre recibe más daño.
+- Las unidades no equipadas son vulnerables: recibirán daño aumentado. La Alpaca, por tanto, siempre recibe más daño. (Puedo dejarlo normal, pero ahora no alcanzo).
 - Se tiene una interfaz <code>IEquipableItem</code>, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta <code>AbstractItem</code>. Esta clase, a su vez, se separa en dos clases abstractas <code>AbstractWeapon</code>, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como <code>Bow</code> o <code>Axe</code>), y <code>AbstractHealer</code>, para ítems que pueden sanar, pero que no pueden contratacar (como <code>Staff</code>).   
-- Para el combate, se agregaron los métodos <code>actOn</code> and <code>reactTo</code> en <code>AbstractItem</code>, simplemente dejándolos en blanco (el comportamiento de un ítem por defecto). Se implementan en <code>AbstractWeapon</code> y <code>AbstractHealer</code> con sus correspondientes variaciones.
-- Para manejar la muerte de las unidades se agrega una interfaz <code>IState</code>. Esta será implementada por las clases <code>Alive</code> and <code>Dead</code>, y permite ser extendido fácilmente a otros estados como  <code>Confused</code> or  <code>Paralysed</code>.
+- La muerte de las unidades no se alcanzó a implementar.
 
 ## Descripción de los tests
 
@@ -123,9 +128,7 @@ La implementa los siguientes métodos:
 - <code>checkIncorrectEquippedItemTest</code> trata de equipar un ítem a una unidad, y verifica que no fue equipado.
 
 
-### Tests de <code>IUnit</code>
-
-
+### Tests de <code>units</code>
 
 #### Inventario
 Test para el correcto manejo de los ítems en inventario.
@@ -155,3 +158,24 @@ La idea es que <code>testUnit</code> ataque (o sane, si el el caso) a todas las 
 - El test <code>equipTargetsAndUseItemOnEquippedTargetUnitsTest</code>, las unidades objetivo son equipadas antes de ser atacadas. Se verifica que los <code>currentHitPoints</code> coinciden con lo esperado al considerar fortalezas y debilidades entre armas. 
 - El test <code>distanceTest</code> verifica que las distancias a las diferentes unidades son las correctas.
 - El test <code>isInRangeTest</code> verifica que <code>testUnit</code> considera a las unidades objetivo dentro de su rango de ataque. En las diferentes clases que implementan <code>CombatTest</code> se cuida de asignar a <code>testUnit</code> un arma que pueda atacar a unidades a distancia 2.
+
+### Tests de <code>items</code>
+
+#### Constructores
+
+- <code>incorrectRangeTest()</code> verifica que no se crea un ítem con rango fuera de los límites (negativo o con rango máximo menor que el mínimo).
+- <code>constructorTest()</code> verifica que el constructor funciona como se espera.
+#### Equipar correctamente
+- <code>equippedToTest()</code> verifica que <code>testItem</code> se equipa correctamente a <code>testUnit</code>.
+- <code>hasOwnerTest()</code> chequea el setter de <code>owner</code> funciona.
+- <code>addItemSetsOwnerItem()</code> chequea que se actualiza el <code>owner</code> al agregar un ítem al inventario.
+- <code>beingEquippedBy...()</code> chequea que ciertas unidades puedan o no equipar el ítem.
+
+#### Combate
+- <code>actOnEquippedTargetUnitsTest()</code> verifica que <code>testItem</code> actúa correctamente sobre todas las unidades, luego de que estas fueron equipadas.
+- <code>actOnUnEquippedTargetUnitsTest()</code> verifica que <code>testItem</code> actúa correctamente sobre todas las unidades, cuando estas no están equipadas.
+- No se logró comprobar que el contrataque funciona bien.
+
+Las subclases abtractas reescriben estos test, de acuerdo a su propio funcionamiento. 
+
+
