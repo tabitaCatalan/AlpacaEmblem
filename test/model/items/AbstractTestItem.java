@@ -217,12 +217,4 @@ public abstract class AbstractTestItem extends AbstractModelTest {
     equipTestUnit();
     attackUnEquippedTargetUnitsTest();
   }
-
-
-  protected void receiveBowAttackTest(){
-    equipTestUnit();
-    getTestItem().receiveBowAttack(bow);
-    assertEquals(unitHP - targetPower,getTestUnit().getCurrentHitPoints());
-  }
-
 }
