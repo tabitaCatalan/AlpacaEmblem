@@ -42,6 +42,20 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
     assertTrue(getTestUnit().getEquippedItem().isNullItem());
   }
 
+  /**
+   * */
+  @Test
+  public void isDeadTest(){
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
+    getTestUnit().receiveDamage(49);
+    assertTrue(getTestUnit().isAlive());
+    assertEquals(1, getTestUnit().getCurrentHitPoints());
+    getTestUnit().receiveDamage(1);
+    assertFalse(getTestUnit().isAlive());
+    assertEquals(0, getTestUnit().getCurrentHitPoints());
+  }
+
+
   // INVENTORY TESTS
 
   @Test
@@ -130,15 +144,14 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
 
   @Test
   public void notInRangeFailedExchange() {
-    /*
     assertEquals(0, getTestUnit().getNumberOfItems());
-    assertEquals(0, getLightSorcerer().getNumberOfItems());
-    getLightSorcerer().addItem(getAxe());
-    assertEquals(getLightSorcerer(),getAxe().getOwner());
-    getLightSorcerer().giveItemAwayTo(getTestUnit(), getAxe());
-    assertEquals(1, getTestUnit().getNumberOfItems());
-    assertEquals(0, getLightSorcerer().getNumberOfItems());
-    assertEquals(getTestUnit(),getAxe().getOwner());*/
+    assertEquals(0, getDarknessSorcerer().getNumberOfItems());
+    getDarknessSorcerer().addItem(getAxe());
+    assertEquals(getDarknessSorcerer(),getAxe().getOwner());
+    getDarknessSorcerer().giveItemAwayTo(getTestUnit(), getAxe());
+    assertEquals(0, getTestUnit().getNumberOfItems());
+    assertEquals(1, getDarknessSorcerer().getNumberOfItems());
+    assertEquals(getDarknessSorcerer(),getAxe().getOwner());
   }
 
   @Test
@@ -254,4 +267,27 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
       assertTrue(getTestUnit().isInRange(darknessSorcerer));
       assertTrue(getTestUnit().isInRange(spectralSorcerer));
     }
+
+    /**
+     * Verifies than an dead unit cant return attack
+     * */
+    @Test
+  public void deadUnitDoesNotCounterAttackTest(){
+      equipTestUnit();
+      equipTargetUnits();
+      assertEquals(50, getTestUnit().getCurrentHitPoints());
+      assertEquals(targetHP, getDarknessSorcerer().getCurrentHitPoints());
+      getDarknessSorcerer().receiveDamage(targetHP-1);
+      getTestUnit().useEquippedItemOn(getDarknessSorcerer());
+      assertFalse(getDarknessSorcerer().isAlive());
+      assertEquals(50, getTestUnit().getCurrentHitPoints());
+    }
+
+    @Test
+  public void targetUnitCounterAttack(){
+
+    }
+
+
+
 }

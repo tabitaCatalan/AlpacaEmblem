@@ -4,6 +4,7 @@ import model.items.IEquipableItem;
 import model.items.Staff;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -82,6 +83,18 @@ public class ClericTest extends AbstractTestUnit {
   public void isInRangeTest(){
     super.isInRangeTest();
     assertTrue(getTestUnit().isInRange(lightSorcerer));
+  }
+
+  @Test
+  public void deadUnitDoesNotCounterAttackTest(){
+    equipTestUnit();
+    equipTargetUnits();
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
+    assertEquals(targetHP, getDarknessSorcerer().getCurrentHitPoints());
+    getDarknessSorcerer().receiveDamage(targetHP-1);
+    getTestUnit().useEquippedItemOn(getDarknessSorcerer());
+    assertTrue(getDarknessSorcerer().isAlive()); // Cleric does not attack
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
   }
 
 }

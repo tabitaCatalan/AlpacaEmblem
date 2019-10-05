@@ -234,4 +234,9 @@ public interface IUnit {
     void beingHealed(int amountHP);
 
 
+    /**
+     * True if Unit is alive
+     * @return true if unit has more than 0 HP
+     * */
+    boolean isAlive();
 }

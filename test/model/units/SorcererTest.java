@@ -5,6 +5,7 @@ import model.items.magic.IMagicBook;
 import model.items.magic.SpectralBook;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SorcererTest extends AbstractTestUnit {
@@ -74,6 +75,18 @@ public class SorcererTest extends AbstractTestUnit {
     public void isInRangeTest(){
         super.isInRangeTest();
         assertTrue(getTestUnit().isInRange(lightSorcerer));
+    }
+
+    @Test
+    public void deadUnitDoesNotCounterAttackTest(){
+        equipTestUnit();
+        equipTargetUnits();
+        assertEquals(50, getTestUnit().getCurrentHitPoints());
+        assertEquals(targetHP, getDarknessSorcerer().getCurrentHitPoints());
+        getDarknessSorcerer().receiveDamage(targetHP-1);
+        getTestUnit().useEquippedItemOn(getDarknessSorcerer());
+        assertTrue(getDarknessSorcerer().isAlive()); // Sorcerer is equipped with Spectral, target is darkness. It doesnt receive damage
+        assertEquals(50 - 15, getTestUnit().getCurrentHitPoints()); // counterattack does strong damage
     }
 
 }

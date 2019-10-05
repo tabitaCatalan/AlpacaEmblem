@@ -107,4 +107,16 @@ public class AlpacaTest extends AbstractTestUnit {
     assertFalse(getTestUnit().isInRange(spectralSorcerer));
     assertTrue(getTestUnit().isInRange(lightSorcerer));
   }
+
+  @Test
+  public void deadUnitDoesNotCounterAttackTest(){
+    equipTestUnit();
+    equipTargetUnits();
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
+    assertEquals(targetHP, getDarknessSorcerer().getCurrentHitPoints());
+    getDarknessSorcerer().receiveDamage(targetHP-1);
+    getTestUnit().useEquippedItemOn(getDarknessSorcerer());
+    assertTrue(getDarknessSorcerer().isAlive()); // Alpaca does not attack
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
+  }
 }

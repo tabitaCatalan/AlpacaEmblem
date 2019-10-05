@@ -158,7 +158,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void giveItemAwayTo(IUnit targetUnit, IEquipableItem item){
-    if (isInInventory(item) && targetUnit.hasSpaceInInventory()){
+    if (isInInventory(item) && targetUnit.hasSpaceInInventory() && distanceTo(targetUnit) == 1){
       removeFromInventory(item);
       targetUnit.addItem(item);
     }
@@ -219,7 +219,9 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void reactToAttack(IUnit unit){
+    if (isAlive()){
     equippedItem.reactTo(unit);
+    }
   }
 
   @Override
@@ -241,5 +243,10 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void beingHealed(int amountHP){
     currentHitPoints = Math.min(currentHitPoints + amountHP, maxHitPoints);
+  }
+
+  @Override
+  public boolean isAlive() {
+    return getCurrentHitPoints() > 0;
   }
 }

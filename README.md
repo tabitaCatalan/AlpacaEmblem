@@ -44,7 +44,7 @@ Los ítems disponibles son:
 
 ### Combate
 Una unidad puede utilizar el objeto que tiene equipado sobre otra unidad, siempre y cuando la esta se encuentre dentro del rango definido por el ítem. Cuando esto sucede se entra en un combate. Si el ítem usado puede atacar (i.e. puede realizar daño), entonces el oponente tiene la posibilidad de contratacar, lo que podrá hacer si él también tiene un ítem que pueda atacar (también tendrá que considerar el rango de su ítem). 
-También hay ítems (como <code>Staff</code>) que no pueden realizar ataques, pero pueden sanar a otras unidades. Estos ítems no dan la posibilidad de realizar un contrataque, aunque tampoco podrán contratacar si son atacados.
+También hay ítems (como `Staff`) que no pueden realizar ataques, pero pueden sanar a otras unidades. Estos ítems no dan la posibilidad de realizar un contrataque, aunque tampoco podrán contratacar si son atacados.
 Cuando un ítem ataca a otro, al calcular el daño se debe considerar las debilidades y fortalezas de los ítems.
 
 | Item   | Débil contra | Fuerte contra |
@@ -76,104 +76,109 @@ La distancia entre todos los nodos que están directamente conectados es 1.
 
 ## Detalles de la Implementación
 El modelo se separa en tres partes: unidades, ítems y mapa. Los diagramas UML con más detalle pueden verse en la carpeta [reportes/UML](reportes/UML)
-### Unidades: <code>IUnit</code> 
-A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>units</code>.
+### Unidades: `IUnit` 
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete `units`.
 <img src="reportes/UML/PackageUnits.png" title="UMLResumenUnits"/>
 
-### Ítems: paquete <code>items</code>
-A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>items</code>.
+### Ítems: paquete `items`
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete `items`.
 <img src="reportes/UML/PackageItems.png" title="UMLResumenItems"/>
-Se usa la interfaz <code>IEquipableItem</code> para describir el comportamiento de un ítem genérico. Esto se implementa en la clase abstracta <code>AbstractItem</code>. Esta tiene las subclases abstractas <code>AbstractHealer</code>, que describe el comportamiento de los ítems que pueden curar otras unidades (por ahora solo <code>Staff</code>), y <code>AbstractDamageItem</code>, que describe los ítems que pueden atacar. Debido a esta implementación, no es posible tener ítems que puedan atacar y curar.
-Se cuenta además con las interfaces <code>IHealer</code> y <code>IAbleOfAttack</code> para las clases abstractas <code>AbstractHealer</code> y <code>AbstractDamageItem</code> respectivamente.
+Se usa la interfaz `IEquipableItem` para describir el comportamiento de un ítem genérico. Esto se implementa en la clase abstracta `AbstractItem`. Esta tiene las subclases abstractas `AbstractHealer`, que describe el comportamiento de los ítems que pueden curar otras unidades (por ahora solo `Staff`), y `AbstractDamageItem`, que describe los ítems que pueden atacar. Debido a esta implementación, no es posible tener ítems que puedan atacar y curar.
+Se cuenta además con las interfaces `IHealer` y `IAbleOfAttack` para las clases abstractas `AbstractHealer` y `AbstractDamageItem` respectivamente.
 
-A su vez, el paquete <code>items</code> contiene los paquetes <code>magic</code> y  <code>nonMagic</code>. Ambos son vistos como una extensión de <code>AbstractDamageItem</code>, así que los ítems que sanan no se consideran mágicos ni no mágicos.
-#### Ítems mágicos: paquete <code>items.magic</code>.
-A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>items.magic</code>.
+A su vez, el paquete `items` contiene los paquetes `magic` y  `nonMagic`. Ambos son vistos como una extensión de `AbstractDamageItem`, así que los ítems que sanan no se consideran mágicos ni no mágicos.
+#### Ítems mágicos: paquete `items.magic`.
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete `items.magic`.
 <img src="reportes/UML/PackageMagic.png" title="UMLResumenMagic"/>
-Se tiene la interfaz <code>IMagicBook</code>, implementada por la clase abstracta <code>AbstracMagicBook</code>, la cual es subclaseada por las clases <code>DarknessBook</code>, <code>LightBook</code>, <code>SpectralBook</code>.
-#### Ítems no mágicos: paquete <code>items.nonMagic</code>
-A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete <code>items.nonMagic</code>.
+Se tiene la interfaz `IMagicBook`, implementada por la clase abstracta `AbstracMagicBook`, la cual es subclaseada por las clases `DarknessBook`, `LightBook`, `SpectralBook`.
+#### Ítems no mágicos: paquete `items.nonMagic`
+A continuación se muestra un diagrama UML resumido (solo clases e interfaces) del paquete `items.nonMagic`.
 <img src="reportes/UML/PackageNonMagic.png" title="UMLResumenNonMagic"/>
-Se tiene la interfaz <code>INonMagical</code>, implementada por la clase abstracta <code>AbstracWeapon</code>, la cual es subclaseada por la mayor parte de los ítems (<code>Bow</code>, <code>Axe</code>, etc).
+Se tiene la interfaz `INonMagical`, implementada por la clase abstracta `AbstracWeapon`, la cual es subclaseada por la mayor parte de los ítems (`Bow`, `Axe`, etc).
 
 ### Comentarios
 - Para distinguir los distintos tipos de ítems se utiliza Double Dispatch (para equipar los ítems y para atacar unidades).
-- Se crea una clase <code>NullItem</code> (que no hace nada), que implementa la interfaz <code>IEquipableItem</code>. Se utiliza para tratar con las unidades que no tienen un ítem equipado. Tiene rango [0,0], y <code>power</code> 0.
+- Se crea una clase `NullItem` (que no hace nada), que implementa la interfaz `IEquipableItem`. Se utiliza para tratar con las unidades que no tienen un ítem equipado. Tiene rango [0,0], y `power` 0.
 - Las unidades no equipadas son vulnerables: recibirán daño aumentado. La Alpaca, por tanto, siempre recibe más daño. (Puedo dejarlo normal, pero ahora no alcanzo).
-- Se tiene una interfaz <code>IEquipableItem</code>, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta <code>AbstractItem</code>. Esta clase, a su vez, se separa en dos clases abstractas <code>AbstractWeapon</code>, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como <code>Bow</code> o <code>Axe</code>), y <code>AbstractHealer</code>, para ítems que pueden sanar, pero que no pueden contratacar (como <code>Staff</code>).   
+- Se tiene una interfaz `IEquipableItem`, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta `AbstractItem`. Esta clase, a su vez, se separa en dos clases abstractas `AbstractWeapon`, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como `Bow` o `Axe`), y `AbstractHealer`, para ítems que pueden sanar, pero que no pueden contratacar (como `Staff`).   
 - La muerte de las unidades no se alcanzó a implementar.
 
 ## Descripción de los tests
 
-### Clase <code>AbstractModelTest</code>
-Se creó una clase <code>AbstractModelTest</code> con métodos útiles para varios tests. Implementa un campo de batalla con todas las unidades disponibles, la mayoría a distancia 2 de una unidad de prueba <code>testUnit</code> (que cambiará en las diferentes extensiones de <code>AbstractTestUnit</code>). Las posiciones de las unidades se muestran en la imagen:
+### Clase `AbstractModelTest`
+Se creó una clase `AbstractModelTest` con métodos útiles para varios tests. Implementa un campo de batalla con todas las unidades disponibles, la mayoría a distancia 2 de una unidad de prueba `testUnit` (que cambiará en las diferentes extensiones de `AbstractTestUnit`). Las posiciones de las unidades se muestran en la imagen:
 <img src="images/positionsCombatTest.svg" title="positionsCombatTest"/>
 Se cuenta además con un ítem de cada tipo.
 La implementa los siguientes métodos:
-- <code>setField()</code> y <code>getField()</code>
-- <code>setTestUnit()</code> y <code>getTestUnit()</code>
-- <code>setTestItem()</code> y <code>getTestItem()</code>
-- <code>setTargetUnits()</code>
-- Getters para todas las unidades (<code>getAlpaca()</code>, etc)
-- Getters para todos los ítems (<code>getBow()</code>, etc)
-- <code>checkHPAfterUseItemOnUnitTest</code> revisa que los <code>currentHitPoints</code> de una unidad sean los esperados después de usar <code>testItem</code> en esa unidad.
-- <code>strongDamageTest</code> revisa que una unidad haya recibido daño fuerte después de usar un ítem sobre ella.
-- <code>normalDamageTest</code> revisa que una unidad haya recibido daño normal después de usar un ítem sobre ella.
-- <code>weakDamageTest</code> revisa que una unidad haya recibido daño débil después de usar un ítem sobre ella.
-- <code>zeroDamageTest</code> revisa que una unidad no haya recibido daño después de usar un ítem sobre ella.
-- <code>equipUnit</code> añade un ítem al inventario de una unidad y trata de equiparlo.
-- <code>equipTestUnit()</code> equipa a <code>testUnit</code> con <code>testItem</code>.
-- <code>equipTargetUnits()</code> equipa a todas las unidades con si ítem correspondiente.
-- <code>checkCorrectEquippedItemTest</code> trata de equipar un ítem a una unidad, y verifica que fue correctamente equipado.
-- <code>checkIncorrectEquippedItemTest</code> trata de equipar un ítem a una unidad, y verifica que no fue equipado.
+- `setField()` y `getField()`
+- `setTestUnit()` y `getTestUnit()`
+- `setTestItem()` y `getTestItem()`
+- `setTargetUnits()`
+- Getters para todas las unidades (`getAlpaca()`, etc)
+- Getters para todos los ítems (`getBow()`, etc)
+- `checkHPAfterUseItemOnUnitTest` revisa que los `currentHitPoints` de una unidad sean los esperados después de usar `testItem` en esa unidad.
+- `strongDamageTest` revisa que una unidad haya recibido daño fuerte después de usar un ítem sobre ella.
+- `normalDamageTest` revisa que una unidad haya recibido daño normal después de usar un ítem sobre ella.
+- `weakDamageTest` revisa que una unidad haya recibido daño débil después de usar un ítem sobre ella.
+- `zeroDamageTest` revisa que una unidad no haya recibido daño después de usar un ítem sobre ella.
+- `equipUnit` añade un ítem al inventario de una unidad y trata de equiparlo.
+- `equipTestUnit()` equipa a `testUnit` con `testItem`.
+- `equipTargetUnits()` equipa a todas las unidades con si ítem correspondiente.
+- `checkCorrectEquippedItemTest` trata de equipar un ítem a una unidad, y verifica que fue correctamente equipado.
+- `checkIncorrectEquippedItemTest` trata de equipar un ítem a una unidad, y verifica que no fue equipado.
 
 
-### Tests de <code>units</code>
+### Tests de `units`
+
+#### Hit Points
+- `isDeadTest()` verifica que la unidad se reconoce como muerta al tener 0 `hitPoints`.
 
 #### Inventario
 Test para el correcto manejo de los ítems en inventario.
-- <code>addItemTest()</code> chequea que los ítems se agregan correctamente.
-- <code>addItemMoreThanMaxTest()</code> chequea que no se agregan más ítems del máximo.
+- `addItemTest()` chequea que los ítems se agregan correctamente.
+- `addItemMoreThanMaxTest()` chequea que no se agregan más ítems del máximo.
 
 #### Equipar ítems correctamente
-Se testea que cada una de las clases solo pueda equipar el tipo de ítem que le corresponde (e.g. <code>Archer</code> solo puede equipar <code>Bow</code>, etc). Se implementaron los siguientes tests.
-- <code>equipAxeTest()</code>
-- <code>equipSwordTest()</code>
-- <code>equipSpearTest()</code>
-- <code>equipStaffTest()</code>
-- <code>equipBowTest()</code>
+Se testea que cada una de las clases solo pueda equipar el tipo de ítem que le corresponde (e.g. `Archer` solo puede equipar `Bow`, etc). Se implementaron los siguientes tests.
+- `equipAxeTest()`
+- `equipSwordTest()`
+- `equipSpearTest()`
+- `equipStaffTest()`
+- `equipBowTest()`
 
 Su comportamiento depende de la clase. Se testea que las clases equipen exitosamente su ítem correspondiente, y que no hagan nada al intentar equipar un ítem incorrecto.
 
 #### Intercambio
-- <code>successfulExchange()</code> verifica que una unidad puede entregar un ítem de su inventario a otra, y que el <code>owner</code> del ítem cambia.
-- <code>notGiveAwayItemNotOwned()</code> verifica que no se pueda entregar un ítem que no está en el inventario.
+- `successfulExchange()` verifica que una unidad puede entregar un ítem de su inventario a otra que esté a distancia 1, y que el `owner` del ítem cambia.
+- `notGiveAwayItemNotOwned()` verifica que no se pueda entregar un ítem que no está en el inventario.
+- `notInRangeFailedExchange()` verifica que no es posible entregar un ítem del inventario a una unidad que no esté a distancia 1.
 
 #### Movimiento
-- <code>testMovement</code> verifica que una unidad no puede moverse a una celda que esté a una distancia mayor que su capacidad de movimiento, que es capaz de moverse a una celda válida, y que no se mueve a una celda ocupada por otra unidad.
+- `testMovement` verifica que una unidad no puede moverse a una celda que esté a una distancia mayor que su capacidad de movimiento, que es capaz de moverse a una celda válida, y que no se mueve a una celda ocupada por otra unidad.
 
 #### Combate
-La idea es que <code>testUnit</code> ataque (o sane, si el el caso) a todas las unidades a su alrededor.
-- En el test <code>useItemOnUnEquippedTargetUnitsTest</code> ninguna unidad objetivo está equipada, por lo que deben recibir daño aumentado.
-- El test <code>equipTargetsAndUseItemOnEquippedTargetUnitsTest</code>, las unidades objetivo son equipadas antes de ser atacadas. Se verifica que los <code>currentHitPoints</code> coinciden con lo esperado al considerar fortalezas y debilidades entre armas. 
-- El test <code>distanceTest</code> verifica que las distancias a las diferentes unidades son las correctas.
-- El test <code>isInRangeTest</code> verifica que <code>testUnit</code> considera a las unidades objetivo dentro de su rango de ataque. En las diferentes clases que implementan <code>CombatTest</code> se cuida de asignar a <code>testUnit</code> un arma que pueda atacar a unidades a distancia 2.
+La idea es que `testUnit` ataque (o sane, si el el caso) a todas las unidades a su alrededor.
+- En el test `useItemOnUnEquippedTargetUnitsTest` ninguna unidad objetivo está equipada, por lo que deben recibir daño aumentado.
+- El test `equipTargetsAndUseItemOnEquippedTargetUnitsTest`, las unidades objetivo son equipadas antes de ser atacadas. Se verifica que los `currentHitPoints` coinciden con lo esperado al considerar fortalezas y debilidades entre armas. 
+- El test `distanceTest` verifica que las distancias a las diferentes unidades son las correctas.
+- El test `isInRangeTest` verifica que `testUnit` considera a las unidades objetivo dentro de su rango de ataque. En las diferentes clases que implementan `CombatTest` se cuida de asignar a `testUnit` un arma que pueda atacar a unidades a distancia 2.
+- El test `deadUnitDoesNotCounterAttackTest` verifica que una unidad muerta no pueda reaccionar a una ataque.
 
-### Tests de <code>items</code>
+### Tests de `items`
 
 #### Constructores
 
-- <code>incorrectRangeTest()</code> verifica que no se crea un ítem con rango fuera de los límites (negativo o con rango máximo menor que el mínimo).
-- <code>constructorTest()</code> verifica que el constructor funciona como se espera.
+- `incorrectRangeTest()` verifica que no se crea un ítem con rango fuera de los límites (negativo o con rango máximo menor que el mínimo).
+- `constructorTest()` verifica que el constructor funciona como se espera.
 #### Equipar correctamente
-- <code>equippedToTest()</code> verifica que <code>testItem</code> se equipa correctamente a <code>testUnit</code>.
-- <code>hasOwnerTest()</code> chequea el setter de <code>owner</code> funciona.
-- <code>addItemSetsOwnerItem()</code> chequea que se actualiza el <code>owner</code> al agregar un ítem al inventario.
-- <code>beingEquippedBy...()</code> chequea que ciertas unidades puedan o no equipar el ítem.
+- `equippedToTest()` verifica que `testItem` se equipa correctamente a `testUnit`.
+- `hasOwnerTest()` chequea el setter de `owner` funciona.
+- `addItemSetsOwnerItem()` chequea que se actualiza el `owner` al agregar un ítem al inventario.
+- `beingEquippedBy...()` chequea que ciertas unidades puedan o no equipar el ítem.
 
 #### Combate
-- <code>actOnEquippedTargetUnitsTest()</code> verifica que <code>testItem</code> actúa correctamente sobre todas las unidades, luego de que estas fueron equipadas.
-- <code>actOnUnEquippedTargetUnitsTest()</code> verifica que <code>testItem</code> actúa correctamente sobre todas las unidades, cuando estas no están equipadas.
+- `actOnEquippedTargetUnitsTest()` verifica que `testItem` actúa correctamente sobre todas las unidades, luego de que estas fueron equipadas.
+- `actOnUnEquippedTargetUnitsTest()` verifica que `testItem` actúa correctamente sobre todas las unidades, cuando estas no están equipadas.
 - No se logró comprobar que el contrataque funciona bien.
 
 Las subclases abtractas reescriben estos test, de acuerdo a su propio funcionamiento. 
