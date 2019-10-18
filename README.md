@@ -183,4 +183,5 @@ La idea es que `testUnit` ataque (o sane, si el el caso) a todas las unidades a 
 
 Las subclases abtractas reescriben estos test, de acuerdo a su propio funcionamiento. 
 
-
+### Tests de `ItemFactory`
+- `testItemsCreation()` chequea que todos los ítems son creados correctamente.

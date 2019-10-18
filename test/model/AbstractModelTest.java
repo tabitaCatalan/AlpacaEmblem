@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * This class implements some basic methods that will be used in testing in <i>items</i> and <i>units</i> packages.
  * It defines a field, units and weapons.
  * @author Tabita Catalán Muñoz
- * @since
+ * @since v1.0
  */
 
 public abstract class AbstractModelTest {

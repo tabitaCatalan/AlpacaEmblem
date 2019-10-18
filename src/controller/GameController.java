@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import model.Tactician;
 import model.items.IEquipableItem;
@@ -16,6 +18,11 @@ import model.units.IUnit;
  */
 public class GameController {
 
+  private List<Tactician> tacticians;
+  private int maxRound;
+  private int actualRound;
+  private int indexActualPlayer;
+
   /**
    * Creates the controller for a new game.
    *
@@ -25,14 +32,34 @@ public class GameController {
    *     the dimensions of the map, for simplicity, all maps are squares
    */
   public GameController(int numberOfPlayers, int mapSize) {
+    createTacticians(numberOfPlayers);
+  }
 
+  /**
+   * Creates as many Tacticians as number of players
+   *
+   * @param numberOfPlayers
+   *     the number of players for this game
+   */
+  private void createTacticians(int numberOfPlayers){
+    tacticians = new ArrayList <Tactician>();
+    for(int i = 0; i < numberOfPlayers; i++){
+      tacticians.add(new Tactician("Player " + i));
+    }
   }
 
   /**
    * @return the list of all the tacticians participating in the game.
    */
   public List<Tactician> getTacticians() {
-    return null;
+    return tacticians;
+  } // o copy of tacticians?
+
+  /**
+   * @return number of players
+   * */
+  public int numberOfPlayers(){
+    return tacticians.size();
   }
 
   /**
@@ -49,6 +76,18 @@ public class GameController {
     return null;
   }
 
+  private void actualizeTurnAndRound(){
+    if(indexActualPlayer < numberOfPlayers()){
+      indexActualPlayer++;
+    }
+    else if(actualRound < maxRound){
+      shufflePlayers();
+      indexActualPlayer = 0;
+      actualRound++;
+    }
+    // terminar juego
+  }
+
   /**
    * @return the number of rounds since the start of the game.
    */
@@ -60,7 +99,7 @@ public class GameController {
    * @return the maximum number of rounds a match can last
    */
   public int getMaxRounds() {
-    return 0;
+    return maxRound;
   }
 
   /**
@@ -86,7 +125,33 @@ public class GameController {
    *  the maximum number of turns the game can last
    */
   public void initGame(final int maxTurns) {
+    maxRound = maxTurns;
+    actualRound = 1;
+    indexActualPlayer = 0;
+  }
 
+  /**
+   * Game ends
+   * */
+  public void endGame(){
+  }
+
+  /**
+   * @return tha first tactician of this round
+   * */
+  private Tactician getFirstPlayerOfRound(){
+    return tacticians.get(0);
+  }
+
+  /**
+   * reorders players at the beginning of a new round
+   * */
+  private void shufflePlayers(){
+    Tactician lastPlayer = tacticians.get(tacticians.size()-1);
+    do {
+      Collections.shuffle(tacticians);
+    }
+    while (getFirstPlayerOfRound().equals(lastPlayer));
   }
 
   /**

@@ -8,7 +8,19 @@ package model;
  */
 
 public class Tactician {
+    private String name;
+
+    /** Creates a new Tactician
+     * @param nameTactician: came of the new Tactician
+     * */
+    public Tactician(String nameTactician){
+        name = nameTactician;
+    }
+
+    /**
+     * @return name of the Tactician
+     * */
     public String getName() {
-        return "";
+        return name;
     }
 }

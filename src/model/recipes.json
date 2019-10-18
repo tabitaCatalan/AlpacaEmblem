@@ -1,0 +1,50 @@
+{
+  "axe": {
+    "name": "Battle Axe",
+    "power": 10,
+    "minRange": 1,
+    "maxRange": 2
+  },
+  "bow": {
+    "name": "Long Bow",
+    "power": 10,
+    "minRange": 2,
+    "maxRange": 3
+  },
+  "spear": {
+    "name": "Spear",
+    "power": 10,
+    "minRange": 1,
+    "maxRange": 2
+  },
+  "sword": {
+    "name": "Sword",
+    "power": 10,
+    "minRange": 1,
+    "maxRange": 2
+  },
+  "staff": {
+    "name": "Staff",
+    "power": 10,
+    "minRange": 1,
+    "maxRange": 2
+  },
+  "lightBook": {
+    "name": "Light Book",
+    "power": 10,
+    "minRange": 1,
+    "maxRange": 2
+  },
+  "darknessBook": {
+    "name": "Darkness Book",
+    "power": 10,
+    "minRange": 1,
+    "maxRange": 2
+  },
+  "spectralBook": {
+    "name": "Spectral Book",
+    "power": 10,
+    "minRange": 1,
+    "maxRange": 2
+  }
+}
