@@ -13,14 +13,11 @@ import java.util.Map;
  * */
 public class SpearFactory extends AbstractItemFactory{
 
-    private Map<String, String> itemsDict =  new HashMap<>();
+    private Map<String, String> itemsDict;
 
-
-    public SpearFactory(){
-        addItemParameters();
-    }
-
-    private void addItemParameters(){
+    @Override
+    protected void setUpDictionary(){
+        itemsDict =  new HashMap<>();
         getItemsDictionary().put(NAME, "Spear");
         getItemsDictionary().put(POWER, "10");
         getItemsDictionary().put(MIN_RANGE, "1");

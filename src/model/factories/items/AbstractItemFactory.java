@@ -15,6 +15,15 @@ public abstract class AbstractItemFactory implements IItemFactory{
     protected String MIN_RANGE = "minRange";
     protected String MAX_RANGE = "maxRange";
 
+    public AbstractItemFactory(){
+        setUpDictionary();
+    }
+
+    /**
+     * Sets up the dictionary that will be use in the item construction
+     * */
+    protected abstract void setUpDictionary();
+
     /**
      * @return the Map used as dictionary to store the item parameters
      * */

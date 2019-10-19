@@ -12,14 +12,11 @@ import java.util.Map;
  * @since v2.0
  * */
 public class BowFactory extends AbstractItemFactory {
-    private Map<String, String> itemsDict =  new HashMap<>();
+    private Map<String, String> itemsDict;
 
-
-    public BowFactory(){
-        addItemParameters();
-    }
-
-    private void addItemParameters(){
+    @Override
+    protected void setUpDictionary(){
+        itemsDict =  new HashMap<>();
         getItemsDictionary().put(NAME, "Long Bow");
         getItemsDictionary().put(POWER, "10");
         getItemsDictionary().put(MIN_RANGE, "2");

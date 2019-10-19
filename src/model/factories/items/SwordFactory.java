@@ -14,14 +14,11 @@ import java.util.Map;
  * */
 public class SwordFactory extends AbstractItemFactory{
 
-    private Map<String, String> itemsDict =  new HashMap<>();
+    private Map<String, String> itemsDict;
 
-
-    public SwordFactory(){
-        addItemParameters();
-    }
-
-    private void addItemParameters(){
+    @Override
+    protected void setUpDictionary(){
+        itemsDict =  new HashMap<>();
         getItemsDictionary().put(NAME, "Sword");
         getItemsDictionary().put(POWER, "10");
         getItemsDictionary().put(MIN_RANGE, "1");

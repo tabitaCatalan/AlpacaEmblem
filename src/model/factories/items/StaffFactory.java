@@ -12,14 +12,11 @@ import java.util.Map;
  * @since v2.0
  * */
 public class StaffFactory extends AbstractItemFactory {
-    private Map<String, String> itemsDict =  new HashMap<>();
+    private Map<String, String> itemsDict;
 
-
-    public StaffFactory(){
-        addItemParameters();
-    }
-
-    private void addItemParameters(){
+    @Override
+    protected void setUpDictionary(){
+        itemsDict =  new HashMap<>();
         getItemsDictionary().put(NAME, "Staff");
         getItemsDictionary().put(POWER, "10");
         getItemsDictionary().put(MIN_RANGE, "1");
