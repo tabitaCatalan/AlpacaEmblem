@@ -2,7 +2,6 @@ package model.factories.items;
 
 import model.items.IEquipableItem;
 
-import java.util.Map;
 
 /**
  * This interface represents the <i>factories</i> that can be used to generate items
@@ -20,22 +19,22 @@ public interface IItemFactory {
     IEquipableItem createItem();
 
     /**
-     * Return the name that will be used when generating an axe
+     * Return the name that will be used when generating an item
      * */
     String getName();
 
     /**
-     * Return the power that will have every generated axe
+     * Return the power that will have every generated item
      * */
     int getPower();
 
     /**
-     * Return the min range that will have every generated axe
+     * Return the min range that will have every generated item
      * */
     int getMinRange();
 
     /**
-     * Return the max range that will have every generated axe
+     * Return the max range that will have every generated item
      * */
     int getMaxRange();
 

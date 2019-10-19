@@ -18,9 +18,9 @@ public class BowFactory extends AbstractItemFactory {
     protected void setUpDictionary(){
         itemsDict =  new HashMap<>();
         getItemsDictionary().put(NAME, "Long Bow");
-        getItemsDictionary().put(POWER, "10");
+        getItemsDictionary().put(POWER, "40");
         getItemsDictionary().put(MIN_RANGE, "2");
-        getItemsDictionary().put(MAX_RANGE, "3");
+        getItemsDictionary().put(MAX_RANGE, "4");
     }
 
     public Map<String, String> getItemsDictionary(){

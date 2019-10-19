@@ -18,7 +18,7 @@ public class LightBookFactoryTest extends ItemFactoryTest {
     @Override
     @Test
     public void itemCreationTest() {
-        testCreationOfAnItem("Light Book", 10, 1, 2);
+        testWellCreatedItem("Light Book", 50, 1, 3);
     }
 
 }

@@ -1,5 +1,7 @@
 package model;
 
+import model.units.IUnit;
+
 /**
  * This class represent a Player
  *
@@ -9,6 +11,7 @@ package model;
 
 public class Tactician {
     private String name;
+    private IUnit selectedUnit;
 
     /** Creates a new Tactician
      * @param nameTactician: came of the new Tactician
@@ -22,5 +25,20 @@ public class Tactician {
      * */
     public String getName() {
         return name;
+    }
+
+    /**
+     * @return the actual selected unit
+     * */
+    public IUnit getSelectedUnit() {
+        return selectedUnit;
+    }
+
+    /**
+     * Sets the actual selected unit to <i>unit</>.
+     * @param  unit
+     * */
+    public void setSelectedUnit(IUnit unit) {
+        selectedUnit = unit;
     }
 }

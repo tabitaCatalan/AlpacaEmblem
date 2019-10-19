@@ -20,9 +20,9 @@ public class LightBookFactory extends AbstractItemFactory{
     protected void setUpDictionary(){
         itemsDict =  new HashMap<>();
         getItemsDictionary().put(NAME, "Light Book");
-        getItemsDictionary().put(POWER, "10");
+        getItemsDictionary().put(POWER, "50");
         getItemsDictionary().put(MIN_RANGE, "1");
-        getItemsDictionary().put(MAX_RANGE, "2");
+        getItemsDictionary().put(MAX_RANGE, "3");
     }
 
     public Map<String, String> getItemsDictionary(){

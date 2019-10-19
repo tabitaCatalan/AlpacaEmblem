@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/** Tests
+/** Tests the correct creation of items using factories
  *
  * @author Tabita Catalán Muñoz
  * @version v2.0
@@ -26,7 +26,7 @@ public abstract class ItemFactoryTest {
     @Test
     public abstract void itemCreationTest();
 
-    protected void testCreationOfAnItem(String name, int power, int minRange, int maxRange){
+    protected void testWellCreatedItem(String name, int power, int minRange, int maxRange){
         IEquipableItem createdItem = getFactory().createItem();
         assertEquals(name, createdItem.getName());
         assertEquals(power, createdItem.getPower());

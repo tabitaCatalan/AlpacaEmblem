@@ -6,6 +6,7 @@ import java.util.List;
 import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
+import model.map.MapFactory;
 import model.units.IUnit;
 
 /**
@@ -22,6 +23,7 @@ public class GameController {
   private int maxRound;
   private int actualRound;
   private int indexActualPlayer;
+  private Field gameMap;
 
   /**
    * Creates the controller for a new game.
@@ -33,6 +35,7 @@ public class GameController {
    */
   public GameController(int numberOfPlayers, int mapSize) {
     createTacticians(numberOfPlayers);
+    createGameMap(mapSize);
   }
 
   /**
@@ -63,17 +66,25 @@ public class GameController {
   }
 
   /**
+   * Creates the map of the game
+   * */
+  public void createGameMap(int size){
+    MapFactory mapFactory = new MapFactory();
+    gameMap = mapFactory.createRandomMap(size);
+  }
+
+  /**
    * @return the map of the current game
    */
   public Field getGameMap() {
-    return null;
+    return gameMap;
   }
 
   /**
    * @return the tactician that's currently playing
    */
   public Tactician getTurnOwner() {
-    return null;
+    return tacticians.get(indexActualPlayer);
   }
 
   private void actualizeTurnAndRound(){
@@ -144,7 +155,8 @@ public class GameController {
   }
 
   /**
-   * reorders players at the beginning of a new round
+   * Reorders players, to be used at the beginning of a new round. Last player can't be the first one in the new round.
+   * It's necessary to have more than two players
    * */
   private void shufflePlayers(){
     Tactician lastPlayer = tacticians.get(tacticians.size()-1);
@@ -172,7 +184,21 @@ public class GameController {
    * @return the current player's selected unit
    */
   public IUnit getSelectedUnit() {
-    return null;
+    return getTurnOwner().getSelectedUnit();
+  }
+
+  /**
+   * Returns a unit in the game map
+   *
+   * @param x
+   *     horizontal position of the unit
+   * @param y
+   *     vertical position of the unit
+   *
+   * @return unit in Location (x,y) (if there's an unit there)
+   */
+  private IUnit getUnitIn(int x, int y) {
+    return gameMap.getCell(x,y).getUnit();
   }
 
   /**
@@ -184,14 +210,18 @@ public class GameController {
    *     vertical position of the unit
    */
   public void selectUnitIn(int x, int y) {
-
+    IUnit unitInCell = getUnitIn(x,y);
+    getTurnOwner().setSelectedUnit(unitInCell);
   }
 
   /**
    * @return the inventory of the currently selected unit.
    */
   public List<IEquipableItem> getItems() {
-    return null;
+    if (getSelectedUnit()!= null) {
+      return getSelectedUnit().getInventory();
+    }
+    else return null;
   }
 
   /**
@@ -201,7 +231,8 @@ public class GameController {
    *     the location of the item in the inventory.
    */
   public void equipItem(int index) {
-
+    IEquipableItem item = getItems().get(index);
+    getSelectedUnit().equipItem(item); // solo si el item está en inventario
   }
 
   /**
@@ -213,7 +244,8 @@ public class GameController {
    *     vertical position of the target
    */
   public void useItemOn(int x, int y) {
-
+    IUnit targetUnit = getUnitIn(x,y);
+    getSelectedUnit().useEquippedItemOn(targetUnit); // tal vez esto debería hacerlo tactician...
   }
 
   /**
@@ -223,7 +255,7 @@ public class GameController {
    *     the location of the item in the inventory.
    */
   public void selectItem(int index) {
-
+    IEquipableItem item = getItems().get(index);
   }
 
   /**

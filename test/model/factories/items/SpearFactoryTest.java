@@ -20,7 +20,7 @@ public class SpearFactoryTest extends ItemFactoryTest {
     @Override
     @Test
     public void itemCreationTest() {
-        testCreationOfAnItem("Spear", 10, 1, 2);
+        testWellCreatedItem("Spear", 30, 1, 2);
     }
 
 }

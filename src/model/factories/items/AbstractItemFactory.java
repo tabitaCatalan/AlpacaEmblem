@@ -4,6 +4,7 @@ import java.util.Map;
 
 /**
  * Abstract class that defines some common information and behaviour between all item factories.
+ * Data is stored in dictionaries (java.util.Map)
  *
  * @author Tabita Catalán Muñoz
  * @since v2.0

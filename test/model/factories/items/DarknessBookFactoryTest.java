@@ -20,7 +20,7 @@ public class DarknessBookFactoryTest extends ItemFactoryTest {
     @Override
     @Test
     public void itemCreationTest() {
-        testCreationOfAnItem("Darkness Book", 10, 1, 2);
+        testWellCreatedItem("Darkness Book", 50, 1, 3);
     }
 
 }

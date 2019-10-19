@@ -18,7 +18,7 @@ public class SpectralBookFactoryTest extends ItemFactoryTest {
     @Override
     @Test
     public void itemCreationTest() {
-        testCreationOfAnItem("Spectral Book", 10, 1, 2);
+        testWellCreatedItem("Spectral Book", 50, 1, 3);
     }
 
 }
