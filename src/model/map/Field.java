@@ -141,7 +141,38 @@ public class Field {
     return cell1.isNeighbour(cell2);
   }
 
+  /**
+   *
+   * @return the minimum side length of a square that contains all the cells
+   * */
     public int getSize() {
-      return 0;
+        ArrayList<Integer> columns = new ArrayList<>();
+        ArrayList<Integer> rows = new ArrayList<>();
+
+        for (Location location : map.values()) {
+            columns.add(location.getColumn());
+            rows.add(location.getRow());
+        }
+        int minCol = getMinOfArray(columns);
+        int maxCol = getMaxOfArray(columns);
+        int minRow = getMinOfArray(rows);
+        int maxRow = getMaxOfArray(rows);
+        return Math.max(maxCol - minCol + 1, maxRow - minRow + 1);
+    }
+
+    private int getMinOfArray(List<Integer> array){
+        int min = Integer.MAX_VALUE;
+        for(Integer x: array) {
+            min = Math.min(x, min);
+        }
+        return min;
+    }
+
+    private int getMaxOfArray(List<Integer> array){
+        int max = Integer.MIN_VALUE;
+        for(Integer x: array) {
+            max = Math.max(x, max);
+        }
+        return max;
     }
 }

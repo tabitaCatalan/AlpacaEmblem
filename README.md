@@ -96,11 +96,20 @@ A continuación se muestra un diagrama UML resumido (solo clases e interfaces) d
 <img src="reportes/UML/PackageNonMagic.png" title="UMLResumenNonMagic"/>
 Se tiene la interfaz `INonMagical`, implementada por la clase abstracta `AbstracWeapon`, la cual es subclaseada por la mayor parte de los ítems (`Bow`, `Axe`, etc).
 
+### Fábricas
+Para automatizar la creación de ítems, se implementaron Fábricas (Factory Pattern) para cada uno de los ítems y unidades del juego.
+#### `IItemFactory`
+Interfaz que agrupa el comportamiento de todas las Fábricas que generan ítems.
+Es implementada por `BowFactory`, etc.
+#### `IUnitFactory`
+Interfaz que agrupa el comportamiento de todas las Fábricas que generan unidades.
+Es implementada por `ArcherFactory`, etc.
+
+
 ### Comentarios
 - Para distinguir los distintos tipos de ítems se utiliza Double Dispatch (para equipar los ítems y para atacar unidades).
 - Se crea una clase `NullItem` (que no hace nada), que implementa la interfaz `IEquipableItem`. Se utiliza para tratar con las unidades que no tienen un ítem equipado. Tiene rango [0,0], y `power` 0.
 - Las unidades no equipadas son vulnerables: recibirán daño aumentado. La Alpaca, por tanto, siempre recibe más daño. (Puedo dejarlo normal, pero ahora no alcanzo).
-- Se tiene una interfaz `IEquipableItem`, que define el comportamiento de un ítem estándar. Esta se implementa en la clase abstracta `AbstractItem`. Esta clase, a su vez, se separa en dos clases abstractas `AbstractWeapon`, para ítems que pueden atacar y que pueden reaccionar a ataques con un contrataque (como `Bow` o `Axe`), y `AbstractHealer`, para ítems que pueden sanar, pero que no pueden contratacar (como `Staff`).   
 - La muerte de las unidades no se alcanzó a implementar.
 
 ## Descripción de los tests
@@ -184,4 +193,4 @@ La idea es que `testUnit` ataque (o sane, si el el caso) a todas las unidades a 
 Las subclases abtractas reescriben estos test, de acuerdo a su propio funcionamiento. 
 
 ### Tests de `ItemFactory`
-- `testItemsCreation()` chequea que todos los ítems son creados correctamente.
+- `itemCreationTest()` chequea que cada `Factory` crea el ítem adecuado
