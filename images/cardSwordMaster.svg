@@ -267,7 +267,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="530.61295"
+     inkscape:cx="721.21"
      inkscape:cy="349.26793"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -294,7 +294,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -323,38 +323,6 @@
          x="149.5681"
          y="125.47781"
          style="font-size:25.39999962px;writing-mode:lr-tb;fill:#552200;stroke-width:0.26458332">Sword Master</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
-       x="152.70857"
-       y="164.83916"
-       id="text1053"><tspan
-         sodipodi:role="line"
-         id="tspan1051"
-         x="209.98672"
-         y="164.83916"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332;">Hit Points:</tspan><tspan
-         sodipodi:role="line"
-         x="209.98672"
-         y="178.06833"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332;"
-         id="tspan1298">Movement:</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="209.32527"
-       y="164.69446"
-       id="text1053-0"><tspan
-         sodipodi:role="line"
-         id="tspan1051-0"
-         x="209.32527"
-         y="164.69446"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"> 70</tspan><tspan
-         sodipodi:role="line"
-         x="209.32527"
-         y="177.92363"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"
-         id="tspan1322"> 2 cells/round</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Amiri;-inkscape-font-specification:Amiri;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#552200;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -619,5 +587,47 @@
            sodipodi:nodetypes="ccccc" />
       </g>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="157.91249"
+       y="161.52876"
+       id="text1053"><tspan
+         sodipodi:role="line"
+         id="tspan1051"
+         x="157.91249"
+         y="161.52876"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">Hit Points:</tspan><tspan
+         sodipodi:role="line"
+         x="157.91249"
+         y="174.75793"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+         id="tspan1298">Movement:</tspan><tspan
+         sodipodi:role="line"
+         x="157.91249"
+         y="187.98709"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+         id="tspan2237">Storage:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="215.48001"
+       y="162.48477"
+       id="text1053-0"><tspan
+         sodipodi:role="line"
+         id="tspan1051-0"
+         x="215.48001"
+         y="162.48477"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"> 70</tspan><tspan
+         sodipodi:role="line"
+         x="215.48001"
+         y="175.71394"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"
+         id="tspan1322"> 2 cells/round</tspan><tspan
+         sodipodi:role="line"
+         x="215.48001"
+         y="188.9431"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"
+         id="tspan2239"> 3 items</tspan></text>
   </g>
 </svg>

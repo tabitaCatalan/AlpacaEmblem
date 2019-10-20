@@ -254,7 +254,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="514.8176"
+     inkscape:cx="348.14243"
      inkscape:cy="387.33051"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -264,7 +264,7 @@
      inkscape:snap-page="true"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="true"
-     inkscape:snap-global="true"
+     inkscape:snap-global="false"
      inkscape:bbox-paths="true"
      inkscape:snap-bbox-edge-midpoints="true"
      inkscape:window-width="1366"
@@ -280,7 +280,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -551,38 +551,6 @@
          style="font-size:25.39999962px;writing-mode:lr-tb;fill:#552200;stroke-width:0.26458332">Sorcerer</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
-       x="152.70857"
-       y="164.83916"
-       id="text1053"><tspan
-         sodipodi:role="line"
-         id="tspan1051"
-         x="209.98672"
-         y="164.83916"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332;">Hit Points:</tspan><tspan
-         sodipodi:role="line"
-         x="209.98672"
-         y="178.06833"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332;"
-         id="tspan1298">Movement:</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="209.32527"
-       y="164.69446"
-       id="text1053-0"><tspan
-         sodipodi:role="line"
-         id="tspan1051-0"
-         x="209.32527"
-         y="164.69446"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"> 50</tspan><tspan
-         sodipodi:role="line"
-         x="209.32527"
-         y="177.92363"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"
-         id="tspan1322"> 1 cells/round</tspan></text>
-    <text
-       xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Amiri;-inkscape-font-specification:Amiri;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#552200;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="207.54155"
        y="225.97644"
@@ -653,5 +621,47 @@
          id="tspan1322-3-6"><tspan
            style="font-size:5.64444447px"
            id="tspan1871">Magic weapon</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="154.73177"
+       y="161.02219"
+       id="text1053"><tspan
+         sodipodi:role="line"
+         id="tspan1051"
+         x="154.73177"
+         y="161.02219"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">Hit Points:</tspan><tspan
+         sodipodi:role="line"
+         x="154.73177"
+         y="174.25136"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+         id="tspan1298">Movement:</tspan><tspan
+         sodipodi:role="line"
+         x="154.73177"
+         y="187.48051"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332"
+         id="tspan2237">Storage:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="212.2993"
+       y="161.9782"
+       id="text1053-0"><tspan
+         sodipodi:role="line"
+         id="tspan1051-0"
+         x="212.2993"
+         y="161.9782"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"> 50</tspan><tspan
+         sodipodi:role="line"
+         x="212.2993"
+         y="175.20737"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"
+         id="tspan1322"> 1 cell/round</tspan><tspan
+         sodipodi:role="line"
+         x="212.2993"
+         y="188.43652"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';writing-mode:lr-tb;stroke-width:0.26458332"
+         id="tspan2239"> 3 items</tspan></text>
   </g>
 </svg>
