@@ -19,13 +19,13 @@ y *movement* celdas de distancia desde su sitio actual.
 Exceptuando la Alpaca, todas las unidades pueden portar a lo más 3 objetos.
 Los tipos de unidades se listan a continuación:
 - Unidades básicas:
-  - **Archer:** Sólo pueden equiparse *Bows*.  <img src="images/archerEquipped.svg" title="Archer" width="50"/>
+  - **Archer:** Sólo pueden equiparse *Bows*.
   - **Fighter:** Sólo pueden equiparse *Axes*. 
-  - **Sword Master:** Sólo pueden equiparse *Swords*. <img src="images/swordMasterReady.svg" title="SwordMaster" width="50"/>
-  - **Sorcerer:** Sólo pueden equiparse *Magic Books*. <img src="images/sorcererSpectralCombat.svg" title="Sorcerer" width="50"/>
+  - **Sorcerer:** Sólo pueden equiparse *Magic Books*.
+  - **Sword Master:** Sólo pueden equiparse *Swords*.  
 - Unidades especiales:
-  - **Alpaca:** No pueden equiparse ningún tipo de objeto, pero pueden cargar una cantidad ilimitada de ellos. <img src="images/alpaca.svg" title="Alpaca" width="50"/>
-  - **Cleric:** Sólo pueden equiparse *Staffs* y no pueden realizar ataques. <img src="images/clericCombat.svg" title="Cleric" width="50"/>
+  - **Alpaca:** No pueden equiparse ningún tipo de objeto, pero pueden cargar una cantidad ilimitada de ellos.
+  - **Cleric:** Sólo pueden equiparse *Staffs* y no pueden realizar ataques. 
   - **Hero:** Sólo puede equiparse *Spears*. Al ser derrotado, el jugador que perdió esta unidad pierde la partida (esto no está implementado aún).
 
 
@@ -100,10 +100,17 @@ Se tiene la interfaz `INonMagical`, implementada por la clase abstracta `Abstrac
 Para automatizar la creación de ítems, se implementaron Fábricas (Factory Pattern) para cada uno de los ítems y unidades del juego.
 #### `IItemFactory`
 Interfaz que agrupa el comportamiento de todas las Fábricas que generan ítems.
-Es implementada por `BowFactory`, etc.
+Es implementada por `SwordFactory`, `BowFactory`, etc.
 #### `IUnitFactory`
 Interfaz que agrupa el comportamiento de todas las Fábricas que generan unidades.
-Es implementada por `ArcherFactory`, etc.
+Es implementada por `HeroFactory`, `ArcherFactory`, etc.
+#### Unidades e ítems generados
+
+<img src="images/cardArcher.svg" title="Card Archer" width="650"/>
+<img src="images/cardSorcerer.svg" title="Card Sorcerer" width="650"/>
+<img src="images/cardSwordMaster.svg" title="Card Sword Master" width="650"/>
+<img src="images/cardAlpaca.svg" title="Card Alpaca" width="650"/>
+<img src="images/cardCleric.svg" title="Card Cleric" width="650"/>
 
 
 ### Comentarios
