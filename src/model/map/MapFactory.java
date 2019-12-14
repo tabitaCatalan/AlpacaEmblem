@@ -1,7 +1,9 @@
 package model.map;
 
 
+import javax.script.ScriptEngine;
 import java.util.ArrayList;
+import java.util.Map;
 
 /** Factory with methods to create maps, using the Field class
  *
@@ -21,6 +23,7 @@ public class MapFactory {
         ArrayList<Location> locations = generateSquareOfLocations(size);
         Field map = new Field();
         map.addCells(false, locations.toArray(new Location[locations.size()]));
+        System.out.println(map);
         return map;
     }
 

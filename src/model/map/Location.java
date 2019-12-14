@@ -63,6 +63,13 @@ public class Location {
   }
 
   /**
+   * @return "O" si es una celda válida, "X" si no lo es.
+   * */
+  public String printIfValid(){
+    return "O";
+  }
+
+  /**
    * Sets a location as adjacent to this one
    *
    * @param neighbour

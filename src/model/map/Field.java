@@ -142,10 +142,22 @@ public class Field {
   }
 
   /**
-   *
    * @return the minimum side length of a square that contains all the cells
    * */
     public int getSize() {
+        Map<String, Integer> limits = getMapLimits();
+        int minCol = limits.get("minCol");
+        int maxCol = limits.get("maxCol");
+        int minRow = limits.get("minRow");
+        int maxRow = limits.get("maxRow");
+        return Math.max(maxCol - minCol + 1, maxRow - minRow + 1);
+    }
+
+    /**
+     * @return a dictionary with the limits of the map.
+     *      To access use keys: minCol, maxCol, minRow, maxRow
+     * */
+    private Map<String, Integer> getMapLimits(){
         ArrayList<Integer> columns = new ArrayList<>();
         ArrayList<Integer> rows = new ArrayList<>();
 
@@ -157,7 +169,13 @@ public class Field {
         int maxCol = getMaxOfArray(columns);
         int minRow = getMinOfArray(rows);
         int maxRow = getMaxOfArray(rows);
-        return Math.max(maxCol - minCol + 1, maxRow - minRow + 1);
+
+        Map<String, Integer> limits = new HashMap<>();
+        limits.put("maxCol", maxCol);
+        limits.put("minCol", minCol);
+        limits.put("maxRow", maxRow);
+        limits.put("minRow", minRow);
+        return limits;
     }
 
     private int getMinOfArray(List<Integer> array){
@@ -174,5 +192,18 @@ public class Field {
             max = Math.max(x, max);
         }
         return max;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        Map<String, Integer> limits = getMapLimits();
+        for (int i = limits.get("maxRow"); i >= limits.get("minRow"); i--){
+            for (int j = limits.get("minCol"); j <= limits.get("maxCol"); j++){
+                str.append(getCell(i,j).printIfValid());
+            }
+            str.append("\n");
+        }
+        return str.toString();
     }
 }

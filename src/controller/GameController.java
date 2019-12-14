@@ -1,5 +1,7 @@
 package controller;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +19,7 @@ import model.units.IUnit;
  * @version 2.0
  * @since 2.0
  */
-public class GameController {
+public class GameController implements PropertyChangeListener {
 
   private List<Tactician> tacticians;
   private int maxRound;
@@ -35,6 +37,7 @@ public class GameController {
    */
   public GameController(int numberOfPlayers, int mapSize) {
     createTacticians(numberOfPlayers);
+    observeTacticians();
     createGameMap(mapSize);
   }
 
@@ -57,6 +60,14 @@ public class GameController {
   public List<Tactician> getTacticians() {
     return tacticians;
   } // o copy of tacticians?
+
+  /** Adds itself as observer of every tactician
+   * */
+  public void observeTacticians(){
+    for (Tactician tactician: tacticians){
+      tactician.addPropertyChangeListener(this);
+    }
+  }
 
   /**
    * @return number of players
@@ -269,4 +280,10 @@ public class GameController {
   public void giveItemTo(int x, int y) {
 
   }
+
+  @Override
+  public void propertyChange(PropertyChangeEvent evt) {
+    //this.setNews((String) evt.getNewValue());
+  }
+
 }
