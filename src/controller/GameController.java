@@ -62,13 +62,6 @@ public class GameController implements PropertyChangeListener {
     return tacticians;
   } // o copy of tacticians?
 
-    /**
-     * @return number of players participating in the game.
-     */
-    public int getNumberOfPlayers(){
-      return tacticians.size();
-    }
-
   /** Adds itself as observer of every tactician
    * */
   public void observeTacticians(){
@@ -142,14 +135,26 @@ public class GameController implements PropertyChangeListener {
   /**
    * Removes a tactician and all of it's units from the game.
    *
-   * @param tactician
+   * @param tacticianName
    *     the player to be removed
    */
-  public void removeTactician(String tactician) {
-
+  public void removeTactician(String tacticianName) {
+      Tactician tactician = getTacticianByName(tacticianName);
+      tacticians.remove(tactician); // perhaps verify it not null...
   }
 
   /**
+   * obtain the Tactician whose name is given, or null if it does not exists.
+   * @param tacticianName name of the wanted Tactician
+   * */
+    private Tactician getTacticianByName(String tacticianName) {
+        for(Tactician tactician: tacticians){
+            if(tactician.getName().equals(tacticianName)) return tactician;
+        }
+        return null;
+    }
+
+    /**
    * Starts the game.
    * @param maxTurns
    *  the maximum number of turns the game can last
@@ -157,7 +162,7 @@ public class GameController implements PropertyChangeListener {
   public void initGame(final int maxTurns) {
     maxRound = maxTurns;
     actualRound = 1;
-    indexActualPlayer = new Random().nextInt(getNumberOfPlayers());
+    indexActualPlayer = new Random().nextInt(numberOfPlayers());
     shufflePlayers();
   }
 
