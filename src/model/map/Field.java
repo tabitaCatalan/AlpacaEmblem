@@ -14,9 +14,27 @@ import java.util.*;
  */
 public class Field {
 
-  private Map<String, Location> map = new HashMap<>();
-  private Random random = new Random();
-  private StringBuilder builder = new StringBuilder();
+    private Map<String, Location> map;
+    private Random random;
+    private StringBuilder builder;
+
+    /**
+     * Creates an empty Field
+     *
+     * @param random: will be used in methods with random decisions.
+     */
+    public Field(Random random){
+        this.random = random;
+        map = new HashMap<>();
+        builder = new StringBuilder();
+    }
+
+    /**
+     * Creates an empty Field
+     */
+     public Field(){
+        this(new Random());
+    }
 
   /**
    * Add cells to the map.

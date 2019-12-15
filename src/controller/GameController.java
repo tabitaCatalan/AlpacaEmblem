@@ -3,6 +3,7 @@ package controller;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Collections;
 import java.util.List;
 import model.Tactician;
@@ -61,6 +62,13 @@ public class GameController implements PropertyChangeListener {
     return tacticians;
   } // o copy of tacticians?
 
+    /**
+     * @return number of players participating in the game.
+     */
+    public int getNumberOfPlayers(){
+      return tacticians.size();
+    }
+
   /** Adds itself as observer of every tactician
    * */
   public void observeTacticians(){
@@ -81,7 +89,7 @@ public class GameController implements PropertyChangeListener {
    * */
   public void createGameMap(int size){
     MapFactory mapFactory = new MapFactory();
-    gameMap = mapFactory.createRandomMap(size);
+    gameMap = mapFactory.createAllConnectedMap(size);
   }
 
   /**
@@ -98,8 +106,8 @@ public class GameController implements PropertyChangeListener {
     return tacticians.get(indexActualPlayer);
   }
 
-  private void actualizeTurnAndRound(){
-    if(indexActualPlayer < numberOfPlayers()){
+  private void actualizeTurnAndRoundAndShuffle(){
+    if(indexActualPlayer < numberOfPlayers() - 1){
       indexActualPlayer++;
     }
     else if(actualRound < maxRound){
@@ -114,7 +122,7 @@ public class GameController implements PropertyChangeListener {
    * @return the number of rounds since the start of the game.
    */
   public int getRoundNumber() {
-    return 0;
+    return actualRound;
   }
 
   /**
@@ -128,7 +136,7 @@ public class GameController implements PropertyChangeListener {
    * Finishes the current player's turn.
    */
   public void endTurn() {
-
+    actualizeTurnAndRoundAndShuffle();
   }
 
   /**
@@ -149,7 +157,8 @@ public class GameController implements PropertyChangeListener {
   public void initGame(final int maxTurns) {
     maxRound = maxTurns;
     actualRound = 1;
-    indexActualPlayer = 0;
+    indexActualPlayer = new Random().nextInt(getNumberOfPlayers());
+    shufflePlayers();
   }
 
   /**
@@ -159,7 +168,7 @@ public class GameController implements PropertyChangeListener {
   }
 
   /**
-   * @return tha first tactician of this round
+   * @return the first tactician of this round
    * */
   private Tactician getFirstPlayerOfRound(){
     return tacticians.get(0);
@@ -170,11 +179,11 @@ public class GameController implements PropertyChangeListener {
    * It's necessary to have more than two players
    * */
   private void shufflePlayers(){
-    Tactician lastPlayer = tacticians.get(tacticians.size()-1);
+    String lastPlayerName = tacticians.get(tacticians.size()-1).getName();
     do {
       Collections.shuffle(tacticians);
     }
-    while (getFirstPlayerOfRound().equals(lastPlayer));
+    while (getFirstPlayerOfRound().getName().equals(lastPlayerName));
   }
 
   /**
