@@ -7,10 +7,20 @@ import java.util.Random;
 import java.util.Collections;
 import java.util.List;
 import model.Tactician;
+import model.factories.items.*;
+import model.factories.units.*;
 import model.items.IEquipableItem;
+import model.items.Staff;
+import model.items.magic.DarknessBook;
+import model.items.magic.LightBook;
+import model.items.magic.SpectralBook;
+import model.items.nonMagic.Axe;
+import model.items.nonMagic.Bow;
+import model.items.nonMagic.Spear;
+import model.items.nonMagic.Sword;
 import model.map.Field;
 import model.map.MapFactory;
-import model.units.IUnit;
+import model.units.*;
 
 /**
  * Controller of the game.
@@ -28,6 +38,25 @@ public class GameController implements PropertyChangeListener {
   private int indexActualPlayer;
   private Field gameMap;
 
+  // items factories
+  private AxeFactory axefactory;
+  private BowFactory bowFactory;
+  private DarknessBookFactory darknessBookFactory;
+  private LightBookFactory lightBookFactory;
+  private SpearFactory spearFactory;
+  private SpectralBookFactory spectralBookFactory;
+  private StaffFactory staffFactory;
+  private SwordFactory swordFactory;
+
+  // units factories
+  private AlpacaFactory alpacaFactory;
+  private ArcherFactory archerFactory;
+  private ClericFactory clericFactory;
+  private FighterFactory fighterFactory;
+  private HeroFactory heroFactory;
+  private SorcererFactory sorcererFactory;
+  private SwordMasterFactory swordMasterFactory;
+
   /**
    * Creates the controller for a new game.
    *
@@ -40,6 +69,7 @@ public class GameController implements PropertyChangeListener {
     createTacticians(numberOfPlayers);
     observeTacticians();
     createGameMap(mapSize);
+    createFactories();
   }
 
   /**
@@ -140,9 +170,9 @@ public class GameController implements PropertyChangeListener {
    */
   public void removeTactician(String tacticianName) {
       Tactician tactician = getTacticianByName(tacticianName);
-      if (!tactician.equals(null)) {
+      if (tactician != null) {
           tactician.removeAllUnits();
-          tacticians.remove(tactician); // perhaps verify it not null...
+          tacticians.remove(tactician);
       }
   }
 
@@ -298,9 +328,156 @@ public class GameController implements PropertyChangeListener {
 
   }
 
+
+  /**
+   * To manage notification from Tactician
+   * */
   @Override
-  public void propertyChange(PropertyChangeEvent evt) {
-    //this.setNews((String) evt.getNewValue());
+  public void propertyChange(PropertyChangeEvent evt) {}
+
+
+  // ITEMS AND UNITS CREATION
+  /** It creates all factories to be used by controller to create items and units
+   * */
+  private void createFactories() {
+    axefactory = new AxeFactory();
+    bowFactory = new BowFactory();
+    darknessBookFactory = new DarknessBookFactory();
+    lightBookFactory = new LightBookFactory();
+    spearFactory = new SpearFactory();
+    spectralBookFactory = new SpectralBookFactory();
+    staffFactory = new StaffFactory();
+    swordFactory = new SwordFactory();
+
+    // units factories
+    alpacaFactory = new AlpacaFactory();
+    archerFactory = new ArcherFactory();
+    clericFactory = new ClericFactory();
+    fighterFactory = new FighterFactory();
+    heroFactory = new HeroFactory();
+    sorcererFactory = new SorcererFactory();
+    swordMasterFactory = new SwordMasterFactory();
   }
+  /**
+   * Creates a common Axe
+   * */
+  public Axe createAxe(){
+    return axefactory.createItem();
+  }
+
+  /**
+   * Creates a common Bow
+   * */
+  public Bow creatBow(){
+    return bowFactory.createItem();
+  }
+
+  /**
+   * Creates a Darkness Book
+   * */
+  public DarknessBook creatDarknessBook(){
+    return darknessBookFactory.createItem();
+  }
+
+  /**
+   * Creates a common Light Book
+   * */
+  public LightBook creatLightBook(){
+    return lightBookFactory.createItem();
+  }
+
+  /**
+   * Creates a common Spear
+   * */
+  public Spear createSpear(){
+    return spearFactory.createItem();
+  }
+
+  /**
+   * Creates a common Spectral Book
+   * */
+  public SpectralBook createSpectralBook(){
+    return spectralBookFactory.createItem();
+  }
+
+  /**
+   * Creates a common Staff
+   */
+  public Staff createStaff(){
+    return staffFactory.createItem();
+  }
+
+  /**
+   * Creates a common Sword
+   * */
+  public Sword createSword(){
+    return swordFactory.createItem();
+  }
+
+  // units
+  /**
+   * Creates an Alpaca in position (x, y)
+   * @param x: row of the map
+   * @param y: column of the map
+   * */
+  public Alpaca createAlpaca(int x, int y){
+    return alpacaFactory.createUnit(getGameMap().getCell(x,y));
+  }
+
+  /**
+   * Creates an Archer in position (x, y)
+   * @param x: row of the map
+   * @param y: column of the map
+   * */
+  public Archer createArcher(int x, int y){
+    return archerFactory.createUnit(getGameMap().getCell(x,y));
+  }
+
+  /**
+   * Creates a Cleric in position (x, y)
+   * @param x: row of the map
+   * @param y: column of the map
+   * */
+  public Cleric createCleric(int x, int y){
+    return clericFactory.createUnit(getGameMap().getCell(x,y));
+  }
+
+  /**
+   * Creates a Fighter in position (x, y)
+   * @param x: row of the map
+   * @param y: column of the map
+   * */
+  public Fighter createFighter(int x, int y){
+    return fighterFactory.createUnit(getGameMap().getCell(x,y));
+  }
+
+  /**
+   * Creates a Hero in position (x, y)
+   * @param x: row of the map
+   * @param y: column of the map
+   * */
+  public Hero createHero(int x, int y){
+    return heroFactory.createUnit(getGameMap().getCell(x,y));
+  }
+
+  /**
+   * Creates a Sorcerer in position (x, y)
+   * @param x: row of the map
+   * @param y: column of the map
+   * */
+  public Sorcerer createSorcerer(int x, int y){
+    return sorcererFactory.createUnit(getGameMap().getCell(x,y));
+  }
+
+  /**
+   * Creates a SwordMaster in position (x, y)
+   * @param x: row of the map
+   * @param y: column of the map
+   * */
+  public SwordMaster createSwordMaster(int x, int y){
+    return swordMasterFactory.createUnit(getGameMap().getCell(x,y));
+  }
+
+
 
 }

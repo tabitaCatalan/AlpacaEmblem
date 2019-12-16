@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 import model.Tactician;
+import model.items.nonMagic.Axe;
 import model.map.Field;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -185,4 +186,5 @@ class GameControllerTest {
   @Test
   void giveItemTo() {
   }
+
 }

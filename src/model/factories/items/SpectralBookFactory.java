@@ -2,6 +2,7 @@ package model.factories.items;
 
 
 import model.items.magic.LightBook;
+import model.items.magic.SpectralBook;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class SpectralBookFactory extends AbstractItemFactory{
     }
 
     @Override
-    public LightBook createItem() {
-        return new LightBook(getName(), getPower(), getMinRange(), getMaxRange());
+    public SpectralBook createItem() {
+        return new SpectralBook(getName(), getPower(), getMinRange(), getMaxRange());
     }
 }
