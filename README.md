@@ -174,11 +174,13 @@ Su comportamiento depende de la clase. Se testea que las clases equipen exitosam
 
 #### Combate
 La idea es que `testUnit` ataque (o sane, si el el caso) a todas las unidades a su alrededor.
-- En el test `useItemOnUnEquippedTargetUnitsTest` ninguna unidad objetivo está equipada, por lo que deben recibir daño aumentado.
-- El test `equipTargetsAndUseItemOnEquippedTargetUnitsTest`, las unidades objetivo son equipadas antes de ser atacadas. Se verifica que los `currentHitPoints` coinciden con lo esperado al considerar fortalezas y debilidades entre armas. 
-- El test `distanceTest` verifica que las distancias a las diferentes unidades son las correctas.
-- El test `isInRangeTest` verifica que `testUnit` considera a las unidades objetivo dentro de su rango de ataque. En las diferentes clases que implementan `CombatTest` se cuida de asignar a `testUnit` un arma que pueda atacar a unidades a distancia 2.
-- El test `deadUnitDoesNotCounterAttackTest` verifica que una unidad muerta no pueda reaccionar a una ataque.
+- En `useItemOnUnEquippedTargetUnitsTest` ninguna unidad objetivo está equipada, por lo que deben recibir daño aumentado.
+- `equipTargetsAndUseItemOnEquippedTargetUnitsTest`, las unidades objetivo son equipadas antes de ser atacadas. Se verifica que los `currentHitPoints` coinciden con lo esperado al considerar fortalezas y debilidades entre armas. 
+- `distanceTest` verifica que las distancias a las diferentes unidades son las correctas.
+- `isInRangeTest` verifica que `testUnit` considera a las unidades objetivo dentro de su rango de ataque. En las diferentes clases que implementan `CombatTest` se cuida de asignar a `testUnit` un arma que pueda atacar a unidades a distancia 2.
+- `deadUnitDoesNotCounterAttackTest` verifica que una unidad muerta no pueda reaccionar a una ataque.
+- `counterAttackOutOfRange` verifica que la unidad objetivo de un ataque no puede contraatacar si la unidad que atacó en primer lugar está fuera de su rango
+- `attackUnitsOutOfRange` se ataca a una unidad fuera del rango, pero de tal forma que la unidad atacante sí está en el rango de la atacada. Se verifica que ninguna de las dos resulte herida.
 
 ### Tests de `items`
 
@@ -201,3 +203,11 @@ Las subclases abtractas reescriben estos test, de acuerdo a su propio funcionami
 
 ### Tests de `ItemFactory`
 - `testWellCreatedItem()` chequea que cada `Factory` crea el ítem adecuado
+
+### Test de `GameController`
+
+- `getGameMap()` chequea que las invariantes del mapa son correctas (es del tamaño pedido y es conexo)
+- `getTurnOwner()` verifica que el mismo jugador no tiene dos turnos seguidos
+- `getRoundNumber()` verifica que se cuenta bien la cantidad de rondas
+- `getMaxRounds()` aun no funciona para juego sin limite
+
