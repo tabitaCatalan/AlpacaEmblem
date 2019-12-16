@@ -59,4 +59,18 @@ public class Tactician{
         support.firePropertyChange("news", this.news, value);
         this.news = value;
     }*/
+
+    /**Removes all the tactician's units from map
+     * */
+    public void removeAllUnits() {
+    }
+
+    /** Removes an unit from map
+     * @param unit th unit to be removed
+     * */
+    public void removeUnit(IUnit unit){
+
+    }
+
+
 }

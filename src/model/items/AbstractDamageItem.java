@@ -25,13 +25,17 @@ public abstract class AbstractDamageItem extends AbstractItem implements IAbleOf
 
     @Override
     public void actOn(IUnit targetUnit){
-        attack(targetUnit);
-        targetUnit.reactToAttack(getOwner());
+        if(isInRange(targetUnit)) {
+            attack(targetUnit);
+            targetUnit.reactToAttack(getOwner());
+        }
     }
 
     @Override
     public void reactTo(IUnit unit){
-        attack(unit);
+        if (isInRange(unit)) {
+            attack(unit);
+        }
     }
 
     @Override

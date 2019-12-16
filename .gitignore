@@ -192,3 +192,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,windows,intellij+all,jetbrains+all
+/src/Observable.java
+/src/Observer.java

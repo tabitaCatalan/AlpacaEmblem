@@ -231,8 +231,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public boolean isInRange(IUnit targetUnit){
-    double distance = distanceTo(targetUnit);
-    return (distance >= equippedItem.getMinRange() && distance <= equippedItem.getMaxRange());
+    return equippedItem.isInRange(targetUnit);
   }
 
   @Override

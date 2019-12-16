@@ -119,4 +119,5 @@ public class AlpacaTest extends AbstractTestUnit {
     assertTrue(getDarknessSorcerer().isAlive()); // Alpaca does not attack
     assertEquals(50, getTestUnit().getCurrentHitPoints());
   }
+
 }

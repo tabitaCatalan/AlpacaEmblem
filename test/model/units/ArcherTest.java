@@ -54,6 +54,22 @@ public class ArcherTest extends AbstractTestUnit {
     getTestUnit().equipItem(testBow);
   }
 
+  /**
+   * function that checks that all units receives strong damage after being attacked while unequipped.
+   */
+  @Override
+  public void attackUnEquippedUnitsTest(){
+    strongDamageTest(alpaca);
+    strongDamageTest(archer);
+    strongDamageTest(cleric);
+    strongDamageTest(fighter);
+    strongDamageTest(hero);
+    strongDamageTest(swordMaster);
+    strongDamageTest(darknessSorcerer);
+    zeroDamageTest(lightSorcerer);
+    strongDamageTest(spectralSorcerer);
+  }
+
   @Override
   public void attackEquippedUnitsTest(){
     normalDamageTest(archer);
@@ -61,7 +77,7 @@ public class ArcherTest extends AbstractTestUnit {
     normalDamageTest(fighter);
     normalDamageTest(hero);
     normalDamageTest(swordMaster);
-    strongDamageTest(lightSorcerer);
+    zeroDamageTest(lightSorcerer);
     strongDamageTest(darknessSorcerer);
     strongDamageTest(spectralSorcerer);
   }
@@ -76,6 +92,42 @@ public class ArcherTest extends AbstractTestUnit {
   public void isInRangeTest(){
     super.isInRangeTest();
     assertFalse(getTestUnit().isInRange(lightSorcerer));
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * Archer has different weapon, it is tested i
+   * with another target.
+   */
+  @Test
+  @Override
+  public void counterAttackOutOfRange(){
+    equipTestUnit();
+    equipTargetUnits();
+    assertEquals("(2, 2)", getTestUnit().getLocation().toString());
+    getTestUnit().moveTo(getField().getCell(2,1));
+    assertEquals("(2, 1)", getTestUnit().getLocation().toString());
+    assertTrue(getTestUnit().isInRange(getHero()));
+    assertFalse(getHero().isInRange(getTestUnit()));
+    getTestUnit().useEquippedItemOn(getHero());
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   * Archer has different range
+   * */
+  @Test
+  public void attackUnitsOutOfRange(){
+    equipTargetUnits();
+    equipTestUnit();
+    assertFalse(getTestUnit().isInRange(getLightSorcerer()));
+    assertTrue(getLightSorcerer().isInRange(getTestUnit()));
+    getTestUnit().useEquippedItemOn(getLightSorcerer());
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
+    assertEquals(50, getArcher().getCurrentHitPoints());
   }
 
 }

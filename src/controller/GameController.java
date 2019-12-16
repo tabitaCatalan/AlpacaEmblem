@@ -140,7 +140,10 @@ public class GameController implements PropertyChangeListener {
    */
   public void removeTactician(String tacticianName) {
       Tactician tactician = getTacticianByName(tacticianName);
-      tacticians.remove(tactician); // perhaps verify it not null...
+      if (!tactician.equals(null)) {
+          tactician.removeAllUnits();
+          tacticians.remove(tactician); // perhaps verify it not null...
+      }
   }
 
   /**

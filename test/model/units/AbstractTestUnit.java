@@ -288,6 +288,35 @@ public abstract class AbstractTestUnit extends AbstractModelTest {
 
     }
 
+    /**
+     * Checks target unit can't counterattack if the unit who attacked in first place is out of target's range*/
+    @Test
+    public void counterAttackOutOfRange(){
+      equipTestUnit();
+      equipTargetUnits();
+      assertEquals("(2, 2)", getTestUnit().getLocation().toString());
+      getTestUnit().moveTo(getField().getCell(3,2));
+      assertEquals("(3, 2)", getTestUnit().getLocation().toString());
+      assertTrue(getTestUnit().isInRange(getArcher()));
+      assertFalse(getArcher().isInRange(getTestUnit()));
+      getTestUnit().useEquippedItemOn(getArcher());
+      assertEquals(50, getTestUnit().getCurrentHitPoints());
+    }
+
+    /**
+     * Checks that unit's out of range can't be attacked, and that they can't counterattack.
+     * */
+    @Test
+  public void attackUnitsOutOfRange(){
+      getTestUnit().moveTo(getField().getCell(2,1));
+      equipTargetUnits();
+      equipTestUnit();
+      assertFalse(getTestUnit().isInRange(getArcher()));
+      assertTrue(getArcher().isInRange(getTestUnit()));
+      getTestUnit().useEquippedItemOn(getArcher());
+      assertEquals(50, getTestUnit().getCurrentHitPoints());
+      assertEquals(50, getArcher().getCurrentHitPoints());
+    }
 
 
 }

@@ -147,4 +147,13 @@ public abstract class AbstractItem implements IEquipableItem {
     return false;
   }
 
+  @Override
+  public boolean isInRange(IUnit targetUnit){
+    if (getOwner() != null) {
+      double distance = getOwner().distanceTo(targetUnit);
+      return (distance >= getMinRange() && distance <= getMaxRange());
+    }
+    return false;
+  }
+
 }

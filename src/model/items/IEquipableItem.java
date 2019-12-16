@@ -118,7 +118,12 @@ public interface IEquipableItem {
   void reactTo(IUnit unit);
 
   /**
-   * if false, item is a normal one. If true, is a NullItem: an item that does nothing.
+   * @return false if item is a normal one. true if is a NullItem: an item that does nothing.
    * */
   boolean isNullItem();
+
+  /**
+   * @return true if targetUnit is in unit's range
+   * */
+  boolean isInRange(IUnit targetUnit);
 }
