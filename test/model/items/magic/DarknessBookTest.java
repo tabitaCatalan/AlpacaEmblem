@@ -12,12 +12,16 @@ public class DarknessBookTest extends AbstractMagicBookTest {
 
     @Override
     public void setTestItem() {
-        expectedName = "Darkness Book";
-        expectedPower = 10;
-        expectedMinRange = 1;
-        expectedMaxRange = 2;
-        testDarknessBook = new DarknessBook(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+        testDarknessBook = new DarknessBook(getExpectedName(), getExpectedPower(), getExpectedMinRange(), getExpectedMaxRange());
     }
+
+    protected String getExpectedName(){return  "Darkness Book";}
+
+    protected int getExpectedPower() {return 10;}
+
+    protected int getExpectedMinRange(){return 1;}
+
+    protected int getExpectedMaxRange(){return 2;}
 
     /**
      * Sets up an item with wrong ranges setted.
@@ -32,7 +36,7 @@ public class DarknessBookTest extends AbstractMagicBookTest {
      */
     @Override
     public void setTestUnit() {
-        testSorcerer = new Sorcerer(unitHP, unitMovement, new Location(0, 0));
+        testSorcerer = new Sorcerer(getUnitHP(), getUnitMovement(), getField().getCell(2,2));
     }
 
     @Override
@@ -70,5 +74,11 @@ public class DarknessBookTest extends AbstractMagicBookTest {
         normalDamageTest(darknessSorcerer);
         strongDamageTest(spectralSorcerer);
         weakDamageTest(lightSorcerer);
+    }
+
+    @Override
+    public void attackUnEquippedTargetUnitsTest(){
+        super.attackEquippedTargetUnitsTest();
+        strongDamageTest(lightSorcerer);
     }
 }

@@ -11,13 +11,6 @@ import org.junit.jupiter.api.Test;
 public abstract class AbstractHealerTest extends AbstractTestItem {
 
     @Override
-    public void setTestItem() {
-        expectedPower = 5;
-        expectedMinRange = 1;
-        expectedMaxRange = 2;
-    }
-
-    @Override
     public abstract IHealer getTestItem();
 
     public void actOnTest(){
@@ -29,11 +22,12 @@ public abstract class AbstractHealerTest extends AbstractTestItem {
      * */
     private void testHealing(IUnit targetUnit){
         assertEquals(targetHP, targetUnit.getCurrentHitPoints());
-        assertEquals(expectedPower, getTestItem().getPower());
-        targetUnit.receiveDamage(expectedPower - 1);
+        assertEquals(getExpectedPower(), getTestItem().getPower());
+        targetUnit.receiveDamage(getExpectedPower() - 1);
         getTestItem().heal(targetUnit);
         assertEquals(targetHP, targetUnit.getCurrentHitPoints());
-        targetUnit.receiveDamage(expectedPower + 1);
+        targetUnit.receiveDamage(getExpectedPower() + 1);
+        getTestItem().heal(targetUnit);
         assertEquals(targetHP - 1, targetUnit.getCurrentHitPoints());
     }
 

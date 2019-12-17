@@ -16,6 +16,6 @@ public abstract class AbstractWeaponTest extends AbstractDamageItemTest {
         normalDamageTest(cleric);
         strongDamageTest(darknessSorcerer);
         strongDamageTest(spectralSorcerer);
-        strongDamageTest(lightSorcerer);
     }
+
 }

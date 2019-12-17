@@ -17,15 +17,18 @@ public class StaffTest extends AbstractHealerTest {
   private Staff wrongStaff;
   private Cleric testCleric;
 
-  /**
-   * Sets which item is going to be tested
-   */
   @Override
   public void setTestItem() {
-    super.setTestItem();
-    expectedName = "Common staff";
-    testStaff = new Staff(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testStaff = new Staff(getExpectedName(), getExpectedPower(), getExpectedMinRange(), getExpectedMaxRange());
   }
+
+  protected String getExpectedName(){return  "Common Staff";}
+
+  protected int getExpectedPower() {return 10;}
+
+  protected int getExpectedMinRange(){return 1;}
+
+  protected int getExpectedMaxRange(){return 2;}
 
   /**
    * Sets up an item with wrong ranges setted.
@@ -40,7 +43,7 @@ public class StaffTest extends AbstractHealerTest {
    */
   @Override
   public void setTestUnit() {
-    testCleric = new Cleric(unitHP, unitMovement, new Location(0, 0));
+    testCleric = new Cleric(getUnitHP(), getUnitMovement(), getField().getCell(2,2));
   }
 
   @Override
@@ -68,4 +71,5 @@ public class StaffTest extends AbstractHealerTest {
   public void beingEquippedByCleric() {
     checkCorrectEquippedItemTest(getCleric(),getTestItem());
   }
+
 }

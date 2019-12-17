@@ -19,20 +19,22 @@ import org.junit.jupiter.api.Test;
 public abstract class AbstractTestItem extends AbstractModelTest {
 
   // Parameters constructor testItem
-  protected String expectedName;
-  protected int expectedPower;
-  protected short expectedMinRange;
-  protected short expectedMaxRange;
+  private String expectedName;
+  private int expectedPower;
+  private short expectedMinRange;
+  private short expectedMaxRange;
 
   // Parameters constructor testUnit
-  protected int unitHP = 10;
-  protected int unitMovement = 5;
+  private int unitHP;
+  private int unitMovement;
 
   /**
    * Sets up the items to be tested
    */
   @BeforeEach
   public void setUp() {
+    unitHP = 50;
+    unitMovement = 2;
     setField();
     setTestUnit();
     setTestItem();
@@ -59,33 +61,37 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   @Override
   public abstract void setTestUnit();
 
-  /**
-   * Checks that the tested item cannot have ranges outside of certain bounds.
-   */
-  @Test
-  protected void incorrectRangeTest() {
-    assertTrue(getWrongTestItem().getMinRange() >= 0);
-    assertTrue(getWrongTestItem().getMaxRange() >= getWrongTestItem().getMinRange());
-  }
-
-  protected abstract IEquipableItem getWrongTestItem();
-
-  /**
-   * Tests that the constructor for the tested item works properly
-   */
-  @Test
-  protected void constructorTest() {
-    assertEquals(getExpectedName(), getTestItem().getName());
-    assertEquals(getExpectedBasePower(), getTestItem().getPower());
-    assertEquals(getExpectedMinRange(), getTestItem().getMinRange());
-    assertEquals(getExpectedMaxRange(), getTestItem().getMaxRange());
-  }
-
+  // Getters
   /**
    * @return the expected name of the item
    */
-  protected String getExpectedName() {
-    return expectedName;
+  protected abstract String getExpectedName();
+
+  /**
+   * @return the expected power of the Item
+   */
+  protected abstract int getExpectedPower();
+
+  /**
+   * @return the expected minimum range of the item
+   */
+  protected abstract int getExpectedMinRange();
+
+  /**
+   * @return the expected maximum range of the item
+   */
+  protected abstract int getExpectedMaxRange();
+
+  /**
+   * @return hit points of the test item*/
+  protected int getUnitHP(){
+    return unitHP;
+  }
+
+  /**
+   * @return movement of the test item*/
+  protected int getUnitMovement(){
+    return unitMovement;
   }
 
   /**
@@ -95,25 +101,33 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   public abstract IEquipableItem getTestItem();
 
   /**
-   * @return the expected power of the Item
+   * @return an item created giving incorrect parameters to the constructor
+   * */
+  protected abstract IEquipableItem getWrongTestItem();
+
+
+  // Tests
+  /**
+   * Checks that the tested item cannot have ranges outside of certain bounds.
    */
-  protected int getExpectedBasePower() {
-    return expectedPower;
+  @Test
+  protected void incorrectRangeTest() {
+    assertTrue(getWrongTestItem().getMinRange() >= 0);
+    assertTrue(getWrongTestItem().getMaxRange() >= getWrongTestItem().getMinRange());
   }
 
-  /**
-   * @return the expected minimum range of the item
-   */
-  protected int getExpectedMinRange() {
-    return expectedMinRange;
-  }
 
   /**
-   * @return the expected maximum range of the item
+   * Tests that the constructor for the tested item works properly
    */
-  protected int getExpectedMaxRange() {
-    return expectedMaxRange;
+  @Test
+  protected void constructorTest() {
+    assertEquals(getExpectedName(), getTestItem().getName());
+    assertEquals(getExpectedPower(), getTestItem().getPower());
+    assertEquals(getExpectedMinRange(), getTestItem().getMinRange());
+    assertEquals(getExpectedMaxRange(), getTestItem().getMaxRange());
   }
+
 
   /**
    * Checks that the Item can be correctly equipped to a unit
@@ -185,7 +199,7 @@ public abstract class AbstractTestItem extends AbstractModelTest {
   /**
    * Default: attack all targetUnits. LightSorcerer it's treated differently because it's is not in range for all units.
    * */
-  void attackUnEquippedTargetUnitsTest(){
+  protected void attackUnEquippedTargetUnitsTest(){
     strongDamageTest(alpaca);
     strongDamageTest(archer);
     strongDamageTest(cleric);
@@ -194,7 +208,6 @@ public abstract class AbstractTestItem extends AbstractModelTest {
     strongDamageTest(swordMaster);
     strongDamageTest(darknessSorcerer);
     strongDamageTest(spectralSorcerer);
-    strongDamageTest(lightSorcerer);
   }
 
   /**
@@ -217,4 +230,5 @@ public abstract class AbstractTestItem extends AbstractModelTest {
     equipTestUnit();
     attackUnEquippedTargetUnitsTest();
   }
+
 }

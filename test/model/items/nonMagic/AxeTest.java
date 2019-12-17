@@ -20,12 +20,16 @@ class AxeTest extends AbstractWeaponTest {
 
   @Override
   public void setTestItem() {
-    expectedName = "Common axe";
-    expectedPower = 10;
-    expectedMinRange = 1;
-    expectedMaxRange = 2;
-    testAxe = new Axe(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testAxe = new Axe(getExpectedName(), getExpectedPower(), getExpectedMinRange(), getExpectedMaxRange());
   }
+
+  protected String getExpectedName(){return "Common axe";}
+
+  protected int getExpectedPower() {return 10;}
+
+  protected int getExpectedMinRange(){return 1;}
+
+  protected int getExpectedMaxRange(){return 2;}
 
   /**
    * Sets up an item with wrong ranges setted.
@@ -40,7 +44,7 @@ class AxeTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    testFighter = new Fighter(unitHP, unitMovement, new Location(0, 0));
+    testFighter = new Fighter(getUnitHP(), getUnitMovement(), getField().getCell(2,2));
   }
 
   @Override
@@ -78,6 +82,13 @@ class AxeTest extends AbstractWeaponTest {
     normalDamageTest(fighter);
     strongDamageTest(hero);
     weakDamageTest(swordMaster);
+    strongDamageTest(lightSorcerer);
+  }
+
+  @Override
+  public void attackUnEquippedTargetUnitsTest(){
+    super.attackUnEquippedTargetUnitsTest();
+    strongDamageTest(lightSorcerer);
   }
 
 }

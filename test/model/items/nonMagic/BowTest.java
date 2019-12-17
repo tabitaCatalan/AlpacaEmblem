@@ -25,12 +25,16 @@ public class BowTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestItem() {
-    expectedName = "Common bow";
-    expectedPower = 10;
-    expectedMinRange = 2;
-    expectedMaxRange = 4;
-    testBow = new Bow(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testBow = new Bow(getExpectedName(), getExpectedPower(), getExpectedMinRange(), getExpectedMaxRange());
   }
+
+  protected String getExpectedName(){return "Common bow";}
+
+  protected int getExpectedPower() {return 10;}
+
+  protected int getExpectedMinRange(){return 2;}
+
+  protected int getExpectedMaxRange(){return 3;}
 
   /**
    * Sets up an item with wrong ranges setted.
@@ -45,7 +49,7 @@ public class BowTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    testArcher = new Archer(unitHP, unitMovement, new Location(0, 0));
+    testArcher = new Archer(getUnitHP(), getUnitMovement(), getField().getCell(2,2));
   }
 
   /**
@@ -96,5 +100,12 @@ public class BowTest extends AbstractWeaponTest {
     normalDamageTest(fighter);
     normalDamageTest(hero);
     normalDamageTest(swordMaster);
+    zeroDamageTest(lightSorcerer);
+  }
+
+  @Override
+  public void attackUnEquippedTargetUnitsTest(){
+    super.attackUnEquippedTargetUnitsTest();
+    zeroDamageTest(lightSorcerer);
   }
 }

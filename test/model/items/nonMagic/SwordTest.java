@@ -18,18 +18,18 @@ public class SwordTest extends AbstractWeaponTest {
   private Sword wrongSword;
   private SwordMaster testSwordMaster;
 
-  /**
-   * Sets which item is going to be tested
-   */
   @Override
   public void setTestItem() {
-    expectedName = "Common sword";
-    expectedPower = 10;
-    expectedMinRange = 1;
-    expectedMaxRange = 2;
-    testSword = new Sword(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testSword = new Sword(getExpectedName(), getExpectedPower(), getExpectedMinRange(), getExpectedMaxRange());
   }
 
+  protected String getExpectedName(){return  "Common Sword";}
+
+  protected int getExpectedPower() {return 10;}
+
+  protected int getExpectedMinRange(){return 1;}
+
+  protected int getExpectedMaxRange(){return 2;}
   /**
    * Sets up an item with wrong ranges setted.
    */
@@ -43,7 +43,7 @@ public class SwordTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    testSwordMaster = new SwordMaster(unitHP, unitMovement, new Location(0, 0));
+    testSwordMaster = new SwordMaster(getUnitHP(), getUnitMovement(), getField().getCell(2,2));
   }
 
   @Override
@@ -84,5 +84,12 @@ public class SwordTest extends AbstractWeaponTest {
     strongDamageTest(fighter);
     weakDamageTest(hero);
     normalDamageTest(swordMaster);
+    strongDamageTest(lightSorcerer);
+  }
+
+  @Override
+  public void attackUnEquippedTargetUnitsTest(){
+    super.attackUnEquippedTargetUnitsTest();
+    strongDamageTest(lightSorcerer);
   }
 }

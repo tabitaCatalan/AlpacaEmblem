@@ -17,7 +17,7 @@ public abstract class AbstractMagicBookTest extends AbstractDamageItemTest {
     public abstract IMagicBook getTestItem();
 
     @Override
-    public void attackEquippedTargetUnitsTest(){
+    protected void attackEquippedTargetUnitsTest(){
         strongDamageTest(alpaca);
         strongDamageTest(archer);
         strongDamageTest(cleric);

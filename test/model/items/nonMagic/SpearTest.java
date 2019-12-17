@@ -18,17 +18,18 @@ public class SpearTest extends AbstractWeaponTest {
   private Spear wrongSpear;
   private Hero testHero;
 
-  /**
-   * Sets which item is going to be tested
-   */
   @Override
   public void setTestItem() {
-    expectedName = "Javelin";
-    expectedPower = 10;
-    expectedMinRange = 1;
-    expectedMaxRange = 3;
-    testSpear = new Spear(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
+    testSpear = new Spear(getExpectedName(), getExpectedPower(), getExpectedMinRange(), getExpectedMaxRange());
   }
+
+  protected String getExpectedName(){return  "Javelin";}
+
+  protected int getExpectedPower() {return 10;}
+
+  protected int getExpectedMinRange(){return 1;}
+
+  protected int getExpectedMaxRange(){return 2;}
 
   /**
    * Sets up an item with wrong ranges setted.
@@ -43,7 +44,7 @@ public class SpearTest extends AbstractWeaponTest {
    */
   @Override
   public void setTestUnit() {
-    testHero = new Hero(unitHP, unitMovement, new Location(0, 0));
+    testHero = new Hero(getUnitHP(), getUnitMovement(), getField().getCell(2,2));
   }
 
   @Override
@@ -84,5 +85,12 @@ public class SpearTest extends AbstractWeaponTest {
     weakDamageTest(fighter);
     normalDamageTest(hero);
     strongDamageTest(swordMaster);
+    strongDamageTest(lightSorcerer);
+  }
+
+  @Override
+  public void attackUnEquippedTargetUnitsTest(){
+    super.attackUnEquippedTargetUnitsTest();
+    strongDamageTest(lightSorcerer);
   }
 }

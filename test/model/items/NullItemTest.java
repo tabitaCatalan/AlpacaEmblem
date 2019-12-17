@@ -13,18 +13,18 @@ public class NullItemTest extends AbstractTestItem {
     private NullItem wrongNullItem;
     private Alpaca alpaca;
 
-    /**
-     * Sets which item is going to be tested
-     */
     @Override
     public void setTestItem() {
-        expectedName = "Null Item";
-        expectedPower = 0;
-        expectedMinRange = 1;
-        expectedMaxRange = 1;
         nullItem = new NullItem();
     }
 
+    protected String getExpectedName(){return  "Null Item";}
+
+    protected int getExpectedPower() {return 0;}
+
+    protected int getExpectedMinRange(){return 1;}
+
+    protected int getExpectedMaxRange(){return 1;}
     @Override
     public void setWrongRangeItem() {
         wrongNullItem = new NullItem();
@@ -32,7 +32,7 @@ public class NullItemTest extends AbstractTestItem {
 
     @Override
     public void setTestUnit() {
-        alpaca = new Alpaca(unitHP, unitMovement, new Location(0, 0));
+        alpaca = new Alpaca(getUnitHP(), getUnitMovement(), getField().getCell(2,2));
     }
 
     @Override
